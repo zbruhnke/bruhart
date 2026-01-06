@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  /* Industrial Blue/Steel Gray Theme */
+  --primary: #1e3a5f;           /* Deep industrial blue */
+  --primary-dark: #0f2744;      /* Darker blue */
+  --primary-light: #2d5a8a;     /* Lighter blue */
+  --accent: #3b82f6;            /* Bright accent blue */
+  --accent-light: #60a5fa;      /* Light accent */
+  --steel: #64748b;             /* Steel gray */
+  --steel-light: #94a3b8;       /* Light steel */
+  --steel-dark: #475569;        /* Dark steel */
+  --background: #ffffff;
+  --background-alt: #f8fafc;
+  --foreground: #0f172a;
+  --foreground-muted: #64748b;
+  --border: #e2e8f0;
+  --success: #10b981;
+  --warning: #f59e0b;
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-steel: var(--steel);
+  --color-steel-light: var(--steel-light);
+  --color-steel-dark: var(--steel-dark);
+  --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-border: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--steel-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--steel);
+}
