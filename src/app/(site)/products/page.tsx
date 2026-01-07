@@ -1,12 +1,14 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { getProducts, urlFor } from "@/sanity/client";
 
 export const metadata: Metadata = {
   title: "Products | Bru-Hart Security Solutions",
   description: "Explore our complete line of crash-rated gates, slide gates, swing gates, operators, and access control systems.",
 };
 
-const products = [
+// Fallback products when Sanity is empty
+const fallbackProducts = [
   {
     id: "crash-rated",
     name: "Crash-Rated Gates",
@@ -105,7 +107,23 @@ const products = [
   },
 ];
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  // Fetch products from Sanity
+  const sanityProducts = await getProducts();
+
+  // Use Sanity products if available, otherwise use fallback
+  const products = sanityProducts && sanityProducts.length > 0
+    ? sanityProducts.map((p: any) => ({
+        id: p.slug || p._id,
+        name: p.name,
+        tagline: p.tagline,
+        description: p.description,
+        features: p.features || [],
+        applications: p.applications || [],
+        image: p.image ? urlFor(p.image).width(800).url() : null,
+      }))
+    : fallbackProducts;
+
   return (
     <>
       {/* Hero */}
@@ -127,7 +145,7 @@ export default function ProductsPage() {
       <section className="sticky top-20 z-40 bg-white border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav className="flex gap-1 overflow-x-auto py-4 scrollbar-hide">
-            {products.map((product) => (
+            {products.map((product: any) => (
               <a
                 key={product.id}
                 href={`#${product.id}`}
@@ -144,7 +162,7 @@ export default function ProductsPage() {
       <section className="py-16 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-24">
-            {products.map((product, index) => (
+            {products.map((product: any, index: number) => (
               <div
                 key={product.id}
                 id={product.id}
@@ -164,38 +182,42 @@ export default function ProductsPage() {
                     </p>
 
                     {/* Features */}
-                    <div className="mb-8">
-                      <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
-                        Key Features
-                      </h3>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {product.features.map((feature) => (
-                          <li key={feature} className="flex items-start gap-2 text-foreground-muted">
-                            <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    {product.features && product.features.length > 0 && (
+                      <div className="mb-8">
+                        <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
+                          Key Features
+                        </h3>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {product.features.map((feature: string) => (
+                            <li key={feature} className="flex items-start gap-2 text-foreground-muted">
+                              <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
 
                     {/* Applications */}
-                    <div className="mb-8">
-                      <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
-                        Common Applications
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {product.applications.map((app) => (
-                          <span
-                            key={app}
-                            className="px-3 py-1 bg-background-alt text-foreground-muted text-sm rounded-full"
-                          >
-                            {app}
-                          </span>
-                        ))}
+                    {product.applications && product.applications.length > 0 && (
+                      <div className="mb-8">
+                        <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
+                          Common Applications
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {product.applications.map((app: string) => (
+                            <span
+                              key={app}
+                              className="px-3 py-1 bg-background-alt text-foreground-muted text-sm rounded-full"
+                            >
+                              {app}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
 
                     <Link
                       href="/contact"
@@ -214,7 +236,7 @@ export default function ProductsPage() {
                       {/* Background Image */}
                       <div
                         className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                        style={{ backgroundImage: `url('${product.image}')` }}
+                        style={{ backgroundImage: `url('${product.image || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80'}')` }}
                       />
                       {/* Blue Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/60 via-primary/40 to-primary-light/30 mix-blend-multiply" />

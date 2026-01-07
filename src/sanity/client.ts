@@ -17,3 +17,35 @@ const builder = imageUrlBuilder(client)
 export function urlFor(source: any) {
   return builder.image(source)
 }
+
+// Query functions
+export async function getProducts() {
+  return client.fetch(`
+    *[_type == "product"] | order(order asc) {
+      _id,
+      name,
+      "slug": slug.current,
+      tagline,
+      description,
+      features,
+      applications,
+      image,
+      certifications
+    }
+  `)
+}
+
+export async function getSiteSettings() {
+  return client.fetch(`
+    *[_type == "siteSettings"][0] {
+      siteName,
+      tagline,
+      phone,
+      email,
+      emergencyPhone,
+      address,
+      socialLinks,
+      stats
+    }
+  `)
+}
