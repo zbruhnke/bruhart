@@ -3,6 +3,7 @@ import { page } from './page'
 import { siteSettings } from './siteSettings'
 import { testimonial } from './testimonial'
 import { project } from './project'
+import { industry } from './industry'
 
 export const schemaTypes = [
   product,
@@ -10,4 +11,5 @@ export const schemaTypes = [
   siteSettings,
   testimonial,
   project,
+  industry,
 ]
