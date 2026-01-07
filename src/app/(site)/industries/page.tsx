@@ -1,12 +1,15 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { ReactNode } from "react";
+import { getIndustries } from "@/sanity/client";
 
 export const metadata: Metadata = {
   title: "Industries We Serve | Bru-Hart Security Solutions",
   description: "Specialized security solutions for data centers, airports, utilities, government facilities, and more.",
 };
 
-const industries = [
+// Fallback industries when Sanity is empty
+const fallbackIndustries = [
   {
     id: "data-centers",
     name: "Data Centers",
@@ -24,11 +27,6 @@ const industries = [
       "Integrated access control systems",
       "Anti-climb fencing solutions",
     ],
-    icon: (
-      <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-      </svg>
-    ),
   },
   {
     id: "airports",
@@ -47,11 +45,6 @@ const industries = [
       "Crash-rated aircraft service gates",
       "Perimeter intrusion detection integration",
     ],
-    icon: (
-      <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-      </svg>
-    ),
   },
   {
     id: "utilities",
@@ -70,11 +63,6 @@ const industries = [
       "Remote monitoring systems",
       "Solar-powered operator options",
     ],
-    icon: (
-      <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
   },
   {
     id: "government",
@@ -93,11 +81,6 @@ const industries = [
       "Secure entry pavilions",
       "Biometric access integration",
     ],
-    icon: (
-      <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
-      </svg>
-    ),
   },
   {
     id: "ports",
@@ -116,11 +99,6 @@ const industries = [
       "TWIC reader integration",
       "Vehicle inspection portals",
     ],
-    icon: (
-      <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-      </svg>
-    ),
   },
   {
     id: "corporate",
@@ -139,15 +117,59 @@ const industries = [
       "Visitor management systems",
       "VIP entry systems",
     ],
-    icon: (
-      <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-      </svg>
-    ),
   },
 ];
 
-export default function IndustriesPage() {
+// Icons for each industry (by slug)
+const industryIcons: Record<string, ReactNode> = {
+  "data-centers": (
+    <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+    </svg>
+  ),
+  "airports": (
+    <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+    </svg>
+  ),
+  "utilities": (
+    <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+    </svg>
+  ),
+  "government": (
+    <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+    </svg>
+  ),
+  "ports": (
+    <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+    </svg>
+  ),
+  "corporate": (
+    <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+    </svg>
+  ),
+};
+
+export default async function IndustriesPage() {
+  // Fetch industries from Sanity
+  const sanityIndustries = await getIndustries();
+
+  // Use Sanity industries if available, otherwise use fallback
+  const industries = sanityIndustries && sanityIndustries.length > 0
+    ? sanityIndustries.map((ind: any) => ({
+        id: ind.slug || ind._id,
+        name: ind.name,
+        tagline: ind.tagline,
+        description: ind.description,
+        challenges: ind.challenges || [],
+        solutions: ind.solutions || [],
+      }))
+    : fallbackIndustries;
+
   return (
     <>
       {/* Hero */}
@@ -169,16 +191,18 @@ export default function IndustriesPage() {
       <section className="py-16 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-24">
-            {industries.map((industry, index) => (
+            {industries.map((industry: any, index: number) => (
               <div
                 key={industry.id}
                 id={industry.id}
                 className="scroll-mt-24"
               >
-                <div className={`grid lg:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? '' : ''}`}>
+                <div className={`grid lg:grid-cols-2 gap-12 items-start`}>
                   {/* Content */}
                   <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                    <div className="text-primary mb-4">{industry.icon}</div>
+                    <div className="text-primary mb-4">
+                      {industryIcons[industry.id] || industryIcons["corporate"]}
+                    </div>
                     <span className="text-sm font-semibold text-accent uppercase tracking-wider">
                       {industry.tagline}
                     </span>
@@ -202,36 +226,40 @@ export default function IndustriesPage() {
 
                   {/* Challenges & Solutions */}
                   <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                    <div className="bg-red-50 rounded-xl p-6">
-                      <h3 className="text-sm font-semibold text-red-800 uppercase tracking-wider mb-4">
-                        Industry Challenges
-                      </h3>
-                      <ul className="space-y-3">
-                        {industry.challenges.map((challenge) => (
-                          <li key={challenge} className="flex items-start gap-2 text-red-700">
-                            <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                            </svg>
-                            <span className="text-sm">{challenge}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="bg-green-50 rounded-xl p-6">
-                      <h3 className="text-sm font-semibold text-green-800 uppercase tracking-wider mb-4">
-                        Our Solutions
-                      </h3>
-                      <ul className="space-y-3">
-                        {industry.solutions.map((solution) => (
-                          <li key={solution} className="flex items-start gap-2 text-green-700">
-                            <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span className="text-sm">{solution}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    {industry.challenges && industry.challenges.length > 0 && (
+                      <div className="bg-red-50 rounded-xl p-6">
+                        <h3 className="text-sm font-semibold text-red-800 uppercase tracking-wider mb-4">
+                          Industry Challenges
+                        </h3>
+                        <ul className="space-y-3">
+                          {industry.challenges.map((challenge: string) => (
+                            <li key={challenge} className="flex items-start gap-2 text-red-700">
+                              <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                              </svg>
+                              <span className="text-sm">{challenge}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {industry.solutions && industry.solutions.length > 0 && (
+                      <div className="bg-green-50 rounded-xl p-6">
+                        <h3 className="text-sm font-semibold text-green-800 uppercase tracking-wider mb-4">
+                          Our Solutions
+                        </h3>
+                        <ul className="space-y-3">
+                          {industry.solutions.map((solution: string) => (
+                            <li key={solution} className="flex items-start gap-2 text-green-700">
+                              <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                              <span className="text-sm">{solution}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

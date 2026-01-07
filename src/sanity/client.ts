@@ -49,3 +49,52 @@ export async function getSiteSettings() {
     }
   `)
 }
+
+export async function getIndustries() {
+  return client.fetch(`
+    *[_type == "industry"] | order(order asc) {
+      _id,
+      name,
+      "slug": slug.current,
+      tagline,
+      description,
+      challenges,
+      solutions,
+      image
+    }
+  `)
+}
+
+export async function getTestimonials(featured?: boolean) {
+  const filter = featured ? ' && featured == true' : ''
+  return client.fetch(`
+    *[_type == "testimonial"${filter}] {
+      _id,
+      quote,
+      author,
+      title,
+      company,
+      image,
+      featured
+    }
+  `)
+}
+
+export async function getAboutPage() {
+  return client.fetch(`
+    *[_type == "aboutPage"][0] {
+      heroHeading,
+      heroSubtext,
+      storyTitle,
+      storyContent,
+      valuesTitle,
+      valuesSubtext,
+      values,
+      timeline,
+      ctaTitle,
+      ctaSubtext,
+      ctaButtonText,
+      ctaButtonLink
+    }
+  `)
+}
