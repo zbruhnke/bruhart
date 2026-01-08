@@ -38,6 +38,7 @@ export default async function ContactPage() {
   const businessHours = contactPageData?.businessHours || fallbackData.businessHours;
   const emergencyLabel = contactPageData?.emergencyLabel || fallbackData.emergencyLabel;
   const emergencyNote = contactPageData?.emergencyNote || fallbackData.emergencyNote;
+  const showEmergencySupport = contactPageData?.showEmergencySupport !== false; // Default to true
 
   const phone = siteSettings?.phone || fallbackSettings.phone;
   const email = siteSettings?.email || fallbackSettings.email;
@@ -124,20 +125,22 @@ export default async function ContactPage() {
                 </div>
 
                 {/* Emergency */}
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
+                {showEmergencySupport && (
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                      <svg className="w-6 h-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground">{emergencyLabel}</h3>
+                      <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} className="text-red-600 font-medium hover:text-red-700 transition-colors">
+                        {phone}
+                      </a>
+                      <p className="text-sm text-foreground-muted mt-1">{emergencyNote}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">{emergencyLabel}</h3>
-                    <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} className="text-red-600 font-medium hover:text-red-700 transition-colors">
-                      {phone}
-                    </a>
-                    <p className="text-sm text-foreground-muted mt-1">{emergencyNote}</p>
-                  </div>
-                </div>
+                )}
               </div>
 
               {/* Map placeholder */}

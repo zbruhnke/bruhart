@@ -147,6 +147,7 @@ export async function getHomePage() {
 export async function getContactPage() {
   return client.fetch(`
     *[_type == "contactPage"][0] {
+      showEmergencySupport,
       heroHeading,
       heroSubtext,
       contactInfoTitle,

@@ -418,6 +418,7 @@ const homePage = {
 const contactPage = {
   _type: 'contactPage',
   _id: 'contactPage',
+  showEmergencySupport: true,
   heroHeading: 'Get in Touch',
   heroSubtext: 'Whether you need a quote, technical support, or want to discuss your security requirements, our team is here to help.',
   contactInfoTitle: 'Contact Information',
