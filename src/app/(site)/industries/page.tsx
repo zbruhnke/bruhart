@@ -3,6 +3,9 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { getIndustries, urlFor } from "@/sanity/client";
 
+// Revalidate every 60 seconds so Sanity changes appear quickly
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Industries We Serve | Bru-Hart Security Solutions",
   description: "Specialized security solutions for data centers, airports, utilities, government facilities, and more.",

@@ -3,6 +3,9 @@ import { getAboutPage } from "@/sanity/client";
 import { PortableText } from "@portabletext/react";
 import { ReactNode } from "react";
 
+// Revalidate every 60 seconds so Sanity changes appear quickly
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "About Us | Bru-Hart Security Solutions",
   description: "Learn about Bru-Hart's 40+ years of experience providing high-security gate systems for critical infrastructure.",

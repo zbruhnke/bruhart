@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { getProducts, urlFor } from "@/sanity/client";
 
+// Revalidate every 60 seconds so Sanity changes appear quickly
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Products | Bru-Hart Security Solutions",
   description: "Explore our complete line of crash-rated gates, slide gates, swing gates, operators, and access control systems.",

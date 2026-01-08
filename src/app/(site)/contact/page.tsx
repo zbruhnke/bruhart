@@ -1,6 +1,9 @@
 import { getContactPage, getSiteSettings } from "@/sanity/client";
 import ContactForm from "@/components/ContactForm";
 
+// Revalidate every 60 seconds so Sanity changes appear quickly
+export const revalidate = 60;
+
 // Fallback data for contact page
 const fallbackData = {
   heroHeading: 'Get in Touch',

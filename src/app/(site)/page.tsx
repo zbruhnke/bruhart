@@ -5,6 +5,9 @@ import Certifications from "@/components/Certifications";
 import CTA from "@/components/CTA";
 import { getHomePage, getProducts, getIndustries, getSiteSettings } from "@/sanity/client";
 
+// Revalidate every 60 seconds so Sanity changes appear quickly
+export const revalidate = 60;
+
 export default async function Home() {
   // Fetch all data in parallel
   const [homePageData, products, industries, siteSettings] = await Promise.all([
