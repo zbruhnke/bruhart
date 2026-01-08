@@ -17,6 +17,7 @@ interface HeroProps {
     heroPrimaryCtaLink?: string;
     heroSecondaryCta?: string;
     heroSecondaryCtaLink?: string;
+    heroStatsLabel?: string;
     heroStats?: Array<{ value: string; label: string }>;
   };
 }
@@ -32,6 +33,7 @@ const fallback = {
   heroPrimaryCtaLink: '/contact',
   heroSecondaryCta: 'View Products',
   heroSecondaryCtaLink: '/products',
+  heroStatsLabel: 'Trusted by industry leaders',
   heroStats: [
     { value: '500+', label: 'Projects Completed' },
     { value: '40+', label: 'Years Experience' },
@@ -48,6 +50,7 @@ export default function Hero({ data }: HeroProps) {
   const primaryCtaLink = data?.heroPrimaryCtaLink || fallback.heroPrimaryCtaLink;
   const secondaryCta = data?.heroSecondaryCta || fallback.heroSecondaryCta;
   const secondaryCtaLink = data?.heroSecondaryCtaLink || fallback.heroSecondaryCtaLink;
+  const statsLabel = data?.heroStatsLabel || fallback.heroStatsLabel;
   const stats = data?.heroStats && data.heroStats.length > 0 ? data.heroStats : fallback.heroStats;
 
   // Use Sanity image if uploaded, otherwise fall back to URL field, then hardcoded fallback
@@ -111,7 +114,7 @@ export default function Hero({ data }: HeroProps) {
 
           {/* Trust indicators */}
           <div className="mt-16 pt-8 border-t border-white/20">
-            <p className="text-white/60 text-sm mb-4">Trusted by industry leaders</p>
+            <p className="text-white/60 text-sm mb-4">{statsLabel}</p>
             <div className="flex flex-wrap items-center gap-8">
               {stats.map((stat, index) => (
                 <div key={index} className="text-white/80">

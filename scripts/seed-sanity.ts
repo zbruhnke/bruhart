@@ -377,6 +377,7 @@ const homePage = {
   heroPrimaryCtaLink: '/contact',
   heroSecondaryCta: 'View Products',
   heroSecondaryCtaLink: '/products',
+  heroStatsLabel: 'Trusted by industry leaders',
   heroStats: [
     { _key: 'hs1', value: '500+', label: 'Projects Completed' },
     { _key: 'hs2', value: '40+', label: 'Years Experience' },

@@ -122,6 +122,7 @@ export async function getHomePage() {
       heroPrimaryCtaLink,
       heroSecondaryCta,
       heroSecondaryCtaLink,
+      heroStatsLabel,
       heroStats,
       productsSectionLabel,
       productsSectionTitle,

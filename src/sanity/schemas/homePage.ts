@@ -83,6 +83,14 @@ export const homePage = {
       initialValue: '/products',
     },
     {
+      name: 'heroStatsLabel',
+      title: 'Hero Stats Label',
+      type: 'string',
+      group: 'hero',
+      description: 'Text above the stats (e.g., "Trusted by industry leaders")',
+      initialValue: 'Trusted by industry leaders',
+    },
+    {
       name: 'heroStats',
       title: 'Hero Stats',
       type: 'array',
