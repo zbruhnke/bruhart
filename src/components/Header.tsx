@@ -4,7 +4,26 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Logo from './Logo';
 
-const navigation = [
+interface NavItem {
+  name: string;
+  href: string;
+  children?: Array<{ name: string; href: string }>;
+}
+
+interface SiteSettings {
+  phone?: string;
+  mainNavigation?: Array<{
+    label: string;
+    href: string;
+    children?: Array<{ label: string; href: string }>;
+  }>;
+  headerCtaText?: string;
+  headerCtaLink?: string;
+  [key: string]: unknown;
+}
+
+// Fallback navigation
+const fallbackNavigation: NavItem[] = [
   { name: 'Home', href: '/' },
   {
     name: 'Products',
@@ -22,16 +41,25 @@ const navigation = [
   { name: 'Contact', href: '/contact' },
 ];
 
-interface SiteSettings {
-  phone?: string;
-  [key: string]: any;
-}
-
 export default function Header({ settings }: { settings?: SiteSettings }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const phone = settings?.phone || "(318) 344-5731";
+  const headerCtaText = settings?.headerCtaText || "Request Quote";
+  const headerCtaLink = settings?.headerCtaLink || "/contact";
+
+  // Transform Sanity navigation to component format
+  const navigation: NavItem[] = settings?.mainNavigation && settings.mainNavigation.length > 0
+    ? settings.mainNavigation.map(item => ({
+        name: item.label,
+        href: item.href,
+        children: item.children?.map(child => ({
+          name: child.label,
+          href: child.href,
+        })),
+      }))
+    : fallbackNavigation;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border shadow-sm">
@@ -92,10 +120,10 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
               </span>
             </a>
             <Link
-              href="/contact"
+              href={headerCtaLink}
               className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-primary hover:bg-primary-dark rounded-lg transition-colors"
             >
-              Request Quote
+              {headerCtaText}
             </Link>
           </div>
 
@@ -148,11 +176,11 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
             ))}
             <div className="mt-4 pt-4 border-t border-border">
               <Link
-                href="/contact"
+                href={headerCtaLink}
                 className="block w-full text-center px-6 py-3 text-sm font-semibold text-white bg-primary rounded-lg"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Request Quote
+                {headerCtaText}
               </Link>
             </div>
           </div>

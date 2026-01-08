@@ -298,6 +298,8 @@ const siteSettings = {
   tagline: 'High-Security Gate Systems',
   phone: '(318) 344-5731',
   email: 'info@bruhart.com',
+  salesEmail: 'sales@bruhart.com',
+  supportEmail: 'support@bruhart.com',
   emergencyPhone: '(318) 344-5731',
   address: {
     street: '7111 US Hwy 27',
@@ -314,6 +316,129 @@ const siteSettings = {
     projectsCompleted: '500+',
     statesServed: '48',
   },
+  mainNavigation: [
+    { _key: 'nav1', name: 'Home', href: '/' },
+    { _key: 'nav2', name: 'Products', href: '/products', children: [
+      { _key: 'nav2a', name: 'Crash-Rated Gates', href: '/products#crash-rated' },
+      { _key: 'nav2b', name: 'Slide Gates', href: '/products#slide-gates' },
+      { _key: 'nav2c', name: 'Swing Gates', href: '/products#swing-gates' },
+      { _key: 'nav2d', name: 'Gate Operators', href: '/products#operators' },
+      { _key: 'nav2e', name: 'Access Control', href: '/products#access-control' },
+    ]},
+    { _key: 'nav3', name: 'Industries', href: '/industries' },
+    { _key: 'nav4', name: 'About', href: '/about' },
+    { _key: 'nav5', name: 'Contact', href: '/contact' },
+  ],
+  headerCtaText: 'Request Quote',
+  headerCtaLink: '/contact',
+  footerDescription: 'Wholesale fencing and gate distributor specializing in high-security gate systems and crash-rated barriers for critical infrastructure.',
+  footerProductLinks: [
+    { _key: 'fp1', name: 'Crash-Rated Gates', href: '/products#crash-rated' },
+    { _key: 'fp2', name: 'Slide Gates', href: '/products#slide-gates' },
+    { _key: 'fp3', name: 'Swing Gates', href: '/products#swing-gates' },
+    { _key: 'fp4', name: 'Gate Operators', href: '/products#operators' },
+    { _key: 'fp5', name: 'Access Control', href: '/products#access-control' },
+    { _key: 'fp6', name: 'Crash Grates', href: '/products#crash-grates' },
+  ],
+  footerIndustryLinks: [
+    { _key: 'fi1', name: 'Data Centers', href: '/industries#data-centers' },
+    { _key: 'fi2', name: 'Airports', href: '/industries#airports' },
+    { _key: 'fi3', name: 'Utilities', href: '/industries#utilities' },
+    { _key: 'fi4', name: 'Government', href: '/industries#government' },
+    { _key: 'fi5', name: 'Ports & Logistics', href: '/industries#ports' },
+    { _key: 'fi6', name: 'Corporate', href: '/industries#corporate' },
+  ],
+  footerCompanyLinks: [
+    { _key: 'fc1', name: 'About Us', href: '/about' },
+    { _key: 'fc2', name: 'Our Team', href: '/about#team' },
+    { _key: 'fc3', name: 'Careers', href: '/careers' },
+    { _key: 'fc4', name: 'News', href: '/news' },
+    { _key: 'fc5', name: 'Contact', href: '/contact' },
+  ],
+  footerResourceLinks: [
+    { _key: 'fr1', name: 'Product Catalog', href: '/resources/catalog' },
+    { _key: 'fr2', name: 'Technical Specs', href: '/resources/specs' },
+    { _key: 'fr3', name: 'Installation Guides', href: '/resources/guides' },
+    { _key: 'fr4', name: 'Warranty Info', href: '/resources/warranty' },
+    { _key: 'fr5', name: 'FAQs', href: '/resources/faqs' },
+  ],
+}
+
+// Home page content
+const homePage = {
+  _type: 'homePage',
+  _id: 'homePage',
+  heroBadge: 'Wholesale Fencing & Gate Distributor',
+  heroHeadline: 'High-Security Gate Systems for',
+  heroHeadlineHighlight: 'Critical Infrastructure',
+  heroSubheadline: 'Industry-leading crash-rated gates, barrier systems, and operators protecting data centers, airports, utilities, and government facilities across North America.',
+  heroBackgroundImageUrl: 'https://bruhart.com/wp-content/uploads/2025/10/d1345cc4-52d7-42b7-8a25-b514ae8f09b3-1.jpg',
+  heroPrimaryCta: 'Get a Quote',
+  heroPrimaryCtaLink: '/contact',
+  heroSecondaryCta: 'View Products',
+  heroSecondaryCtaLink: '/products',
+  heroStats: [
+    { _key: 'hs1', value: '500+', label: 'Projects Completed' },
+    { _key: 'hs2', value: '40+', label: 'Years Experience' },
+    { _key: 'hs3', value: '100%', label: 'ASTM Certified' },
+  ],
+  productsSectionLabel: 'Our Products',
+  productsSectionTitle: 'Complete Security Gate Solutions',
+  productsSectionDescription: 'From crash-rated barriers to integrated access control, we provide end-to-end perimeter security solutions for the most demanding applications.',
+  productsCtaText: 'View All Products',
+  industriesSectionLabel: 'Industries We Serve',
+  industriesSectionTitle: 'Securing Critical Infrastructure',
+  industriesSectionDescription: 'We specialize in high-security applications where failure is not an option. Our solutions protect the facilities that keep society running.',
+  certificationsSectionTitle: 'Industry Certifications & Standards',
+  certificationsSectionDescription: 'Our products meet the highest security standards required by government agencies and private sector organizations worldwide.',
+  certifications: [
+    { _key: 'cert1', name: 'ASTM F2656', description: 'Vehicle Crash Testing Standard' },
+    { _key: 'cert2', name: 'DOS Certified', description: 'Department of State K-Rating' },
+    { _key: 'cert3', name: 'UL 325', description: 'Gate Operator Safety Listed' },
+    { _key: 'cert4', name: 'ASIS Member', description: 'Security Industry Association' },
+  ],
+  stats: [
+    { _key: 'stat1', value: '40+', label: 'Years in Business' },
+    { _key: 'stat2', value: '500+', label: 'Projects Completed' },
+    { _key: 'stat3', value: '48', label: 'States Served' },
+    { _key: 'stat4', value: '24/7', label: 'Support Available' },
+  ],
+  ctaHeadline: 'Ready to Secure Your Facility?',
+  ctaDescription: 'Our team of security experts is ready to help you design and implement the perfect perimeter protection solution for your specific needs.',
+  ctaPrimaryButtonText: 'Request a Consultation',
+  ctaPrimaryButtonLink: '/contact',
+  ctaCards: [
+    { _key: 'cta1', title: 'Sales Inquiries', description: 'Get a custom quote for your project', contactType: 'email', contactValue: 'sales@bruhart.com' },
+    { _key: 'cta2', title: 'Technical Support', description: '24/7 support for existing customers', contactType: 'email', contactValue: 'support@bruhart.com' },
+  ],
+}
+
+// Contact page content
+const contactPage = {
+  _type: 'contactPage',
+  _id: 'contactPage',
+  heroHeading: 'Get in Touch',
+  heroSubtext: 'Whether you need a quote, technical support, or want to discuss your security requirements, our team is here to help.',
+  contactInfoTitle: 'Contact Information',
+  businessHours: 'Mon-Fri 8am-6pm CT',
+  emergencyLabel: '24/7 Emergency Support',
+  emergencyNote: 'For existing customers only',
+  formTitle: 'Send Us a Message',
+  formSubtext: "Fill out the form below and we'll get back to you within 24 hours.",
+  contactReasons: [
+    'Request a Quote',
+    'Technical Support',
+    'Schedule a Consultation',
+    'Product Information',
+    'Partnership Inquiry',
+    'Other',
+  ],
+  submitButtonText: 'Send Message',
+  submittingText: 'Sending...',
+  successMessage: 'Thank you for your inquiry!',
+  successDescription: "We'll get back to you within 24 hours.",
+  errorMessage: 'Something went wrong',
+  errorDescription: 'Please try again or call us directly.',
 }
 
 // About page content
@@ -414,6 +539,15 @@ async function seed() {
     console.error('❌ Error creating site settings:', error)
   }
 
+  // Create home page
+  console.log('🏠 Creating home page content...')
+  try {
+    await client.createOrReplace(homePage)
+    console.log('✅ Home page created\n')
+  } catch (error) {
+    console.error('❌ Error creating home page:', error)
+  }
+
   // Create about page
   console.log('📄 Creating about page content...')
   try {
@@ -421,6 +555,15 @@ async function seed() {
     console.log('✅ About page created\n')
   } catch (error) {
     console.error('❌ Error creating about page:', error)
+  }
+
+  // Create contact page
+  console.log('📞 Creating contact page content...')
+  try {
+    await client.createOrReplace(contactPage)
+    console.log('✅ Contact page created\n')
+  } catch (error) {
+    console.error('❌ Error creating contact page:', error)
   }
 
   // Create products (using createOrReplace to avoid duplicates)
@@ -458,8 +601,10 @@ async function seed() {
 
   console.log('\n🎉 Seeding complete!')
   console.log('\nContent created:')
-  console.log(`  - 1 Site Settings`)
+  console.log(`  - 1 Site Settings (with navigation & footer)`)
+  console.log(`  - 1 Home Page`)
   console.log(`  - 1 About Page`)
+  console.log(`  - 1 Contact Page`)
   console.log(`  - ${products.length} Products`)
   console.log(`  - ${industries.length} Industries`)
   console.log(`  - ${testimonials.length} Testimonials`)

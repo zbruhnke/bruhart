@@ -1,70 +1,49 @@
-'use client';
+import { getContactPage, getSiteSettings } from "@/sanity/client";
+import ContactForm from "@/components/ContactForm";
 
-import { useState } from "react";
+// Fallback data for contact page
+const fallbackData = {
+  heroHeading: 'Get in Touch',
+  heroSubtext: 'Whether you need a quote, technical support, or want to discuss your security requirements, our team is here to help.',
+  contactInfoTitle: 'Contact Information',
+  businessHours: 'Mon-Fri 8am-6pm CT',
+  emergencyLabel: '24/7 Emergency Support',
+  emergencyNote: 'For existing customers only',
+};
 
-const contactReasons = [
-  "Request a Quote",
-  "Technical Support",
-  "Schedule a Consultation",
-  "Product Information",
-  "Partnership Inquiry",
-  "Other",
-];
+// Fallback site settings
+const fallbackSettings = {
+  phone: '(318) 344-5731',
+  email: 'info@bruhart.com',
+  salesEmail: 'sales@bruhart.com',
+  supportEmail: 'support@bruhart.com',
+  address: {
+    street: '7111 US Hwy 27',
+    city: 'Branford',
+    state: 'FL',
+    zip: '32008',
+  },
+};
 
-export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    company: "",
-    reason: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+export default async function ContactPage() {
+  const [contactPageData, siteSettings] = await Promise.all([
+    getContactPage(),
+    getSiteSettings(),
+  ]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
+  // Merge with fallbacks
+  const heroHeading = contactPageData?.heroHeading || fallbackData.heroHeading;
+  const heroSubtext = contactPageData?.heroSubtext || fallbackData.heroSubtext;
+  const contactInfoTitle = contactPageData?.contactInfoTitle || fallbackData.contactInfoTitle;
+  const businessHours = contactPageData?.businessHours || fallbackData.businessHours;
+  const emergencyLabel = contactPageData?.emergencyLabel || fallbackData.emergencyLabel;
+  const emergencyNote = contactPageData?.emergencyNote || fallbackData.emergencyNote;
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          company: "",
-          reason: "",
-          message: "",
-        });
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const phone = siteSettings?.phone || fallbackSettings.phone;
+  const email = siteSettings?.email || fallbackSettings.email;
+  const salesEmail = siteSettings?.salesEmail || fallbackSettings.salesEmail;
+  const supportEmail = siteSettings?.supportEmail || fallbackSettings.supportEmail;
+  const address = siteSettings?.address || fallbackSettings.address;
 
   return (
     <>
@@ -73,11 +52,10 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-              Get in Touch
+              {heroHeading}
             </h1>
             <p className="text-xl text-white/80">
-              Whether you need a quote, technical support, or want to discuss your
-              security requirements, our team is here to help.
+              {heroSubtext}
             </p>
           </div>
         </div>
@@ -89,7 +67,7 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Contact Info */}
             <div className="lg:col-span-1">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Contact Information</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-6">{contactInfoTitle}</h2>
 
               <div className="space-y-6">
                 {/* Address */}
@@ -103,8 +81,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-foreground">Headquarters</h3>
                     <p className="text-foreground-muted">
-                      7111 US Hwy 27<br />
-                      Branford, FL 32008
+                      {address.street}<br />
+                      {address.city}, {address.state} {address.zip}
                     </p>
                   </div>
                 </div>
@@ -118,10 +96,10 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground">Phone</h3>
-                    <a href="tel:+1-318-344-5731" className="text-foreground-muted hover:text-primary transition-colors">
-                      (318) 344-5731
+                    <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} className="text-foreground-muted hover:text-primary transition-colors">
+                      {phone}
                     </a>
-                    <p className="text-sm text-foreground-muted mt-1">Mon-Fri 8am-6pm CT</p>
+                    <p className="text-sm text-foreground-muted mt-1">{businessHours}</p>
                   </div>
                 </div>
 
@@ -135,11 +113,11 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-foreground">Email</h3>
                     <div className="space-y-1">
-                      <a href="mailto:sales@bruhart.com" className="block text-foreground-muted hover:text-primary transition-colors">
-                        sales@bruhart.com
+                      <a href={`mailto:${salesEmail}`} className="block text-foreground-muted hover:text-primary transition-colors">
+                        {salesEmail}
                       </a>
-                      <a href="mailto:support@bruhart.com" className="block text-foreground-muted hover:text-primary transition-colors">
-                        support@bruhart.com
+                      <a href={`mailto:${supportEmail}`} className="block text-foreground-muted hover:text-primary transition-colors">
+                        {supportEmail}
                       </a>
                     </div>
                   </div>
@@ -153,11 +131,11 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground">24/7 Emergency Support</h3>
-                    <a href="tel:+1-318-344-5731" className="text-red-600 font-medium hover:text-red-700 transition-colors">
-                      (318) 344-5731
+                    <h3 className="font-semibold text-foreground">{emergencyLabel}</h3>
+                    <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} className="text-red-600 font-medium hover:text-red-700 transition-colors">
+                      {phone}
                     </a>
-                    <p className="text-sm text-foreground-muted mt-1">For existing customers only</p>
+                    <p className="text-sm text-foreground-muted mt-1">{emergencyNote}</p>
                   </div>
                 </div>
               </div>
@@ -176,146 +154,7 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-2xl border border-border p-8 lg:p-12">
-                <h2 className="text-2xl font-bold text-foreground mb-2">Send Us a Message</h2>
-                <p className="text-foreground-muted mb-8">
-                  Fill out the form below and we'll get back to you within 24 hours.
-                </p>
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-foreground mb-2">
-                        First Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        required
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-foreground mb-2">
-                        Last Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        required
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
-                      Company/Organization
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="reason" className="block text-sm font-medium text-foreground mb-2">
-                      Reason for Contact *
-                    </label>
-                    <select
-                      id="reason"
-                      name="reason"
-                      required
-                      value={formData.reason}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
-                    >
-                      <option value="">Select a reason</option>
-                      {contactReasons.map((reason) => (
-                        <option key={reason} value={reason}>{reason}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={5}
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Please describe your project or inquiry..."
-                      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors resize-none"
-                    />
-                  </div>
-
-                  {submitStatus === 'success' && (
-                    <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                      <p className="text-green-800 font-medium">Thank you for your inquiry!</p>
-                      <p className="text-green-700 text-sm mt-1">We'll get back to you within 24 hours.</p>
-                    </div>
-                  )}
-
-                  {submitStatus === 'error' && (
-                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                      <p className="text-red-800 font-medium">Something went wrong</p>
-                      <p className="text-red-700 text-sm mt-1">Please try again or call us directly.</p>
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full sm:w-auto px-8 py-4 text-base font-semibold text-white bg-primary hover:bg-primary-dark disabled:bg-primary/50 disabled:cursor-not-allowed rounded-lg transition-colors"
-                  >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                </form>
-              </div>
+              <ContactForm data={contactPageData} />
             </div>
           </div>
         </div>

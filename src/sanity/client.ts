@@ -42,10 +42,20 @@ export async function getSiteSettings() {
       tagline,
       phone,
       email,
+      salesEmail,
+      supportEmail,
       emergencyPhone,
       address,
       socialLinks,
-      stats
+      stats,
+      mainNavigation,
+      headerCtaText,
+      headerCtaLink,
+      footerDescription,
+      footerProductLinks,
+      footerIndustryLinks,
+      footerCompanyLinks,
+      footerResourceLinks
     }
   `)
 }
@@ -95,6 +105,62 @@ export async function getAboutPage() {
       ctaSubtext,
       ctaButtonText,
       ctaButtonLink
+    }
+  `)
+}
+
+export async function getHomePage() {
+  return client.fetch(`
+    *[_type == "homePage"][0] {
+      heroBadge,
+      heroHeadline,
+      heroHeadlineHighlight,
+      heroSubheadline,
+      heroBackgroundImage,
+      heroBackgroundImageUrl,
+      heroPrimaryCta,
+      heroPrimaryCtaLink,
+      heroSecondaryCta,
+      heroSecondaryCtaLink,
+      heroStats,
+      productsSectionLabel,
+      productsSectionTitle,
+      productsSectionDescription,
+      productsCtaText,
+      industriesSectionLabel,
+      industriesSectionTitle,
+      industriesSectionDescription,
+      certificationsSectionTitle,
+      certificationsSectionDescription,
+      certifications,
+      stats,
+      ctaHeadline,
+      ctaDescription,
+      ctaPrimaryButtonText,
+      ctaPrimaryButtonLink,
+      ctaCards
+    }
+  `)
+}
+
+export async function getContactPage() {
+  return client.fetch(`
+    *[_type == "contactPage"][0] {
+      heroHeading,
+      heroSubtext,
+      contactInfoTitle,
+      businessHours,
+      emergencyLabel,
+      emergencyNote,
+      formTitle,
+      formSubtext,
+      contactReasons,
+      submitButtonText,
+      submittingText,
+      successMessage,
+      successDescription,
+      errorMessage,
+      errorDescription
     }
   `)
 }

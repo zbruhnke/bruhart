@@ -1,38 +1,10 @@
 import Link from 'next/link';
 import Logo from './Logo';
 
-const footerLinks = {
-  products: [
-    { name: 'Crash-Rated Gates', href: '/products#crash-rated' },
-    { name: 'Slide Gates', href: '/products#slide-gates' },
-    { name: 'Swing Gates', href: '/products#swing-gates' },
-    { name: 'Gate Operators', href: '/products#operators' },
-    { name: 'Access Control', href: '/products#access-control' },
-    { name: 'Crash Grates', href: '/products#crash-grates' },
-  ],
-  industries: [
-    { name: 'Data Centers', href: '/industries#data-centers' },
-    { name: 'Airports', href: '/industries#airports' },
-    { name: 'Utilities', href: '/industries#utilities' },
-    { name: 'Government', href: '/industries#government' },
-    { name: 'Ports & Logistics', href: '/industries#ports' },
-    { name: 'Corporate', href: '/industries#corporate' },
-  ],
-  company: [
-    { name: 'About Us', href: '/about' },
-    { name: 'Our Team', href: '/about#team' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'News', href: '/news' },
-    { name: 'Contact', href: '/contact' },
-  ],
-  resources: [
-    { name: 'Product Catalog', href: '/resources/catalog' },
-    { name: 'Technical Specs', href: '/resources/specs' },
-    { name: 'Installation Guides', href: '/resources/guides' },
-    { name: 'Warranty Info', href: '/resources/warranty' },
-    { name: 'FAQs', href: '/resources/faqs' },
-  ],
-};
+interface FooterLink {
+  label: string;
+  href: string;
+}
 
 interface SiteSettings {
   siteName?: string;
@@ -48,8 +20,47 @@ interface SiteSettings {
     linkedin?: string;
     youtube?: string;
   };
-  [key: string]: any;
+  footerDescription?: string;
+  footerProductLinks?: FooterLink[];
+  footerIndustryLinks?: FooterLink[];
+  footerCompanyLinks?: FooterLink[];
+  footerResourceLinks?: FooterLink[];
+  [key: string]: unknown;
 }
+
+// Fallback footer links
+const fallbackLinks = {
+  products: [
+    { label: 'Crash-Rated Gates', href: '/products#crash-rated' },
+    { label: 'Slide Gates', href: '/products#slide-gates' },
+    { label: 'Swing Gates', href: '/products#swing-gates' },
+    { label: 'Gate Operators', href: '/products#operators' },
+    { label: 'Access Control', href: '/products#access-control' },
+    { label: 'Crash Grates', href: '/products#crash-grates' },
+  ],
+  industries: [
+    { label: 'Data Centers', href: '/industries#data-centers' },
+    { label: 'Airports', href: '/industries#airports' },
+    { label: 'Utilities', href: '/industries#utilities' },
+    { label: 'Government', href: '/industries#government' },
+    { label: 'Ports & Logistics', href: '/industries#ports' },
+    { label: 'Corporate', href: '/industries#corporate' },
+  ],
+  company: [
+    { label: 'About Us', href: '/about' },
+    { label: 'Our Team', href: '/about#team' },
+    { label: 'Careers', href: '/careers' },
+    { label: 'News', href: '/news' },
+    { label: 'Contact', href: '/contact' },
+  ],
+  resources: [
+    { label: 'Product Catalog', href: '/resources/catalog' },
+    { label: 'Technical Specs', href: '/resources/specs' },
+    { label: 'Installation Guides', href: '/resources/guides' },
+    { label: 'Warranty Info', href: '/resources/warranty' },
+    { label: 'FAQs', href: '/resources/faqs' },
+  ],
+};
 
 export default function Footer({ settings }: { settings?: SiteSettings }) {
   const phone = settings?.phone || "(318) 344-5731";
@@ -62,6 +73,21 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
   };
   const socialLinks = settings?.socialLinks || { linkedin: "#", youtube: "#" };
   const siteName = settings?.siteName || "Bru-Hart Industries";
+  const footerDescription = settings?.footerDescription || "Wholesale fencing and gate distributor specializing in high-security gate systems and crash-rated barriers for critical infrastructure.";
+
+  // Use Sanity links or fallback
+  const productLinks = settings?.footerProductLinks && settings.footerProductLinks.length > 0
+    ? settings.footerProductLinks
+    : fallbackLinks.products;
+  const industryLinks = settings?.footerIndustryLinks && settings.footerIndustryLinks.length > 0
+    ? settings.footerIndustryLinks
+    : fallbackLinks.industries;
+  const companyLinks = settings?.footerCompanyLinks && settings.footerCompanyLinks.length > 0
+    ? settings.footerCompanyLinks
+    : fallbackLinks.company;
+  const resourceLinks = settings?.footerResourceLinks && settings.footerResourceLinks.length > 0
+    ? settings.footerResourceLinks
+    : fallbackLinks.resources;
 
   const fullAddress = `${address.street}, ${address.city}, ${address.state} ${address.zip}`;
 
@@ -76,8 +102,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
               <Logo className="h-12 w-auto" color="white" />
             </Link>
             <p className="text-steel-light mb-6 max-w-xs">
-              Wholesale fencing and gate distributor specializing in high-security
-              gate systems and crash-rated barriers for critical infrastructure.
+              {footerDescription}
             </p>
             <div className="flex gap-4">
               <a href={socialLinks.linkedin || "#"} className="text-steel-light hover:text-white transition-colors">
@@ -101,10 +126,10 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
               Products
             </h3>
             <ul className="space-y-3">
-              {footerLinks.products.map((link) => (
-                <li key={link.name}>
+              {productLinks.map((link) => (
+                <li key={link.href}>
                   <Link href={link.href} className="text-steel-light hover:text-white transition-colors text-sm">
-                    {link.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -117,10 +142,10 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
               Industries
             </h3>
             <ul className="space-y-3">
-              {footerLinks.industries.map((link) => (
-                <li key={link.name}>
+              {industryLinks.map((link) => (
+                <li key={link.href}>
                   <Link href={link.href} className="text-steel-light hover:text-white transition-colors text-sm">
-                    {link.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -133,10 +158,10 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
               Company
             </h3>
             <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
-                <li key={link.name}>
+              {companyLinks.map((link) => (
+                <li key={link.href}>
                   <Link href={link.href} className="text-steel-light hover:text-white transition-colors text-sm">
-                    {link.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -149,10 +174,10 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
               Resources
             </h3>
             <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
-                <li key={link.name}>
+              {resourceLinks.map((link) => (
+                <li key={link.href}>
                   <Link href={link.href} className="text-steel-light hover:text-white transition-colors text-sm">
-                    {link.name}
+                    {link.label}
                   </Link>
                 </li>
               ))}
