@@ -13,9 +13,9 @@ interface NavItem {
 interface SiteSettings {
   phone?: string;
   mainNavigation?: Array<{
-    label: string;
+    name: string;
     href: string;
-    children?: Array<{ label: string; href: string }>;
+    children?: Array<{ name: string; href: string }>;
   }>;
   headerCtaText?: string;
   headerCtaLink?: string;
@@ -52,10 +52,10 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
   // Transform Sanity navigation to component format
   const navigation: NavItem[] = settings?.mainNavigation && settings.mainNavigation.length > 0
     ? settings.mainNavigation.map(item => ({
-        name: item.label,
+        name: item.name,
         href: item.href,
         children: item.children?.map(child => ({
-          name: child.label,
+          name: child.name,
           href: child.href,
         })),
       }))

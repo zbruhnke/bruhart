@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Logo from './Logo';
 
 interface FooterLink {
-  label: string;
+  name: string;
   href: string;
 }
 
@@ -31,34 +31,34 @@ interface SiteSettings {
 // Fallback footer links
 const fallbackLinks = {
   products: [
-    { label: 'Crash-Rated Gates', href: '/products#crash-rated' },
-    { label: 'Slide Gates', href: '/products#slide-gates' },
-    { label: 'Swing Gates', href: '/products#swing-gates' },
-    { label: 'Gate Operators', href: '/products#operators' },
-    { label: 'Access Control', href: '/products#access-control' },
-    { label: 'Crash Grates', href: '/products#crash-grates' },
+    { name: 'Crash-Rated Gates', href: '/products#crash-rated' },
+    { name: 'Slide Gates', href: '/products#slide-gates' },
+    { name: 'Swing Gates', href: '/products#swing-gates' },
+    { name: 'Gate Operators', href: '/products#operators' },
+    { name: 'Access Control', href: '/products#access-control' },
+    { name: 'Crash Grates', href: '/products#crash-grates' },
   ],
   industries: [
-    { label: 'Data Centers', href: '/industries#data-centers' },
-    { label: 'Airports', href: '/industries#airports' },
-    { label: 'Utilities', href: '/industries#utilities' },
-    { label: 'Government', href: '/industries#government' },
-    { label: 'Ports & Logistics', href: '/industries#ports' },
-    { label: 'Corporate', href: '/industries#corporate' },
+    { name: 'Data Centers', href: '/industries#data-centers' },
+    { name: 'Airports', href: '/industries#airports' },
+    { name: 'Utilities', href: '/industries#utilities' },
+    { name: 'Government', href: '/industries#government' },
+    { name: 'Ports & Logistics', href: '/industries#ports' },
+    { name: 'Corporate', href: '/industries#corporate' },
   ],
   company: [
-    { label: 'About Us', href: '/about' },
-    { label: 'Our Team', href: '/about#team' },
-    { label: 'Careers', href: '/careers' },
-    { label: 'News', href: '/news' },
-    { label: 'Contact', href: '/contact' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Our Team', href: '/about#team' },
+    { name: 'Careers', href: '/careers' },
+    { name: 'News', href: '/news' },
+    { name: 'Contact', href: '/contact' },
   ],
   resources: [
-    { label: 'Product Catalog', href: '/resources/catalog' },
-    { label: 'Technical Specs', href: '/resources/specs' },
-    { label: 'Installation Guides', href: '/resources/guides' },
-    { label: 'Warranty Info', href: '/resources/warranty' },
-    { label: 'FAQs', href: '/resources/faqs' },
+    { name: 'Product Catalog', href: '/resources/catalog' },
+    { name: 'Technical Specs', href: '/resources/specs' },
+    { name: 'Installation Guides', href: '/resources/guides' },
+    { name: 'Warranty Info', href: '/resources/warranty' },
+    { name: 'FAQs', href: '/resources/faqs' },
   ],
 };
 
@@ -129,7 +129,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
               {productLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-steel-light hover:text-white transition-colors text-sm">
-                    {link.label}
+                    {link.name}
                   </Link>
                 </li>
               ))}
@@ -145,7 +145,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
               {industryLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-steel-light hover:text-white transition-colors text-sm">
-                    {link.label}
+                    {link.name}
                   </Link>
                 </li>
               ))}
@@ -161,7 +161,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
               {companyLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-steel-light hover:text-white transition-colors text-sm">
-                    {link.label}
+                    {link.name}
                   </Link>
                 </li>
               ))}
@@ -177,7 +177,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
               {resourceLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-steel-light hover:text-white transition-colors text-sm">
-                    {link.label}
+                    {link.name}
                   </Link>
                 </li>
               ))}
