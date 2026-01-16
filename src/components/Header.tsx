@@ -37,6 +37,7 @@ const fallbackNavigation: NavItem[] = [
     ],
   },
   { name: 'Industries', href: '/industries' },
+  { name: 'Manufacturers', href: '/manufacturers' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -50,7 +51,7 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
   const headerCtaLink = settings?.headerCtaLink || "/contact";
 
   // Transform Sanity navigation to component format
-  const navigation: NavItem[] = settings?.mainNavigation && settings.mainNavigation.length > 0
+  const baseNavigation: NavItem[] = settings?.mainNavigation && settings.mainNavigation.length > 0
     ? settings.mainNavigation.map(item => ({
         name: item.name,
         href: item.href,
@@ -60,6 +61,12 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
         })),
       }))
     : fallbackNavigation;
+
+  // Ensure Manufacturers link is always present
+  const hasManufacturers = baseNavigation.some(item => item.href === '/manufacturers');
+  const navigation: NavItem[] = hasManufacturers
+    ? baseNavigation
+    : [...baseNavigation.slice(0, -2), { name: 'Manufacturers', href: '/manufacturers' }, ...baseNavigation.slice(-2)];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border shadow-sm">
