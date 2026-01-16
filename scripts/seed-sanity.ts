@@ -334,9 +334,9 @@ const siteSettings = {
   },
   mainNavigation: [
     { _key: 'nav1', name: 'Home', href: '/' },
-    { _key: 'nav2', name: 'Wholesale', href: '/custom-fabrication', children: [
-      { _key: 'nav2a', name: 'Custom Fabrication', href: '/custom-fabrication' },
-      { _key: 'nav2b', name: 'Our Manufacturers', href: '/manufacturers' },
+    { _key: 'nav2', name: 'Wholesale', href: '/manufacturers', children: [
+      { _key: 'nav2a', name: 'Our Partners', href: '/manufacturers' },
+      { _key: 'nav2b', name: 'Custom Fabrication', href: '/custom-fabrication' },
     ]},
     { _key: 'nav3', name: 'Products', href: '/products', children: [
       { _key: 'nav3a', name: 'Crash-Rated Gates', href: '/products#crash-rated' },

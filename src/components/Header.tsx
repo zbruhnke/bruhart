@@ -27,10 +27,10 @@ const fallbackNavigation: NavItem[] = [
   { name: 'Home', href: '/' },
   {
     name: 'Wholesale',
-    href: '/custom-fabrication',
+    href: '/manufacturers',
     children: [
+      { name: 'Our Partners', href: '/manufacturers' },
       { name: 'Custom Fabrication', href: '/custom-fabrication' },
-      { name: 'Our Manufacturers', href: '/manufacturers' },
     ],
   },
   {
