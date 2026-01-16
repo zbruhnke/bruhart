@@ -39,6 +39,12 @@ export const product = {
       },
     },
     {
+      name: 'imageUrl',
+      title: 'Image URL (Fallback)',
+      type: 'url',
+      description: 'Used if no image is uploaded above',
+    },
+    {
       name: 'gallery',
       title: 'Image Gallery',
       type: 'array',

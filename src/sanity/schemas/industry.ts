@@ -51,6 +51,12 @@ export const industry = {
       },
     },
     {
+      name: 'imageUrl',
+      title: 'Image URL (Fallback)',
+      type: 'url',
+      description: 'Used if no image is uploaded above',
+    },
+    {
       name: 'order',
       title: 'Display Order',
       type: 'number',

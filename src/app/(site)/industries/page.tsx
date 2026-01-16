@@ -8,6 +8,16 @@ export const metadata: Metadata = {
   description: "Specialized security solutions for data centers, airports, utilities, government facilities, and more.",
 };
 
+// Fallback image URLs by industry ID
+const fallbackImageUrls: Record<string, string> = {
+  'data-centers': '/images/industries/data-center.jpg',
+  'airports': '/images/industries/airports.jpg',
+  'utilities': '/images/industries/utilities.jpg',
+  'government': '/images/industries/government.jpg',
+  'ports': '/images/industries/ports.jpg',
+  'corporate': '/images/industries/corporate.jpg',
+};
+
 // Fallback industries when Sanity is empty
 const fallbackIndustries = [
   {
@@ -27,7 +37,7 @@ const fallbackIndustries = [
       "Integrated access control systems",
       "Anti-climb fencing solutions",
     ],
-    image: null,
+    image: '/images/industries/data-center.jpg',
   },
   {
     id: "airports",
@@ -46,7 +56,7 @@ const fallbackIndustries = [
       "Crash-rated aircraft service gates",
       "Perimeter intrusion detection integration",
     ],
-    image: null,
+    image: '/images/industries/airports.jpg',
   },
   {
     id: "utilities",
@@ -65,7 +75,7 @@ const fallbackIndustries = [
       "Remote monitoring systems",
       "Solar-powered operator options",
     ],
-    image: null,
+    image: '/images/industries/utilities.jpg',
   },
   {
     id: "government",
@@ -84,7 +94,7 @@ const fallbackIndustries = [
       "Secure entry pavilions",
       "Biometric access integration",
     ],
-    image: null,
+    image: '/images/industries/government.jpg',
   },
   {
     id: "ports",
@@ -103,7 +113,7 @@ const fallbackIndustries = [
       "TWIC reader integration",
       "Vehicle inspection portals",
     ],
-    image: null,
+    image: '/images/industries/ports.jpg',
   },
   {
     id: "corporate",
@@ -122,7 +132,7 @@ const fallbackIndustries = [
       "Visitor management systems",
       "VIP entry systems",
     ],
-    image: null,
+    image: '/images/industries/corporate.jpg',
   },
 ];
 
@@ -166,15 +176,20 @@ export default async function IndustriesPage() {
 
   // Use Sanity industries if available, otherwise use fallback
   const industries = sanityIndustries && sanityIndustries.length > 0
-    ? sanityIndustries.map((ind: any) => ({
-        id: ind.slug || ind._id,
-        name: ind.name,
-        tagline: ind.tagline,
-        description: ind.description,
-        challenges: ind.challenges || [],
-        solutions: ind.solutions || [],
-        image: ind.image ? urlFor(ind.image).width(800).quality(80).url() : null,
-      }))
+    ? sanityIndustries.map((ind: any) => {
+        const id = ind.slug || ind._id;
+        return {
+          id,
+          name: ind.name,
+          tagline: ind.tagline,
+          description: ind.description,
+          challenges: ind.challenges || [],
+          solutions: ind.solutions || [],
+          image: ind.image
+            ? urlFor(ind.image).width(800).quality(80).url()
+            : (ind.imageUrl || fallbackImageUrls[id] || null),
+        };
+      })
     : fallbackIndustries;
 
   return (
@@ -246,13 +261,13 @@ export default async function IndustriesPage() {
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/60 via-primary/40 to-primary-light/30 mix-blend-multiply" />
                         <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-transparent to-transparent" />
                         <div className="absolute bottom-0 left-0 right-0 p-6">
-                          <div className="flex items-center gap-2 text-white/90">
+                          <div className="flex items-center gap-3 text-white/90">
                             {industryIcons[industry.id] && (
-                              <div className="w-8 h-8">
+                              <div className="w-8 h-8 flex-shrink-0 [&>svg]:w-8 [&>svg]:h-8">
                                 {industryIcons[industry.id]}
                               </div>
                             )}
-                            <span className="text-sm font-medium">{industry.name}</span>
+                            <span className="text-sm font-medium truncate">{industry.name}</span>
                           </div>
                         </div>
                       </div>

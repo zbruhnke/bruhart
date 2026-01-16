@@ -30,6 +30,7 @@ export async function getProducts() {
       features,
       applications,
       image,
+      imageUrl,
       certifications
     }
   `)
@@ -70,7 +71,8 @@ export async function getIndustries() {
       description,
       challenges,
       solutions,
-      image
+      image,
+      imageUrl
     }
   `)
 }

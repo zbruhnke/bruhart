@@ -1,4 +1,7 @@
 import { ReactNode } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { urlFor } from '@/sanity/client';
 
 interface IndustriesProps {
   data?: {
@@ -11,6 +14,12 @@ interface IndustriesProps {
     name: string;
     slug?: string;
     description?: string;
+    image?: {
+      asset: {
+        _ref: string;
+      };
+    };
+    imageUrl?: string;
   }>;
 }
 
@@ -62,38 +71,54 @@ const fallbackIndustries = [
     name: 'Data Centers',
     slug: 'data-centers',
     description: 'Protecting the backbone of the digital economy with crash-rated perimeters and multi-layer access control.',
+    imageUrl: '/images/industries/data-center.jpg',
   },
   {
     _id: 'airports',
     name: 'Airports & Aviation',
     slug: 'airports',
     description: 'TSA and FAA compliant gate systems for runway access, cargo areas, and secure perimeters.',
+    imageUrl: '/images/industries/airports.jpg',
   },
   {
     _id: 'utilities',
     name: 'Utilities & Energy',
     slug: 'utilities',
     description: 'NERC CIP compliant solutions for substations, power plants, and critical energy infrastructure.',
+    imageUrl: '/images/industries/utilities.jpg',
   },
   {
     _id: 'government',
     name: 'Government & Military',
     slug: 'government',
     description: 'DOS-certified anti-ram barriers and high-security entry systems for federal facilities.',
+    imageUrl: '/images/industries/government.jpg',
   },
   {
     _id: 'ports',
     name: 'Ports & Logistics',
     slug: 'ports',
     description: 'MTSA compliant maritime security solutions for container terminals and port facilities.',
+    imageUrl: '/images/industries/ports.jpg',
   },
   {
     _id: 'corporate',
     name: 'Corporate Campuses',
     slug: 'corporate',
     description: 'Integrated security solutions balancing aesthetics with protection for Fortune 500 headquarters.',
+    imageUrl: '/images/industries/corporate.jpg',
   },
 ];
+
+// Fallback image URLs by slug
+const fallbackImageUrls: Record<string, string> = {
+  'data-centers': '/images/industries/data-center.jpg',
+  'airports': '/images/industries/airports.jpg',
+  'utilities': '/images/industries/utilities.jpg',
+  'government': '/images/industries/government.jpg',
+  'ports': '/images/industries/ports.jpg',
+  'corporate': '/images/industries/corporate.jpg',
+};
 
 // Fallback section data
 const fallbackSection = {
@@ -130,24 +155,57 @@ export default function Industries({ data, industries }: IndustriesProps) {
           {displayIndustries.map((industry) => {
             const slug = industry.slug || industry._id;
             const icon = industryIcons[slug] || defaultIcon;
+            const imageUrl = industry.image?.asset?._ref
+              ? urlFor(industry.image).width(400).height(250).url()
+              : industry.imageUrl || fallbackImageUrls[slug];
 
             return (
-              <div
+              <Link
                 key={industry._id}
-                className="bg-white rounded-xl p-8 border border-border hover:shadow-lg hover:border-primary/30 transition-all"
+                href={`/industries#${slug}`}
+                className="group bg-white rounded-xl overflow-hidden border border-border hover:shadow-lg hover:border-primary/30 transition-all block"
               >
-                <div className="text-primary mb-6">
-                  {icon}
+                {/* Image or Icon */}
+                {imageUrl ? (
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={imageUrl}
+                      alt={industry.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                ) : (
+                  <div className="h-48 w-full bg-slate-100 flex items-center justify-center">
+                    <div className="text-primary">
+                      {icon}
+                    </div>
+                  </div>
+                )}
+                <div className="p-8">
+                  <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                    {industry.name}
+                  </h3>
+                  <p className="text-foreground-muted">
+                    {industry.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">
-                  {industry.name}
-                </h3>
-                <p className="text-foreground-muted">
-                  {industry.description}
-                </p>
-              </div>
+              </Link>
             );
           })}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-12">
+          <Link
+            href="/industries"
+            className="inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white bg-primary hover:bg-primary-dark rounded-lg transition-colors"
+          >
+            See Who We Serve
+            <svg className="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,5 +1,7 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ReactNode } from 'react';
+import { urlFor } from '@/sanity/client';
 
 interface Product {
   _id: string;
@@ -8,6 +10,12 @@ interface Product {
   tagline?: string;
   description?: string;
   features?: string[];
+  image?: {
+    asset: {
+      _ref: string;
+    };
+  };
+  imageUrl?: string;
 }
 
 interface ProductsProps {
@@ -27,20 +35,14 @@ const productIcons: Record<string, ReactNode> = {
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
     </svg>
   ),
-  'slide-gates': (
+  'bollards': (
     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
     </svg>
   ),
-  'swing-gates': (
+  'security-fencing': (
     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-    </svg>
-  ),
-  'operators': (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
     </svg>
   ),
   'access-control': (
@@ -48,9 +50,15 @@ const productIcons: Record<string, ReactNode> = {
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
     </svg>
   ),
-  'crash-grates': (
+  'barrier-arms': (
     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+    </svg>
+  ),
+  'operators': (
+    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
   ),
 };
@@ -72,25 +80,18 @@ const fallbackProducts: Product[] = [
     features: ['K4/K8/K12 Ratings', 'DOS Certified', 'Multiple Configurations'],
   },
   {
-    _id: 'slide-gates',
-    name: 'Slide Gates',
-    slug: 'slide-gates',
-    description: 'Heavy-duty cantilever and track slide gates for industrial and commercial applications up to 100ft spans.',
-    features: ['Up to 100ft Spans', 'Heavy-Duty Steel', 'Custom Designs'],
+    _id: 'bollards',
+    name: 'Bollards & Barriers',
+    slug: 'bollards',
+    description: 'Fixed, removable, and retractable bollards along with wedge barriers for vehicle mitigation and perimeter protection.',
+    features: ['Crash-Rated Options', 'Retractable Models', 'Decorative Styles'],
   },
   {
-    _id: 'swing-gates',
-    name: 'Swing Gates',
-    slug: 'swing-gates',
-    description: 'Single and bi-parting swing gates for controlled access points. Available in standard and crash-rated configurations.',
-    features: ['Single & Bi-Parting', 'Crash-Rated Options', 'Decorative Styles'],
-  },
-  {
-    _id: 'operators',
-    name: 'Gate Operators',
-    slug: 'operators',
-    description: 'Industrial-grade hydraulic and electromechanical operators designed for continuous duty and extreme conditions.',
-    features: ['Hydraulic & Electric', 'UL 325 Listed', '24/7 Operation'],
+    _id: 'security-fencing',
+    name: 'Security Fencing',
+    slug: 'security-fencing',
+    description: 'High-security fencing systems including anti-climb, anti-cut, and detection-integrated options for complete perimeter protection.',
+    features: ['Anti-Climb Mesh', 'Detection Integration', 'Custom Heights'],
   },
   {
     _id: 'access-control',
@@ -100,11 +101,18 @@ const fallbackProducts: Product[] = [
     features: ['Biometric Options', 'Cloud Integration', 'Multi-Site Support'],
   },
   {
-    _id: 'crash-grates',
-    name: 'Crash Grates',
-    slug: 'crash-grates',
-    description: 'Engineered drainage grates with vehicle barrier capabilities. Protect underground access points without compromising drainage.',
-    features: ['DOS Certified', 'High Load Capacity', 'Custom Sizes'],
+    _id: 'barrier-arms',
+    name: 'Barrier Arms',
+    slug: 'barrier-arms',
+    description: 'Automatic barrier arm systems for parking facilities, toll plazas, and controlled access points with high-speed options.',
+    features: ['High-Speed Operation', 'LED Lighting', 'Access Integration'],
+  },
+  {
+    _id: 'operators',
+    name: 'Gate Operators & Automation',
+    slug: 'operators',
+    description: 'Industrial operators and automation systems for slide, swing, and vertical lift gates. Built for continuous duty.',
+    features: ['Hydraulic & Electric', 'UL 325 Listed', '24/7 Operation'],
   },
 ];
 
@@ -113,7 +121,7 @@ const fallbackSection = {
   productsSectionLabel: 'Our Products',
   productsSectionTitle: 'Complete Security Gate Solutions',
   productsSectionDescription: 'From crash-rated barriers to integrated access control, we provide end-to-end perimeter security solutions for the most demanding applications.',
-  productsCtaText: 'View All Products',
+  productsCtaText: 'Explore Our Solutions',
 };
 
 export default function Products({ data, products }: ProductsProps) {
@@ -147,44 +155,63 @@ export default function Products({ data, products }: ProductsProps) {
             const icon = productIcons[slug] || defaultIcon;
             const features = product.features || [];
 
+            const imageUrl = product.image?.asset?._ref
+              ? urlFor(product.image).width(400).height(250).url()
+              : product.imageUrl;
+
             return (
               <Link
                 key={product._id}
                 href={`/products#${slug}`}
-                className="group relative bg-white border border-border rounded-xl p-8 hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+                className="group relative bg-white border border-border rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-lg transition-all duration-300"
               >
-                {/* Icon */}
-                <div className="w-14 h-14 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-                  {icon}
-                </div>
-
-                {/* Content */}
-                <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                  {product.name}
-                </h3>
-                <p className="text-foreground-muted mb-6">
-                  {product.description || product.tagline}
-                </p>
-
-                {/* Features */}
-                {features.length > 0 && (
-                  <ul className="space-y-2">
-                    {features.slice(0, 3).map((feature) => (
-                      <li key={feature} className="flex items-center text-sm text-steel">
-                        <svg className="w-4 h-4 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                {/* Image or Icon */}
+                {imageUrl ? (
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={imageUrl}
+                      alt={product.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                ) : (
+                  <div className="h-48 w-full bg-slate-100 flex items-center justify-center">
+                    <div className="w-14 h-14 bg-primary/10 text-primary rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                      {icon}
+                    </div>
+                  </div>
                 )}
 
-                {/* Arrow */}
-                <div className="absolute bottom-8 right-8 text-steel group-hover:text-primary transition-colors">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+                {/* Content */}
+                <div className="p-8">
+                  <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                    {product.name}
+                  </h3>
+                  <p className="text-foreground-muted mb-6">
+                    {product.description || product.tagline}
+                  </p>
+
+                  {/* Features */}
+                  {features.length > 0 && (
+                    <ul className="space-y-2">
+                      {features.slice(0, 3).map((feature) => (
+                        <li key={feature} className="flex items-center text-sm text-steel">
+                          <svg className="w-4 h-4 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {/* Arrow */}
+                  <div className="absolute bottom-8 right-8 text-steel group-hover:text-primary transition-colors">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
                 </div>
               </Link>
             );

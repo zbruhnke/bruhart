@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.sanity.io',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
     ],
   },
 };
