@@ -1,0 +1,243 @@
+import { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Custom Fabrication | Bru-Hart Security Solutions",
+  description: "Wholesale gate components for fabricators. Custom extruded aluminum track systems and CNC milled trucks engineered for commercial and industrial gate applications.",
+};
+
+export default function CustomFabricationPage() {
+  return (
+    <>
+      {/* Hero */}
+      <section className="relative py-24 bg-gradient-to-br from-primary-dark via-primary to-primary-light">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold text-white/70 uppercase tracking-wider mb-4">
+              Wholesale Components for Gate Fabricators
+            </p>
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+              Premium Track Systems & Components
+            </h1>
+            <p className="text-xl text-white/80">
+              Building your own gates? Our custom extruded aluminum track and precision
+              CNC milled trucks give your fabrication the quality components it needs.
+              Competitive wholesale pricing with the performance your customers expect.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Intro Section */}
+      <section className="py-16 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-6">
+              Quality Components for Your Builds
+            </h2>
+            <p className="text-lg text-foreground-muted">
+              When you&apos;re fabricating gates for commercial and industrial clients,
+              the components you use matter. Our track systems and trucks are designed
+              and manufactured to deliver the reliability your customers demand—so you
+              can build with confidence and stand behind your work.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* BH Track Section */}
+      <section className="py-16 bg-background-alt">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Image */}
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/products/BHTrack.jpg"
+                alt="BH Track - Custom Extruded Aluminum Track System"
+                fill
+                className="object-cover"
+              />
+            </div>
+
+            {/* Content */}
+            <div>
+              <span className="text-sm font-semibold text-accent uppercase tracking-wider">
+                BH Track System
+              </span>
+              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
+                Custom Extruded Enclosed Aluminum Track
+              </h2>
+              <p className="text-lg text-foreground-muted mb-6">
+                Give your gate builds the foundation they deserve. Our BH Track is a custom
+                extruded enclosed aluminum track system that delivers smooth, reliable operation
+                your customers will appreciate for years. The enclosed design means less
+                maintenance callbacks and happier clients.
+              </p>
+
+              <div className="mb-8">
+                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
+                  Why Fabricators Choose BH Track
+                </h3>
+                <ul className="space-y-3">
+                  {[
+                    "Enclosed design prevents debris—fewer service calls",
+                    "Corrosion-resistant aluminum for any environment",
+                    "Smooth, quiet operation your customers will notice",
+                    "Custom lengths available—we cut to your specs",
+                    "Built for high-cycle commercial applications",
+                    "Competitive wholesale pricing",
+                  ].map((feature) => (
+                    <li key={feature} className="flex items-start gap-2 text-foreground-muted">
+                      <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CNC Trucks Section */}
+      <section className="py-16 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div className="lg:order-1">
+              <span className="text-sm font-semibold text-accent uppercase tracking-wider">
+                Precision Components
+              </span>
+              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
+                CNC Milled Trucks
+              </h2>
+              <p className="text-lg text-foreground-muted mb-6">
+                Precision matters when you&apos;re building gates that need to perform.
+                Our trucks are CNC milled to exact tolerances, designed to pair perfectly
+                with the BH Track system. The result? Gates that roll smooth and stay
+                that way—the kind of quality that builds your reputation.
+              </p>
+
+              <div className="mb-8">
+                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
+                  Why Fabricators Choose Our Trucks
+                </h3>
+                <ul className="space-y-3">
+                  {[
+                    "CNC machined to exact tolerances—consistent quality",
+                    "Designed specifically for BH Track system",
+                    "Heavy-duty construction handles commercial loads",
+                    "Smooth rolling action your customers will feel",
+                    "Long service life means fewer warranty issues",
+                    "Available in quantity at wholesale pricing",
+                  ].map((feature) => (
+                    <li key={feature} className="flex items-start gap-2 text-foreground-muted">
+                      <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Image */}
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden lg:order-2">
+              <Image
+                src="/images/products/cnc-trucks.jpg"
+                alt="CNC Milled Trucks for Gate Systems"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The System Together */}
+      <section className="py-16 bg-background-alt">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              Better Together
+            </h2>
+            <p className="text-lg text-foreground-muted">
+              Pair our BH Track with our CNC milled trucks and you get a system designed
+              from the ground up to work together. That means easier installs, smoother
+              operation, and customers who come back for their next project.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl p-8 border border-border text-center">
+              <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Easier Installs</h3>
+              <p className="text-sm text-foreground-muted">
+                Components designed to fit together means less time on-site adjusting and troubleshooting.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl p-8 border border-border text-center">
+              <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Wholesale Pricing</h3>
+              <p className="text-sm text-foreground-muted">
+                Competitive pricing on quality components helps protect your margins without cutting corners.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl p-8 border border-border text-center">
+              <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Happy Customers</h3>
+              <p className="text-sm text-foreground-muted">
+                Smooth, reliable gates build your reputation. Quality components mean fewer callbacks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24 bg-primary">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Ready to Order?
+          </h2>
+          <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+            Get wholesale pricing on BH Track systems, trucks, and components.
+            We&apos;re here to help you spec the right parts for your next build.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-primary bg-white hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              Request Wholesale Pricing
+            </Link>
+            <a
+              href="tel:+1-318-344-5731"
+              className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white border-2 border-white/30 hover:bg-white/10 rounded-lg transition-colors"
+            >
+              Call (318) 344-5731
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

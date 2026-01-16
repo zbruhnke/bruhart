@@ -26,18 +26,26 @@ interface SiteSettings {
 const fallbackNavigation: NavItem[] = [
   { name: 'Home', href: '/' },
   {
+    name: 'Wholesale',
+    href: '/custom-fabrication',
+    children: [
+      { name: 'Custom Fabrication', href: '/custom-fabrication' },
+      { name: 'Our Manufacturers', href: '/manufacturers' },
+    ],
+  },
+  {
     name: 'Products',
     href: '/products',
     children: [
       { name: 'Crash-Rated Gates', href: '/products#crash-rated' },
-      { name: 'Slide Gates', href: '/products#slide-gates' },
-      { name: 'Swing Gates', href: '/products#swing-gates' },
-      { name: 'Gate Operators', href: '/products#operators' },
+      { name: 'Bollards & Barriers', href: '/products#bollards' },
+      { name: 'Security Fencing', href: '/products#security-fencing' },
       { name: 'Access Control', href: '/products#access-control' },
+      { name: 'Barrier Arms', href: '/products#barrier-arms' },
+      { name: 'Gate Operators', href: '/products#operators' },
     ],
   },
   { name: 'Industries', href: '/industries' },
-  { name: 'Manufacturers', href: '/manufacturers' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -50,8 +58,8 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
   const headerCtaText = settings?.headerCtaText || "Request Quote";
   const headerCtaLink = settings?.headerCtaLink || "/contact";
 
-  // Transform Sanity navigation to component format
-  const baseNavigation: NavItem[] = settings?.mainNavigation && settings.mainNavigation.length > 0
+  // Transform Sanity navigation to component format, or use fallback
+  const navigation: NavItem[] = settings?.mainNavigation && settings.mainNavigation.length > 0
     ? settings.mainNavigation.map(item => ({
         name: item.name,
         href: item.href,
@@ -61,12 +69,6 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
         })),
       }))
     : fallbackNavigation;
-
-  // Ensure Manufacturers link is always present
-  const hasManufacturers = baseNavigation.some(item => item.href === '/manufacturers');
-  const navigation: NavItem[] = hasManufacturers
-    ? baseNavigation
-    : [...baseNavigation.slice(0, -2), { name: 'Manufacturers', href: '/manufacturers' }, ...baseNavigation.slice(-2)];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border shadow-sm">

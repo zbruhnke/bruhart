@@ -4,7 +4,7 @@ import { getProducts, urlFor } from "@/sanity/client";
 
 export const metadata: Metadata = {
   title: "Products | Bru-Hart Security Solutions",
-  description: "Explore our complete line of crash-rated gates, slide gates, swing gates, operators, and access control systems.",
+  description: "Explore our complete line of crash-rated gates, bollards, security fencing, access control, barrier arms, and gate operators.",
 };
 
 // Fallback products when Sanity is empty
