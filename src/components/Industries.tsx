@@ -65,7 +65,14 @@ const defaultIcon = (
 );
 
 // Fallback industries
-const fallbackIndustries = [
+const fallbackIndustries: Array<{
+  _id: string;
+  name: string;
+  slug: string;
+  description: string;
+  image?: { asset: { _ref: string } };
+  imageUrl?: string;
+}> = [
   {
     _id: 'data-centers',
     name: 'Data Centers',
