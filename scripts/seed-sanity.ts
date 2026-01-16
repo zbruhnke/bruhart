@@ -412,6 +412,10 @@ const homePage = {
     { _key: 'cta1', title: 'Sales Inquiries', description: 'Get a custom quote for your project', contactType: 'email', contactValue: 'sales@bruhart.com' },
     { _key: 'cta2', title: 'Technical Support', description: '24/7 support for existing customers', contactType: 'email', contactValue: 'support@bruhart.com' },
   ],
+  manufacturersSectionLabel: 'Our Partners',
+  manufacturersSectionTitle: 'Manufacturers We Represent',
+  manufacturersSectionDescription: 'We proudly partner with industry-leading manufacturers to bring you the highest quality security solutions.',
+  manufacturersLinkText: 'View all manufacturers & learn more',
 }
 
 // Contact page content
@@ -441,6 +445,92 @@ const contactPage = {
   successDescription: "We'll get back to you within 24 hours.",
   errorMessage: 'Something went wrong',
   errorDescription: 'Please try again or call us directly.',
+}
+
+// Manufacturers data
+const manufacturers = [
+  {
+    _type: 'manufacturer',
+    _id: 'manufacturer-ball-fabrics',
+    name: 'Ball Fabrics',
+    slug: { _type: 'slug', current: 'ball-fabrics' },
+    logoUrl: '/manufacturers/ball_fabrics.jpeg',
+    description: 'Premium fabric solutions for security fencing and screening applications, offering durability and aesthetic appeal.',
+    website: 'https://ballfabrics.com',
+    order: 1,
+  },
+  {
+    _type: 'manufacturer',
+    _id: 'manufacturer-d-d-technologies',
+    name: 'D&D Technologies',
+    slug: { _type: 'slug', current: 'd-d-technologies' },
+    logoUrl: '/manufacturers/d-d-logo-horizontal-white-registered-mark-scaled.jpg',
+    description: "The world's most trusted gate hardware manufacturer, specializing in innovative hinges, latches, and closers for gates of all sizes.",
+    website: 'https://ddtech.com',
+    order: 2,
+  },
+  {
+    _type: 'manufacturer',
+    _id: 'manufacturer-fencetrac',
+    name: 'FenceTrac',
+    slug: { _type: 'slug', current: 'fencetrac' },
+    logoUrl: '/manufacturers/fencetrac-fence-systems-1000px.png',
+    description: 'Revolutionary fence framing systems that create clean, modern commercial fencing with superior strength and faster installation.',
+    website: 'https://fencetrac.com',
+    order: 3,
+  },
+  {
+    _type: 'manufacturer',
+    _id: 'manufacturer-gatemaster',
+    name: 'Gatemaster',
+    slug: { _type: 'slug', current: 'gatemaster' },
+    logoUrl: '/manufacturers/GM-logo-scaled.jpg',
+    description: 'Industry-leading manufacturer of gate locks, closers, and security hardware for commercial and industrial applications.',
+    website: 'https://www.gatemasterlocks.com/en-us/',
+    order: 4,
+  },
+  {
+    _type: 'manufacturer',
+    _id: 'manufacturer-hi-motions',
+    name: 'HI Motions',
+    slug: { _type: 'slug', current: 'hi-motions' },
+    logoUrl: '/manufacturers/hi-motion-logo.jpg',
+    description: 'Premium cantilever gate hardware and rolling gate solutions engineered for smooth, reliable operation in demanding environments.',
+    website: 'https://himotions.com',
+    order: 5,
+  },
+  {
+    _type: 'manufacturer',
+    _id: 'manufacturer-max-controls',
+    name: 'Max Controls',
+    slug: { _type: 'slug', current: 'max-controls' },
+    logoUrl: '/manufacturers/Max_Controls_Logo_FILLED-GLOW_HIGH_RES-scaled.jpg',
+    description: 'High-performance gate operators and access control systems designed for maximum durability and security.',
+    website: 'https://max.us.com/',
+    order: 6,
+  },
+  {
+    _type: 'manufacturer',
+    _id: 'manufacturer-rotary-gate-systems',
+    name: 'Rotary Gate Systems',
+    slug: { _type: 'slug', current: 'rotary-gate-systems' },
+    logoUrl: '/manufacturers/rotary-gate-systems.jpg',
+    description: 'Innovative rotary gate solutions providing space-efficient security for facilities with limited clearance requirements.',
+    website: 'https://rotarygatesystems.com',
+    order: 7,
+  },
+]
+
+// Manufacturers page content
+const manufacturersPage = {
+  _type: 'manufacturersPage',
+  _id: 'manufacturersPage',
+  heroHeading: 'Manufacturers We Represent',
+  heroSubtext: "As an authorized manufacturer's representative, we bring you direct access to industry-leading security and fencing solutions from trusted brands.",
+  ctaHeading: 'Need Help Choosing the Right Solution?',
+  ctaSubtext: 'Our team has deep expertise with all of our manufacturer partners. Let us help you find the perfect products for your project.',
+  ctaButtonText: 'Contact Us',
+  ctaButtonLink: '/contact',
 }
 
 // About page content
@@ -601,15 +691,37 @@ async function seed() {
     }
   }
 
+  // Create manufacturers (using createOrReplace to avoid duplicates)
+  console.log("\n🏭 Creating manufacturers...")
+  for (const manufacturer of manufacturers) {
+    try {
+      await client.createOrReplace(manufacturer)
+      console.log(`✅ Created/Updated: ${manufacturer.name}`)
+    } catch (error) {
+      console.error(`❌ Error creating ${manufacturer.name}:`, error)
+    }
+  }
+
+  // Create manufacturers page
+  console.log('\n📄 Creating manufacturers page content...')
+  try {
+    await client.createOrReplace(manufacturersPage)
+    console.log('✅ Manufacturers page created\n')
+  } catch (error) {
+    console.error('❌ Error creating manufacturers page:', error)
+  }
+
   console.log('\n🎉 Seeding complete!')
   console.log('\nContent created:')
   console.log(`  - 1 Site Settings (with navigation & footer)`)
   console.log(`  - 1 Home Page`)
   console.log(`  - 1 About Page`)
   console.log(`  - 1 Contact Page`)
+  console.log(`  - 1 Manufacturers Page`)
   console.log(`  - ${products.length} Products`)
   console.log(`  - ${industries.length} Industries`)
   console.log(`  - ${testimonials.length} Testimonials`)
+  console.log(`  - ${manufacturers.length} Manufacturers`)
   console.log('\nView your content at: http://localhost:3000/studio')
 }
 

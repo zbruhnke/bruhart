@@ -8,6 +8,8 @@ import { contactSubmission } from './contactSubmission'
 import { aboutPage } from './aboutPage'
 import { homePage } from './homePage'
 import { contactPage } from './contactPage'
+import { manufacturer } from './manufacturer'
+import { manufacturersPage } from './manufacturersPage'
 
 export const schemaTypes = [
   product,
@@ -20,4 +22,6 @@ export const schemaTypes = [
   aboutPage,
   homePage,
   contactPage,
+  manufacturer,
+  manufacturersPage,
 ]

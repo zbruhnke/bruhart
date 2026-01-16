@@ -7,6 +7,7 @@ export const homePage = {
     { name: 'products', title: 'Products Section' },
     { name: 'industries', title: 'Industries Section' },
     { name: 'certifications', title: 'Certifications Section' },
+    { name: 'manufacturers', title: 'Manufacturers Section' },
     { name: 'cta', title: 'CTA Section' },
   ],
   fields: [
@@ -218,6 +219,37 @@ export const homePage = {
           },
         },
       ],
+    },
+
+    // Manufacturers Section
+    {
+      name: 'manufacturersSectionLabel',
+      title: 'Manufacturers Section Label',
+      type: 'string',
+      group: 'manufacturers',
+      initialValue: 'Our Partners',
+    },
+    {
+      name: 'manufacturersSectionTitle',
+      title: 'Manufacturers Section Title',
+      type: 'string',
+      group: 'manufacturers',
+      initialValue: 'Manufacturers We Represent',
+    },
+    {
+      name: 'manufacturersSectionDescription',
+      title: 'Manufacturers Section Description',
+      type: 'text',
+      rows: 2,
+      group: 'manufacturers',
+      initialValue: 'We proudly partner with industry-leading manufacturers to bring you the highest quality security solutions.',
+    },
+    {
+      name: 'manufacturersLinkText',
+      title: 'Manufacturers Link Text',
+      type: 'string',
+      group: 'manufacturers',
+      initialValue: 'View all manufacturers & learn more',
     },
 
     // CTA Section

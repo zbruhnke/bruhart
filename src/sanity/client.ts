@@ -139,7 +139,11 @@ export async function getHomePage() {
       ctaDescription,
       ctaPrimaryButtonText,
       ctaPrimaryButtonLink,
-      ctaCards
+      ctaCards,
+      manufacturersSectionLabel,
+      manufacturersSectionTitle,
+      manufacturersSectionDescription,
+      manufacturersLinkText
     }
   `)
 }
@@ -163,6 +167,33 @@ export async function getContactPage() {
       successDescription,
       errorMessage,
       errorDescription
+    }
+  `)
+}
+
+export async function getManufacturers() {
+  return client.fetch(`
+    *[_type == "manufacturer"] | order(order asc) {
+      _id,
+      name,
+      "slug": slug.current,
+      logo,
+      logoUrl,
+      description,
+      website
+    }
+  `)
+}
+
+export async function getManufacturersPage() {
+  return client.fetch(`
+    *[_type == "manufacturersPage"][0] {
+      heroHeading,
+      heroSubtext,
+      ctaHeading,
+      ctaSubtext,
+      ctaButtonText,
+      ctaButtonLink
     }
   `)
 }
