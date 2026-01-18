@@ -267,7 +267,7 @@ export function OGImageLayout({ title, subtitle, badge, backgroundImage }: OGIma
         </span>
         <div style={{ display: 'flex', gap: '40px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span style={{ fontSize: '28px', fontWeight: 700, color: 'white' }}>40+</span>
+            <span style={{ fontSize: '28px', fontWeight: 700, color: 'white' }}>45+</span>
             <span style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>Years</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

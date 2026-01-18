@@ -19,7 +19,7 @@ const fallbackSettings = {
     youtube: "#",
   },
   stats: {
-    yearsInBusiness: "40+",
+    yearsInBusiness: "45+",
     projectsCompleted: "500+",
     statesServed: "48",
   },

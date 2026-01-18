@@ -36,7 +36,7 @@ const fallback = {
   heroStatsLabel: 'Trusted by industry leaders',
   heroStats: [
     { value: '500+', label: 'Projects Completed' },
-    { value: '40+', label: 'Years Experience' },
+    { value: '45+', label: 'Years Experience' },
     { value: '100%', label: 'ASTM Certified' },
   ],
 };

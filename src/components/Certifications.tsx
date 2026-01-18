@@ -16,7 +16,7 @@ const fallbackCertifications = [
 ];
 
 const fallbackStats = [
-  { value: '40+', label: 'Years in Business' },
+  { value: '45+', label: 'Years in Business' },
   { value: '500+', label: 'Projects Completed' },
   { value: '48', label: 'States Served' },
   { value: '24/7', label: 'Support Available' },

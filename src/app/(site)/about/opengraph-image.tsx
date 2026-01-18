@@ -4,7 +4,7 @@ import { OGImageLayout, getOGFonts, getOGBackgroundImage } from '@/lib/og-image'
 export const runtime = 'edge';
 export const revalidate = 0;
 
-export const alt = 'About Bru-Hart - 40+ Years Protecting Critical Infrastructure';
+export const alt = 'About Bru-Hart - 45+ Years Protecting Critical Infrastructure';
 export const size = {
   width: 1200,
   height: 630,
@@ -19,7 +19,7 @@ export default async function Image() {
     (
       <OGImageLayout
         badge="About Us"
-        title="40+ Years of Expertise. A New Standard in Security."
+        title="45+ Years of Expertise. A New Standard in Security."
         subtitle="Industry-leading expertise in high-security gate systems and perimeter protection."
         backgroundImage={backgroundImage || undefined}
       />

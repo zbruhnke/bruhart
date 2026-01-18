@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About Us | Bru-Hart Industries",
-  description: "Bru-Hart is a new company built on 40+ years of fence and gate industry experience. High-security gates and critical infrastructure done right.",
+  description: "Bru-Hart is a new company built on 45+ years of fence and gate industry experience. High-security gates and critical infrastructure done right.",
 };
 
 // Icon components based on iconType
@@ -59,14 +59,14 @@ const fallbackValues = [
 ];
 
 const fallbackTimeline = [
-  { year: "1985", title: "Industry Roots", description: "Dana Bruhnke starts his career at Southern Steel, beginning 40+ years in the fence and gate industry." },
+  { year: "1980", title: "Industry Roots", description: "Dana Bruhnke starts his career at Southern Steel, beginning 45+ years in the fence and gate industry." },
   { year: "1990s", title: "Building Expertise", description: "Decades at Jamieson Fence (now Master Halco), becoming one of the industry's foremost experts in gate fabrication." },
   { year: "2010s", title: "Wholesale Distribution", description: "Founds Premier Access, building relationships with manufacturers and contractors across the country." },
   { year: "2025", title: "Bru-Hart Launches", description: "Dana partners with a new generation to launch Bru-Hart Industries, focused on high-security and critical infrastructure." },
 ];
 
 const fallbackStoryParagraphs = [
-  "Bru-Hart is a new company built on 40+ years of industry experience. Our founder, Dana Bruhnke, got his start in the fence business back in 1985 at Southern Steel. He spent decades with Jamieson Fence (now Master Halco) and founded Premier Access, becoming one of the most respected names in the industry. If you've worked in the fence business long enough, you probably know Dana.",
+  "Bru-Hart is a new company built on 45+ years of industry experience. Our founder, Dana Bruhnke, got his start in the fence business back in 1980 at Southern Steel. He spent decades with Jamieson Fence (now Master Halco) and founded Premier Access, becoming one of the most respected names in the industry. If you've worked in the fence business long enough, you probably know Dana.",
   "That experience matters when you're securing critical infrastructure. We've seen what works and what doesn't across thousands of projects at data centers, utilities, government facilities, and more. We know the products, the manufacturers, and the details that make the difference between a gate that works and one that works right.",
   "Now Dana has partnered with a new team committed to carrying that expertise forward. Whether you're a contractor looking for reliable wholesale partners or a facility that needs a turnkey solution, Bru-Hart is here to get it done right.",
 ];
@@ -75,8 +75,8 @@ export default async function AboutPage() {
   const aboutContent = await getAboutPage();
 
   // Use Sanity data or fallback
-  const heroHeading = aboutContent?.heroHeading || "40+ Years of Expertise. A New Standard in Security.";
-  const heroSubtext = aboutContent?.heroSubtext || "Bru-Hart is built on four decades of hands-on experience in the fence and gate industry. When critical infrastructure needs protecting, you want someone who's done it before.";
+  const heroHeading = aboutContent?.heroHeading || "45+ Years of Expertise. A New Standard in Security.";
+  const heroSubtext = aboutContent?.heroSubtext || "Bru-Hart is built on over four decades of hands-on experience in the fence and gate industry. When critical infrastructure needs protecting, you want someone who's done it before.";
   const storyTitle = aboutContent?.storyTitle || "Our Story";
   const storyContent = aboutContent?.storyContent;
   const valuesTitle = aboutContent?.valuesTitle || "Our Values";

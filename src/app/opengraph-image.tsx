@@ -130,7 +130,7 @@ export default async function Image() {
               <span style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.6)' }}>Projects Completed</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span style={{ fontSize: '36px', fontWeight: 900, color: 'white' }}>40+</span>
+              <span style={{ fontSize: '36px', fontWeight: 900, color: 'white' }}>45+</span>
               <span style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.6)' }}>Years Experience</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
