@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { OGImageLayout, getOGFonts } from '@/lib/og-image';
+import { OGImageLayout, getOGFonts, getBaseUrl } from '@/lib/og-image';
 
 export const runtime = 'edge';
 
@@ -19,7 +19,7 @@ export default async function Image() {
         badge="Contact Us"
         title="Get in Touch"
         subtitle="Request a quote, get technical support, or discuss your security requirements with our expert team."
-        backgroundImage="https://bruhart.com/images/bruhart_work/IMG_4252.jpeg"
+        backgroundImage={`${getBaseUrl()}/images/bruhart_work/IMG_4252.jpeg`}
       />
     ),
     {

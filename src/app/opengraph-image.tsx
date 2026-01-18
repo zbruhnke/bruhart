@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { OGLogo, getOGFonts } from '@/lib/og-image';
+import { OGLogo, getOGFonts, getBaseUrl } from '@/lib/og-image';
 
 export const runtime = 'edge';
 
@@ -24,7 +24,7 @@ export default async function Image() {
           justifyContent: 'space-between',
           padding: '60px',
           fontFamily: 'Inter',
-          backgroundImage: 'linear-gradient(135deg, rgba(15, 39, 68, 0.85) 0%, rgba(30, 58, 95, 0.8) 50%, rgba(45, 74, 111, 0.75) 100%), url(https://bruhart.com/images/bruhart_work/IMG_4252.jpeg)',
+          backgroundImage: `linear-gradient(135deg, rgba(15, 39, 68, 0.85) 0%, rgba(30, 58, 95, 0.8) 50%, rgba(45, 74, 111, 0.75) 100%), url(${getBaseUrl()}/images/bruhart_work/IMG_4252.jpeg)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

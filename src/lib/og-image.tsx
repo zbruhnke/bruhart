@@ -1,5 +1,13 @@
 import { ReactElement } from 'react';
 
+// Get the base URL for images - works on Vercel and locally
+export function getBaseUrl() {
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+}
+
 // Font loading for OG images - Inter Black for bold text
 export async function getOGFonts() {
   const interBlack = await fetch(

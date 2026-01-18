@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { OGImageLayout, getOGFonts } from '@/lib/og-image';
+import { OGImageLayout, getOGFonts, getBaseUrl } from '@/lib/og-image';
 
 export const runtime = 'edge';
 
@@ -19,7 +19,7 @@ export default async function Image() {
         badge="About Us"
         title="40+ Years of Expertise. A New Standard in Security."
         subtitle="Industry-leading expertise in high-security gate systems and perimeter protection."
-        backgroundImage="https://bruhart.com/images/bruhart_work/IMG_1287.jpeg"
+        backgroundImage={`${getBaseUrl()}/images/bruhart_work/IMG_1287.jpeg`}
       />
     ),
     {
