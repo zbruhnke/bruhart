@@ -8,14 +8,16 @@ export function getBaseUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 }
 
-// Production URL for fetching images in edge functions
-// We use the production URL because preview deployments may not have images ready yet
-const PRODUCTION_URL = 'https://bruhart.vercel.app';
+// Get production URL for fetching images in edge functions
+// Uses NEXT_PUBLIC_SITE_URL env var, falls back to bruhart.vercel.app
+function getProductionUrl() {
+  return process.env.NEXT_PUBLIC_SITE_URL || 'https://bruhart.vercel.app';
+}
 
 // Fetch image and convert to base64 data URL for OG images
 export async function getOGBackgroundImage(imagePath: string): Promise<string | null> {
   try {
-    const url = `${PRODUCTION_URL}${imagePath}`;
+    const url = `${getProductionUrl()}${imagePath}`;
     const response = await fetch(url);
     if (!response.ok) return null;
     const buffer = await response.arrayBuffer();
