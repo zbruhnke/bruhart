@@ -154,9 +154,6 @@ export function OGImageLayout({ title, subtitle, badge, backgroundImage }: OGIma
         height: '100%',
         width: '100%',
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        padding: '60px',
         fontFamily: 'Inter',
         backgroundColor: '#0f2744',
         position: 'relative',
@@ -198,6 +195,7 @@ export function OGImageLayout({ title, subtitle, badge, backgroundImage }: OGIma
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
+          padding: '60px',
           height: '100%',
           width: '100%',
         }}
