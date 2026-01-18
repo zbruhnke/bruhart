@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og';
 import { OGImageLayout, getOGFonts, getBaseUrl } from '@/lib/og-image';
 
 export const runtime = 'edge';
+export const revalidate = 0;
 
 export const alt = 'About Bru-Hart - 40+ Years Protecting Critical Infrastructure';
 export const size = {

@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og';
 import { OGLogo, getOGFonts, getBaseUrl } from '@/lib/og-image';
 
 export const runtime = 'edge';
+export const revalidate = 0;
 
 export const alt = 'Bru-Hart Industries - High-Security Gate Systems';
 export const size = {
