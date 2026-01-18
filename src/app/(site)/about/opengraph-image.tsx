@@ -17,8 +17,9 @@ export default async function Image() {
     (
       <OGImageLayout
         badge="About Us"
-        title="Protecting Critical Infrastructure for Over 40 Years"
+        title="40+ Years of Expertise. A New Standard in Security."
         subtitle="Industry-leading expertise in high-security gate systems and perimeter protection."
+        backgroundImage="https://bruhart.com/images/bruhart_work/IMG_1287.jpeg"
       />
     ),
     {

@@ -115,9 +115,10 @@ interface OGImageLayoutProps {
   title: string;
   subtitle?: string;
   badge?: string;
+  backgroundImage?: string;
 }
 
-export function OGImageLayout({ title, subtitle, badge }: OGImageLayoutProps): ReactElement {
+export function OGImageLayout({ title, subtitle, badge, backgroundImage }: OGImageLayoutProps): ReactElement {
   return (
     <div
       style={{
@@ -128,7 +129,11 @@ export function OGImageLayout({ title, subtitle, badge }: OGImageLayoutProps): R
         justifyContent: 'space-between',
         padding: '60px',
         fontFamily: 'Inter',
-        backgroundImage: 'linear-gradient(135deg, #0f2744 0%, #1e3a5f 50%, #2d4a6f 100%)',
+        backgroundImage: backgroundImage
+          ? `linear-gradient(135deg, rgba(15, 39, 68, 0.85) 0%, rgba(30, 58, 95, 0.8) 50%, rgba(45, 74, 111, 0.75) 100%), url(${backgroundImage})`
+          : 'linear-gradient(135deg, #0f2744 0%, #1e3a5f 50%, #2d4a6f 100%)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
       {/* Logo */}

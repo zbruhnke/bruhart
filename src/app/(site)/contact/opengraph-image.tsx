@@ -19,6 +19,7 @@ export default async function Image() {
         badge="Contact Us"
         title="Get in Touch"
         subtitle="Request a quote, get technical support, or discuss your security requirements with our expert team."
+        backgroundImage="https://bruhart.com/images/bruhart_work/IMG_4252.jpeg"
       />
     ),
     {

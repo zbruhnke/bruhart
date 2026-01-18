@@ -19,6 +19,7 @@ export default async function Image() {
         badge="Industries We Serve"
         title="Specialized Security for Critical Sectors"
         subtitle="Data centers, airports, utilities, government facilities, and more."
+        backgroundImage="https://bruhart.com/images/bruhart_work/IMG_1910.jpeg"
       />
     ),
     {
