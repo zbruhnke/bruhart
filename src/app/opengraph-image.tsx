@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { OGLogo, getOGFonts, getBaseUrl } from '@/lib/og-image';
+import { OGLogo, getOGFonts, getOGBackgroundImage } from '@/lib/og-image';
 
 export const runtime = 'edge';
 export const revalidate = 0;
@@ -13,7 +13,7 @@ export const contentType = 'image/png';
 
 export default async function Image() {
   const fonts = await getOGFonts();
-  const backgroundImage = `${getBaseUrl()}/images/bruhart_work/IMG_4252.jpeg`;
+  const backgroundImage = await getOGBackgroundImage('/images/bruhart_work/IMG_4252.jpeg');
 
   return new ImageResponse(
     (
@@ -28,19 +28,23 @@ export default async function Image() {
         }}
       >
         {/* Background Image */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={backgroundImage}
-          alt=""
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-          }}
-        />
+        {backgroundImage && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={backgroundImage}
+            alt=""
+            width={1200}
+            height={630}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        )}
         {/* Blue Overlay */}
         <div
           style={{

@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { OGImageLayout, getOGFonts, getBaseUrl } from '@/lib/og-image';
+import { OGImageLayout, getOGFonts, getOGBackgroundImage } from '@/lib/og-image';
 
 export const runtime = 'edge';
 export const revalidate = 0;
@@ -13,6 +13,7 @@ export const contentType = 'image/png';
 
 export default async function Image() {
   const fonts = await getOGFonts();
+  const backgroundImage = await getOGBackgroundImage('/images/bruhart_work/IMG_1910.jpeg');
 
   return new ImageResponse(
     (
@@ -20,7 +21,7 @@ export default async function Image() {
         badge="Industries We Serve"
         title="Specialized Security for Critical Sectors"
         subtitle="Data centers, airports, utilities, government facilities, and more."
-        backgroundImage={`${getBaseUrl()}/images/bruhart_work/IMG_1910.jpeg`}
+        backgroundImage={backgroundImage || undefined}
       />
     ),
     {

@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { OGImageLayout, getOGFonts, getBaseUrl } from '@/lib/og-image';
+import { OGImageLayout, getOGFonts, getOGBackgroundImage } from '@/lib/og-image';
 
 export const runtime = 'edge';
 export const revalidate = 0;
@@ -13,6 +13,7 @@ export const contentType = 'image/png';
 
 export default async function Image() {
   const fonts = await getOGFonts();
+  const backgroundImage = await getOGBackgroundImage('/images/bruhart_work/IMG_1961.jpeg');
 
   return new ImageResponse(
     (
@@ -20,7 +21,7 @@ export default async function Image() {
         badge="Our Products"
         title="Security Products Built for Critical Infrastructure"
         subtitle="Crash-rated gates, barrier systems, operators, and access control meeting the highest security standards."
-        backgroundImage={`${getBaseUrl()}/images/bruhart_work/IMG_1961.jpeg`}
+        backgroundImage={backgroundImage || undefined}
       />
     ),
     {

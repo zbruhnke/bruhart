@@ -8,6 +8,25 @@ export function getBaseUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 }
 
+// Production URL for fetching images in edge functions
+// We use the production URL because preview deployments may not have images ready yet
+const PRODUCTION_URL = 'https://bruhart.vercel.app';
+
+// Fetch image and convert to base64 data URL for OG images
+export async function getOGBackgroundImage(imagePath: string): Promise<string | null> {
+  try {
+    const url = `${PRODUCTION_URL}${imagePath}`;
+    const response = await fetch(url);
+    if (!response.ok) return null;
+    const buffer = await response.arrayBuffer();
+    const base64 = Buffer.from(buffer).toString('base64');
+    const contentType = response.headers.get('content-type') || 'image/jpeg';
+    return `data:${contentType};base64,${base64}`;
+  } catch {
+    return null;
+  }
+}
+
 // Font loading for OG images - Inter Black for bold text
 export async function getOGFonts() {
   const interBlack = await fetch(
@@ -147,6 +166,8 @@ export function OGImageLayout({ title, subtitle, badge, backgroundImage }: OGIma
         <img
           src={backgroundImage}
           alt=""
+          width={1200}
+          height={630}
           style={{
             position: 'absolute',
             top: 0,
