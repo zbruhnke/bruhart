@@ -13,11 +13,11 @@ const getBaseUrl = () => {
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseUrl()),
-  title: "Bru-Hart Security Solutions | High-Security Gate Systems",
+  title: "Bru-Hart Industries | High-Security Gate Systems",
   description: "Industry-leading crash-rated gates, barrier systems, and operators protecting data centers, airports, utilities, and government facilities across North America.",
   keywords: "crash rated gates, security gates, barrier systems, data center security, airport security, infrastructure protection, ASTM F2656, DOS certified",
   openGraph: {
-    title: "Bru-Hart Security Solutions | High-Security Gate Systems",
+    title: "Bru-Hart Industries | High-Security Gate Systems",
     description: "Industry-leading crash-rated gates, barrier systems, and operators protecting critical infrastructure.",
     type: "website",
     locale: "en_US",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bru-Hart Security Solutions | High-Security Gate Systems",
+    title: "Bru-Hart Industries | High-Security Gate Systems",
     description: "Industry-leading crash-rated gates, barrier systems, and operators protecting critical infrastructure.",
   },
 };

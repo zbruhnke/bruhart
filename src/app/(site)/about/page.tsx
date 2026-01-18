@@ -2,10 +2,11 @@ import { Metadata } from "next";
 import { getAboutPage } from "@/sanity/client";
 import { PortableText } from "@portabletext/react";
 import { ReactNode } from "react";
+import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "About Us | Bru-Hart Security Solutions",
-  description: "Learn about Bru-Hart's 40+ years of experience providing high-security gate systems for critical infrastructure.",
+  title: "About Us | Bru-Hart Industries",
+  description: "Bru-Hart is a new company built on 40+ years of fence and gate industry experience. High-security gates and critical infrastructure done right.",
 };
 
 // Icon components based on iconType
@@ -58,35 +59,34 @@ const fallbackValues = [
 ];
 
 const fallbackTimeline = [
-  { year: "1985", title: "Founded", description: "Bru-Hart was established with a focus on industrial gate systems." },
-  { year: "1995", title: "First Crash-Rated System", description: "Pioneered our first ASTM certified crash-rated gate system." },
-  { year: "2005", title: "National Expansion", description: "Expanded operations to serve all 48 continental states." },
-  { year: "2015", title: "500th Project", description: "Completed our 500th major infrastructure security project." },
-  { year: "2024", title: "Industry Leader", description: "Recognized as a leading provider of critical infrastructure security." },
+  { year: "1985", title: "Industry Roots", description: "Dana Bruhnke starts his career at Southern Steel, beginning 40+ years in the fence and gate industry." },
+  { year: "1990s", title: "Building Expertise", description: "Decades at Jamieson Fence (now Master Halco), becoming one of the industry's foremost experts in gate fabrication." },
+  { year: "2010s", title: "Wholesale Distribution", description: "Founds Premier Access, building relationships with manufacturers and contractors across the country." },
+  { year: "2025", title: "Bru-Hart Launches", description: "Dana partners with a new generation to launch Bru-Hart Industries, focused on high-security and critical infrastructure." },
 ];
 
 const fallbackStoryParagraphs = [
-  "Bru-Hart Security Solutions was founded with a simple mission: to provide uncompromising security solutions for facilities where protection is paramount.",
-  "What started as a small operation serving local industrial clients has grown into a nationally recognized leader in high-security perimeter protection. Today, our crash-rated gates and barrier systems protect some of the most critical facilities in North America.",
-  "Our specialization in crash-rated systems, large-scale gates, and operators for electrical facilities, data centers, airports, and government installations sets us apart. We understand that these facilities require security solutions that go beyond standard offerings.",
+  "Bru-Hart is a new company built on 40+ years of industry experience. Our founder, Dana Bruhnke, got his start in the fence business back in 1985 at Southern Steel. He spent decades with Jamieson Fence (now Master Halco) and founded Premier Access, becoming one of the most respected names in the industry. If you've worked in the fence business long enough, you probably know Dana.",
+  "That experience matters when you're securing critical infrastructure. We've seen what works and what doesn't across thousands of projects at data centers, utilities, government facilities, and more. We know the products, the manufacturers, and the details that make the difference between a gate that works and one that works right.",
+  "Now Dana has partnered with a new team committed to carrying that expertise forward. Whether you're a contractor looking for reliable wholesale partners or a facility that needs a turnkey solution, Bru-Hart is here to get it done right.",
 ];
 
 export default async function AboutPage() {
   const aboutContent = await getAboutPage();
 
   // Use Sanity data or fallback
-  const heroHeading = aboutContent?.heroHeading || "Protecting Critical Infrastructure for Over 40 Years";
-  const heroSubtext = aboutContent?.heroSubtext || "From our founding in 1985, Bru-Hart has been dedicated to providing the highest quality security gate systems for the most demanding applications.";
+  const heroHeading = aboutContent?.heroHeading || "40+ Years of Expertise. A New Standard in Security.";
+  const heroSubtext = aboutContent?.heroSubtext || "Bru-Hart is built on four decades of hands-on experience in the fence and gate industry. When critical infrastructure needs protecting, you want someone who's done it before.";
   const storyTitle = aboutContent?.storyTitle || "Our Story";
   const storyContent = aboutContent?.storyContent;
   const valuesTitle = aboutContent?.valuesTitle || "Our Values";
   const valuesSubtext = aboutContent?.valuesSubtext || "These principles guide everything we do, from product design to customer service.";
   const values = aboutContent?.values && aboutContent.values.length > 0 ? aboutContent.values : fallbackValues;
   const timeline = aboutContent?.timeline && aboutContent.timeline.length > 0 ? aboutContent.timeline : fallbackTimeline;
-  const ctaTitle = aboutContent?.ctaTitle || "Join Our Team";
-  const ctaSubtext = aboutContent?.ctaSubtext || "We're always looking for talented individuals who share our passion for security excellence.";
-  const ctaButtonText = aboutContent?.ctaButtonText || "View Open Positions";
-  const ctaButtonLink = aboutContent?.ctaButtonLink || "/careers";
+  const ctaTitle = aboutContent?.ctaTitle || "Ready to Work with Us?";
+  const ctaSubtext = aboutContent?.ctaSubtext || "Whether you need crash-rated gates for a data center or custom fabrication for a unique project, we're here to help.";
+  const ctaButtonText = aboutContent?.ctaButtonText || "Get in Touch";
+  const ctaButtonLink = aboutContent?.ctaButtonLink || "/contact";
 
   return (
     <>
@@ -107,6 +107,20 @@ export default async function AboutPage() {
       {/* Story */}
       <section className="py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Story Image */}
+          <div className="relative aspect-[21/9] rounded-2xl overflow-hidden mb-16">
+            <Image
+              src="/images/bruhart_work/IMG_1287.jpeg"
+              alt="Bru-Hart team installing high-security fence with crane"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div className="absolute bottom-6 left-6 right-6">
+              <p className="text-white/90 text-sm font-medium">Our team at work on a large-scale security installation</p>
+            </div>
+          </div>
+
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-6">{storyTitle}</h2>

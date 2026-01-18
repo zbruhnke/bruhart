@@ -64,7 +64,7 @@ const defaultIcon = (
   </svg>
 );
 
-// Fallback industries
+// Fallback industries - using real project photos
 const fallbackIndustries: Array<{
   _id: string;
   name: string;
@@ -78,53 +78,53 @@ const fallbackIndustries: Array<{
     name: 'Data Centers',
     slug: 'data-centers',
     description: 'Protecting the backbone of the digital economy with crash-rated perimeters and multi-layer access control.',
-    imageUrl: '/images/industries/data-center.jpg',
+    imageUrl: '/images/bruhart_work/IMG_1910.jpeg',
   },
   {
     _id: 'airports',
     name: 'Airports & Aviation',
     slug: 'airports',
     description: 'TSA and FAA compliant gate systems for runway access, cargo areas, and secure perimeters.',
-    imageUrl: '/images/industries/airports.jpg',
+    imageUrl: '/images/bruhart_work/IMG_4029.jpeg',
   },
   {
     _id: 'utilities',
     name: 'Utilities & Energy',
     slug: 'utilities',
     description: 'NERC CIP compliant solutions for substations, power plants, and critical energy infrastructure.',
-    imageUrl: '/images/industries/utilities.jpg',
+    imageUrl: '/images/bruhart_work/IMG_3969.jpeg',
   },
   {
     _id: 'government',
     name: 'Government & Military',
     slug: 'government',
     description: 'DOS-certified anti-ram barriers and high-security entry systems for federal facilities.',
-    imageUrl: '/images/industries/government.jpg',
+    imageUrl: '/images/bruhart_work/IMG_1976.jpeg',
   },
   {
     _id: 'ports',
     name: 'Ports & Logistics',
     slug: 'ports',
     description: 'MTSA compliant maritime security solutions for container terminals and port facilities.',
-    imageUrl: '/images/industries/ports.jpg',
+    imageUrl: '/images/bruhart_work/IMG_1905.jpeg',
   },
   {
     _id: 'corporate',
     name: 'Corporate Campuses',
     slug: 'corporate',
     description: 'Integrated security solutions balancing aesthetics with protection for Fortune 500 headquarters.',
-    imageUrl: '/images/industries/corporate.jpg',
+    imageUrl: '/images/bruhart_work/IMG_3972.jpeg',
   },
 ];
 
-// Fallback image URLs by slug
+// Fallback image URLs by slug - using real project photos
 const fallbackImageUrls: Record<string, string> = {
-  'data-centers': '/images/industries/data-center.jpg',
-  'airports': '/images/industries/airports.jpg',
-  'utilities': '/images/industries/utilities.jpg',
-  'government': '/images/industries/government.jpg',
-  'ports': '/images/industries/ports.jpg',
-  'corporate': '/images/industries/corporate.jpg',
+  'data-centers': '/images/bruhart_work/IMG_1910.jpeg',
+  'airports': '/images/bruhart_work/IMG_4029.jpeg',
+  'utilities': '/images/bruhart_work/IMG_3969.jpeg',
+  'government': '/images/bruhart_work/IMG_1976.jpeg',
+  'ports': '/images/bruhart_work/IMG_1905.jpeg',
+  'corporate': '/images/bruhart_work/IMG_3972.jpeg',
 };
 
 // Fallback section data

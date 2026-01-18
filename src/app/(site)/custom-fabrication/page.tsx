@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Custom Fabrication | Bru-Hart Security Solutions",
+  title: "Custom Fabrication | Bru-Hart Industries",
   description: "Wholesale gate components for fabricators. Custom extruded aluminum track systems and CNC milled trucks engineered for commercial and industrial gate applications.",
 };
 
@@ -158,8 +158,57 @@ export default function CustomFabricationPage() {
         </div>
       </section>
 
-      {/* The System Together */}
+      {/* Custom Work Showcase */}
       <section className="py-16 bg-background-alt">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Image */}
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/bruhart_work/IMG_3775.jpeg"
+                alt="Custom decorative gate with rose medallion design"
+                fill
+                className="object-cover"
+              />
+            </div>
+
+            {/* Content */}
+            <div>
+              <span className="text-sm font-semibold text-accent uppercase tracking-wider">
+                Custom Designs
+              </span>
+              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
+                Beyond Standard—Built to Your Vision
+              </h2>
+              <p className="text-lg text-foreground-muted mb-6">
+                Sometimes standard components aren&apos;t enough. Whether it&apos;s decorative
+                elements, custom medallions, or one-of-a-kind designs, we can help bring
+                your vision to life. From ornamental gates to branded security barriers,
+                our fabricators create pieces that stand out while maintaining the security
+                standards your clients need.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Custom decorative medallions and inserts",
+                  "Branded gate designs with logos",
+                  "Ornamental security solutions",
+                  "Architectural integration capabilities",
+                ].map((feature) => (
+                  <li key={feature} className="flex items-start gap-2 text-foreground-muted">
+                    <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The System Together */}
+      <section className="py-16 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">

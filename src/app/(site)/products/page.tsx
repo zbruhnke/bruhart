@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getProducts, urlFor } from "@/sanity/client";
 
 export const metadata: Metadata = {
-  title: "Products | Bru-Hart Security Solutions",
+  title: "Products | Bru-Hart Industries",
   description: "Explore our complete line of crash-rated gates, bollards, security fencing, access control, barrier arms, and gate operators.",
 };
 
@@ -23,7 +23,7 @@ const fallbackProducts = [
       "Custom sizes up to 40ft clear opening",
     ],
     applications: ["Government facilities", "Data centers", "Airports", "Military bases", "Embassies"],
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    image: "/images/bruhart_work/IMG_1961.jpeg",
   },
   {
     id: "bollards",
@@ -39,7 +39,7 @@ const fallbackProducts = [
       "Integrated lighting options",
     ],
     applications: ["Storefronts", "Pedestrian areas", "Government facilities", "Corporate campuses", "Event venues"],
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+    image: "/images/bruhart_work/IMG_4030.jpeg",
   },
   {
     id: "security-fencing",
@@ -55,7 +55,7 @@ const fallbackProducts = [
       "Custom heights and configurations",
     ],
     applications: ["Critical infrastructure", "Industrial facilities", "Airports", "Utilities", "Correctional facilities"],
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    image: "/images/bruhart_work/a1330cc2-a330-41e0-ad91-d8c6d5203efd.jpeg",
   },
   {
     id: "access-control",
@@ -71,7 +71,7 @@ const fallbackProducts = [
       "Video intercom integration",
     ],
     applications: ["All facility types", "Multi-tenant buildings", "Secure campuses", "Visitor management"],
-    image: "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80",
+    image: "/images/bruhart_work/Attachment.jpeg",
   },
   {
     id: "barrier-arms",
@@ -87,7 +87,7 @@ const fallbackProducts = [
       "Battery backup available",
     ],
     applications: ["Parking facilities", "Toll plazas", "Security checkpoints", "Corporate campuses", "Airports"],
-    image: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800&q=80",
+    image: "/images/bruhart_work/IMG_4010.jpeg",
   },
   {
     id: "operators",
@@ -103,7 +103,7 @@ const fallbackProducts = [
       "Integration with all access control systems",
     ],
     applications: ["High-cycle applications", "Critical infrastructure", "24/7 facilities", "Extreme environments"],
-    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
+    image: "/images/bruhart_work/IMG_1453.jpeg",
   },
 ];
 
@@ -120,7 +120,7 @@ export default async function ProductsPage() {
         description: p.description,
         features: p.features || [],
         applications: p.applications || [],
-        image: p.image ? urlFor(p.image).width(800).url() : null,
+        image: p.image ? urlFor(p.image).width(800).url() : p.imageUrl || null,
       }))
     : fallbackProducts;
 

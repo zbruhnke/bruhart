@@ -4,18 +4,18 @@ import { ReactNode } from "react";
 import { getIndustries, urlFor } from "@/sanity/client";
 
 export const metadata: Metadata = {
-  title: "Industries We Serve | Bru-Hart Security Solutions",
+  title: "Industries We Serve | Bru-Hart Industries",
   description: "Specialized security solutions for data centers, airports, utilities, government facilities, and more.",
 };
 
-// Fallback image URLs by industry ID
+// Fallback image URLs by industry ID - using real project photos
 const fallbackImageUrls: Record<string, string> = {
-  'data-centers': '/images/industries/data-center.jpg',
-  'airports': '/images/industries/airports.jpg',
-  'utilities': '/images/industries/utilities.jpg',
-  'government': '/images/industries/government.jpg',
-  'ports': '/images/industries/ports.jpg',
-  'corporate': '/images/industries/corporate.jpg',
+  'data-centers': '/images/bruhart_work/IMG_1910.jpeg',
+  'airports': '/images/bruhart_work/IMG_4029.jpeg',
+  'utilities': '/images/bruhart_work/IMG_3969.jpeg',
+  'government': '/images/bruhart_work/IMG_1976.jpeg',
+  'ports': '/images/bruhart_work/IMG_1905.jpeg',
+  'corporate': '/images/bruhart_work/IMG_3972.jpeg',
 };
 
 // Fallback industries when Sanity is empty
@@ -37,7 +37,7 @@ const fallbackIndustries = [
       "Integrated access control systems",
       "Anti-climb fencing solutions",
     ],
-    image: '/images/industries/data-center.jpg',
+    image: '/images/bruhart_work/IMG_1910.jpeg',
   },
   {
     id: "airports",
@@ -56,7 +56,7 @@ const fallbackIndustries = [
       "Crash-rated aircraft service gates",
       "Perimeter intrusion detection integration",
     ],
-    image: '/images/industries/airports.jpg',
+    image: '/images/bruhart_work/IMG_4029.jpeg',
   },
   {
     id: "utilities",
@@ -75,7 +75,7 @@ const fallbackIndustries = [
       "Remote monitoring systems",
       "Solar-powered operator options",
     ],
-    image: '/images/industries/utilities.jpg',
+    image: '/images/bruhart_work/IMG_3969.jpeg',
   },
   {
     id: "government",
@@ -94,7 +94,7 @@ const fallbackIndustries = [
       "Secure entry pavilions",
       "Biometric access integration",
     ],
-    image: '/images/industries/government.jpg',
+    image: '/images/bruhart_work/IMG_1976.jpeg',
   },
   {
     id: "ports",
@@ -113,7 +113,7 @@ const fallbackIndustries = [
       "TWIC reader integration",
       "Vehicle inspection portals",
     ],
-    image: '/images/industries/ports.jpg',
+    image: '/images/bruhart_work/IMG_1905.jpeg',
   },
   {
     id: "corporate",
@@ -132,7 +132,7 @@ const fallbackIndustries = [
       "Visitor management systems",
       "VIP entry systems",
     ],
-    image: '/images/industries/corporate.jpg',
+    image: '/images/bruhart_work/IMG_3972.jpeg',
   },
 ];
 

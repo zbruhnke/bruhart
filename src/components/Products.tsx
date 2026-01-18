@@ -78,6 +78,7 @@ const fallbackProducts: Product[] = [
     slug: 'crash-rated',
     description: 'ASTM F2656 certified barriers and gates designed to stop vehicles at high speeds. Ideal for high-security perimeters.',
     features: ['K4/K8/K12 Ratings', 'DOS Certified', 'Multiple Configurations'],
+    imageUrl: '/images/bruhart_work/IMG_1961.jpeg',
   },
   {
     _id: 'bollards',
@@ -85,6 +86,7 @@ const fallbackProducts: Product[] = [
     slug: 'bollards',
     description: 'Fixed, removable, and retractable bollards along with wedge barriers for vehicle mitigation and perimeter protection.',
     features: ['Crash-Rated Options', 'Retractable Models', 'Decorative Styles'],
+    imageUrl: '/images/bruhart_work/IMG_4030.jpeg',
   },
   {
     _id: 'security-fencing',
@@ -92,6 +94,7 @@ const fallbackProducts: Product[] = [
     slug: 'security-fencing',
     description: 'High-security fencing systems including anti-climb, anti-cut, and detection-integrated options for complete perimeter protection.',
     features: ['Anti-Climb Mesh', 'Detection Integration', 'Custom Heights'],
+    imageUrl: '/images/bruhart_work/a1330cc2-a330-41e0-ad91-d8c6d5203efd.jpeg',
   },
   {
     _id: 'access-control',
@@ -99,6 +102,7 @@ const fallbackProducts: Product[] = [
     slug: 'access-control',
     description: 'Integrated access control systems including card readers, keypads, intercoms, and remote monitoring solutions.',
     features: ['Biometric Options', 'Cloud Integration', 'Multi-Site Support'],
+    imageUrl: '/images/bruhart_work/Attachment.jpeg',
   },
   {
     _id: 'barrier-arms',
@@ -106,6 +110,7 @@ const fallbackProducts: Product[] = [
     slug: 'barrier-arms',
     description: 'Automatic barrier arm systems for parking facilities, toll plazas, and controlled access points with high-speed options.',
     features: ['High-Speed Operation', 'LED Lighting', 'Access Integration'],
+    imageUrl: '/images/bruhart_work/IMG_4010.jpeg',
   },
   {
     _id: 'operators',
@@ -113,6 +118,7 @@ const fallbackProducts: Product[] = [
     slug: 'operators',
     description: 'Industrial operators and automation systems for slide, swing, and vertical lift gates. Built for continuous duty.',
     features: ['Hydraulic & Electric', 'UL 325 Listed', '24/7 Operation'],
+    imageUrl: '/images/bruhart_work/IMG_1453.jpeg',
   },
 ];
 

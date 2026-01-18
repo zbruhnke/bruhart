@@ -28,7 +28,7 @@ const fallback = {
   heroHeadline: 'High-Security Gate Systems for',
   heroHeadlineHighlight: 'Critical Infrastructure',
   heroSubheadline: 'Industry-leading crash-rated gates, barrier systems, and operators protecting data centers, airports, utilities, and government facilities across North America.',
-  heroBackgroundImageUrl: 'https://bruhart.com/wp-content/uploads/2025/10/d1345cc4-52d7-42b7-8a25-b514ae8f09b3-1.jpg',
+  heroBackgroundImageUrl: '/images/bruhart_work/IMG_1287.jpeg',
   heroPrimaryCta: 'Get a Quote',
   heroPrimaryCtaLink: '/contact',
   heroSecondaryCta: 'View Products',

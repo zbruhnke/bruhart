@@ -3,7 +3,7 @@ import { OGImageLayout, getOGFonts } from '@/lib/og-image';
 
 export const runtime = 'edge';
 
-export const alt = 'Contact Bru-Hart - Get a Quote for Security Solutions';
+export const alt = 'Contact Bru-Hart - Get a Quote for Industries';
 export const size = {
   width: 1200,
   height: 630,
