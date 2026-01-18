@@ -137,13 +137,48 @@ export function OGImageLayout({ title, subtitle, badge, backgroundImage }: OGIma
         justifyContent: 'space-between',
         padding: '60px',
         fontFamily: 'Inter',
-        backgroundImage: backgroundImage
-          ? `linear-gradient(135deg, rgba(15, 39, 68, 0.92) 0%, rgba(30, 58, 95, 0.88) 50%, rgba(45, 74, 111, 0.85) 100%), url(${backgroundImage})`
-          : 'linear-gradient(135deg, #0f2744 0%, #1e3a5f 50%, #2d4a6f 100%)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundColor: '#0f2744',
+        position: 'relative',
       }}
     >
+      {/* Background Image */}
+      {backgroundImage && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={backgroundImage}
+          alt=""
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        />
+      )}
+      {/* Blue Overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(135deg, rgba(15, 39, 68, 0.85) 0%, rgba(30, 58, 95, 0.80) 50%, rgba(45, 74, 111, 0.75) 100%)',
+        }}
+      />
+      {/* Content wrapper - above background */}
+      <div
+        style={{
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100%',
+          width: '100%',
+        }}
+      >
       {/* Logo */}
       <OGLogo />
 
@@ -224,6 +259,7 @@ export function OGImageLayout({ title, subtitle, badge, backgroundImage }: OGIma
           </div>
         </div>
       </div>
+      </div>{/* End content wrapper */}
     </div>
   );
 }
