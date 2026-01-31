@@ -2,11 +2,11 @@
 
 :root {
   /* Purple Theme (Default) */
-  --primary: #5D3A7A;           /* Muted deep purple */
-  --primary-dark: #3D2654;      /* Very dark purple */
-  --primary-light: #7B5299;     /* Medium purple */
-  --accent: #8B5CF6;            /* Purple accent */
-  --accent-light: #A78BFA;      /* Light purple accent */
+  --primary: #4E3268;           /* Deep purple - slightly saturated */
+  --primary-dark: #362347;      /* Darker purple */
+  --primary-light: #654180;     /* Lighter purple */
+  --accent: #8563A8;            /* Purple accent */
+  --accent-light: #A384C4;      /* Light purple accent */
   --steel: #64748b;             /* Steel gray */
   --steel-light: #94a3b8;       /* Light steel */
   --steel-dark: #4B3D5A;        /* Purple-tinted dark */
