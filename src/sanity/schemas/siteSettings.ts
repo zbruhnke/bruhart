@@ -61,11 +61,11 @@ export const siteSettings = {
       initialValue: 'sales@bruhart.com',
     },
     {
-      name: 'supportEmail',
-      title: 'Support Email',
+      name: 'billingEmail',
+      title: 'Billing Email',
       type: 'string',
       group: 'contact',
-      initialValue: 'support@bruhart.com',
+      initialValue: 'billing@bruhart.com',
     },
     {
       name: 'emergencyPhone',

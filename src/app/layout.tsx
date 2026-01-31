@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const getBaseUrl = () => {
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
@@ -38,7 +39,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

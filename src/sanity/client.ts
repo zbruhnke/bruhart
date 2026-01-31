@@ -44,7 +44,7 @@ export async function getSiteSettings() {
       phone,
       email,
       salesEmail,
-      supportEmail,
+      billingEmail,
       emergencyPhone,
       address,
       socialLinks,

@@ -30,9 +30,9 @@ interface ProductsProps {
 
 // Icon mapping by product slug
 const productIcons: Record<string, ReactNode> = {
-  'crash-rated': (
+  'commercial-residential': (
     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
     </svg>
   ),
   'bollards': (
@@ -47,18 +47,18 @@ const productIcons: Record<string, ReactNode> = {
   ),
   'access-control': (
     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-    </svg>
-  ),
-  'barrier-arms': (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
-    </svg>
-  ),
-  'operators': (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+  ),
+  'crash-rated': (
+    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+    </svg>
+  ),
+  'custom-solutions': (
+    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
     </svg>
   ),
 };
@@ -73,11 +73,11 @@ const defaultIcon = (
 // Fallback products
 const fallbackProducts: Product[] = [
   {
-    _id: 'crash-rated',
-    name: 'Crash-Rated Gates',
-    slug: 'crash-rated',
-    description: 'ASTM F2656 certified barriers and gates designed to stop vehicles at high speeds. Ideal for high-security perimeters.',
-    features: ['K4/K8/K12 Ratings', 'DOS Certified', 'Multiple Configurations'],
+    _id: 'commercial-residential',
+    name: 'Commercial & Residential Gates',
+    slug: 'commercial-residential',
+    description: 'Custom slide, swing, and vertical lift gates for commercial properties and residences. Crash-rated options available for high-security applications.',
+    features: ['Slide & Swing Gates', 'Crash-Rated Options', 'Custom Fabrication'],
     imageUrl: '/images/bruhart_work/IMG_1961.jpeg',
   },
   {
@@ -86,11 +86,11 @@ const fallbackProducts: Product[] = [
     slug: 'bollards',
     description: 'Fixed, removable, and retractable bollards along with wedge barriers for vehicle mitigation and perimeter protection.',
     features: ['Crash-Rated Options', 'Retractable Models', 'Decorative Styles'],
-    imageUrl: '/images/bruhart_work/IMG_4030.jpeg',
+    imageUrl: '/images/products/pop-up-bollards-2.jpg',
   },
   {
     _id: 'security-fencing',
-    name: 'Security Fencing',
+    name: 'Perimeter & Security Fencing',
     slug: 'security-fencing',
     description: 'High-security fencing systems including anti-climb, anti-cut, and detection-integrated options for complete perimeter protection.',
     features: ['Anti-Climb Mesh', 'Detection Integration', 'Custom Heights'],
@@ -98,27 +98,27 @@ const fallbackProducts: Product[] = [
   },
   {
     _id: 'access-control',
-    name: 'Access Control',
+    name: 'Access Control & Automation',
     slug: 'access-control',
-    description: 'Integrated access control systems including card readers, keypads, intercoms, and remote monitoring solutions.',
-    features: ['Biometric Options', 'Cloud Integration', 'Multi-Site Support'],
+    description: 'Complete access control solutions including gate operators, barrier arms, card readers, keypads, and remote monitoring. Industrial-grade automation for 24/7 operation.',
+    features: ['Gate Operators', 'Barrier Arms', 'Card & Keypad Access'],
+    imageUrl: '/images/bruhart_work/IMG_1453.jpeg',
+  },
+  {
+    _id: 'crash-rated',
+    name: 'Crash Rated Gates',
+    slug: 'crash-rated',
+    description: 'ASTM F2656 certified barriers designed to stop vehicles at high speeds. K4, K8, and K12 rated options for critical infrastructure protection.',
+    features: ['ASTM F2656 Certified', 'K4/K8/K12 Ratings', 'DOS Certified'],
     imageUrl: '/images/bruhart_work/Attachment.jpeg',
   },
   {
-    _id: 'barrier-arms',
-    name: 'Barrier Arms',
-    slug: 'barrier-arms',
-    description: 'Automatic barrier arm systems for parking facilities, toll plazas, and controlled access points with high-speed options.',
-    features: ['High-Speed Operation', 'LED Lighting', 'Access Integration'],
-    imageUrl: '/images/bruhart_work/IMG_4010.jpeg',
-  },
-  {
-    _id: 'operators',
-    name: 'Gate Operators & Automation',
-    slug: 'operators',
-    description: 'Industrial operators and automation systems for slide, swing, and vertical lift gates. Built for continuous duty.',
-    features: ['Hydraulic & Electric', 'UL 325 Listed', '24/7 Operation'],
-    imageUrl: '/images/bruhart_work/IMG_1453.jpeg',
+    _id: 'custom-solutions',
+    name: 'Custom Solutions',
+    slug: 'custom-solutions',
+    description: "Don't see exactly what you need? We specialize in custom fabrication and unique solutions for complex security challenges.",
+    features: ['Custom Fabrication', 'Unique Designs', 'Expert Consultation'],
+    imageUrl: '/images/bruhart_work/IMG_1960.jpeg',
   },
 ];
 

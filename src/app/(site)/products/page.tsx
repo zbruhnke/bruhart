@@ -4,25 +4,25 @@ import { getProducts, urlFor } from "@/sanity/client";
 
 export const metadata: Metadata = {
   title: "Products | Bru-Hart Industries",
-  description: "Explore our complete line of crash-rated gates, bollards, security fencing, access control, barrier arms, and gate operators.",
+  description: "Explore our complete line of commercial and residential gates, bollards, security fencing, and access control systems.",
 };
 
 // Fallback products when Sanity is empty
 const fallbackProducts = [
   {
-    id: "crash-rated",
-    name: "Crash-Rated Gates",
-    tagline: "ASTM F2656 Certified Protection",
-    description: "Our crash-rated gates are engineered to stop vehicles at high speeds, providing the highest level of perimeter protection for critical infrastructure. Available in K4, K8, and K12 ratings to meet DOS and ASTM standards.",
+    id: "commercial-residential",
+    name: "Commercial & Residential Gates",
+    tagline: "Custom Gate Solutions",
+    description: "Custom slide, swing, and vertical lift gates for commercial properties and residences. From decorative estate gates to industrial-grade security barriers, we provide complete gate solutions. Crash-rated options available for high-security applications requiring ASTM F2656 certification.",
     features: [
-      "K4/K8/K12 crash ratings available",
-      "ASTM F2656 and DOS certified",
-      "Slide, swing, and beam configurations",
-      "Rapid deployment options (EFO)",
-      "Integration with existing security systems",
+      "Slide, swing, and vertical lift configurations",
+      "Crash-rated options (K4/K8/K12)",
+      "Custom fabrication and design",
+      "Ornamental and industrial styles",
       "Custom sizes up to 40ft clear opening",
+      "Integration with automation systems",
     ],
-    applications: ["Government facilities", "Data centers", "Airports", "Military bases", "Embassies"],
+    applications: ["Commercial properties", "Residential estates", "Government facilities", "Data centers", "Industrial sites"],
     image: "/images/bruhart_work/IMG_1961.jpeg",
   },
   {
@@ -39,11 +39,11 @@ const fallbackProducts = [
       "Integrated lighting options",
     ],
     applications: ["Storefronts", "Pedestrian areas", "Government facilities", "Corporate campuses", "Event venues"],
-    image: "/images/bruhart_work/IMG_4030.jpeg",
+    image: "/images/products/pop-up-bollards-2.jpg",
   },
   {
     id: "security-fencing",
-    name: "Security Fencing",
+    name: "Perimeter & Security Fencing",
     tagline: "Perimeter Protection Systems",
     description: "High-security fencing systems including anti-climb, anti-cut, and detection-integrated options. Complete perimeter solutions from chain link to ornamental steel.",
     features: [
@@ -59,51 +59,51 @@ const fallbackProducts = [
   },
   {
     id: "access-control",
-    name: "Access Control",
-    tagline: "Integrated Security Management",
-    description: "Complete access control solutions from simple keypads to enterprise-grade biometric systems. Seamlessly integrate with your existing security infrastructure.",
+    name: "Access Control & Automation",
+    tagline: "Complete Control Systems",
+    description: "Everything you need to control and automate your gates. Industrial-grade gate operators, barrier arms, card readers, keypads, and remote monitoring systems. Built for continuous duty and 24/7 operation.",
     features: [
+      "Gate operators (hydraulic & electric)",
+      "Barrier arm systems",
       "Card readers and keypads",
-      "Biometric options (fingerprint, facial)",
-      "Telephone entry systems",
+      "Biometric access options",
+      "UL 325 safety compliant",
       "Cloud-based management",
-      "Multi-site support",
-      "Video intercom integration",
     ],
-    applications: ["All facility types", "Multi-tenant buildings", "Secure campuses", "Visitor management"],
+    applications: ["All facility types", "High-cycle applications", "Parking facilities", "24/7 operations", "Multi-site management"],
+    image: "/images/bruhart_work/IMG_1453.jpeg",
+  },
+  {
+    id: "crash-rated",
+    name: "Crash Rated Gates",
+    tagline: "ASTM F2656 Certified Protection",
+    description: "ASTM F2656 certified barriers designed to stop vehicles at high speeds. K4, K8, and K12 rated options provide the highest level of perimeter protection for critical infrastructure.",
+    features: [
+      "ASTM F2656 certified",
+      "K4/K8/K12 ratings available",
+      "DOS certified options",
+      "Slide, swing, and beam configurations",
+      "Rapid deployment options (EFO)",
+      "Integration with existing security systems",
+    ],
+    applications: ["Government facilities", "Data centers", "Airports", "Military bases", "Embassies"],
     image: "/images/bruhart_work/Attachment.jpeg",
   },
   {
-    id: "barrier-arms",
-    name: "Barrier Arms",
-    tagline: "Traffic Control Solutions",
-    description: "Automatic barrier arm systems for parking facilities, toll plazas, and controlled access points. High-speed and high-cycle options for demanding applications.",
+    id: "custom-solutions",
+    name: "Custom Solutions",
+    tagline: "Tailored to Your Needs",
+    description: "Don't see exactly what you need? We specialize in custom fabrication and unique solutions for complex security challenges. Our team works with you to design and build exactly what your project requires.",
     features: [
-      "High-speed operation available",
-      "Continuous duty cycle rated",
-      "LED lighting options",
-      "Breakaway and folding arms",
-      "Integration with access systems",
-      "Battery backup available",
+      "Custom gate fabrication",
+      "Unique design capabilities",
+      "Expert consultation",
+      "Specialty materials and finishes",
+      "Complex integration projects",
+      "One-of-a-kind solutions",
     ],
-    applications: ["Parking facilities", "Toll plazas", "Security checkpoints", "Corporate campuses", "Airports"],
-    image: "/images/bruhart_work/IMG_4010.jpeg",
-  },
-  {
-    id: "operators",
-    name: "Gate Operators & Automation",
-    tagline: "Industrial-Grade Automation",
-    description: "Industrial operators and complete automation systems for slide, swing, and vertical lift gates. Built for continuous duty and harsh environments.",
-    features: [
-      "Hydraulic and electromechanical options",
-      "UL 325 safety compliant",
-      "Slide, swing, and vertical lift",
-      "Battery backup systems",
-      "Remote monitoring capabilities",
-      "Integration with all access control systems",
-    ],
-    applications: ["High-cycle applications", "Critical infrastructure", "24/7 facilities", "Extreme environments"],
-    image: "/images/bruhart_work/IMG_1453.jpeg",
+    applications: ["Unique architectural requirements", "Historic properties", "Specialized facilities", "Complex security needs"],
+    image: "/images/bruhart_work/IMG_1960.jpeg",
   },
 ];
 
@@ -241,15 +241,6 @@ export default async function ProductsPage() {
                       {/* Blue Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/60 via-primary/40 to-primary-light/30 mix-blend-multiply" />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-transparent to-transparent" />
-                      {/* Content Overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <div className="flex items-center gap-2 text-white/90">
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                          </svg>
-                          <span className="text-sm font-medium">Industry Certified</span>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

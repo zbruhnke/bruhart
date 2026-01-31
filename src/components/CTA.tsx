@@ -26,7 +26,7 @@ const fallbackData = {
   ctaPrimaryButtonLink: '/contact',
   ctaCards: [
     { title: 'Sales Inquiries', description: 'Get a custom quote for your project', contactType: 'email' as const, contactValue: 'sales@bruhart.com' },
-    { title: 'Technical Support', description: '24/7 support for existing customers', contactType: 'email' as const, contactValue: 'support@bruhart.com' },
+    { title: 'Billing Questions', description: 'Invoices and payment inquiries', contactType: 'email' as const, contactValue: 'billing@bruhart.com' },
   ],
 };
 

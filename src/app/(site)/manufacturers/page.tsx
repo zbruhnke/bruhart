@@ -11,6 +11,15 @@ export const metadata: Metadata = {
 // Fallback data
 const fallbackManufacturers = [
   {
+    _id: 'alfafence',
+    name: 'AlfaFence',
+    slug: 'alfafence',
+    logo: null,
+    logoUrl: '/manufacturers/AF_logo.jpg',
+    description: 'European-style aluminum fencing and gates combining modern aesthetics with superior durability for residential and commercial applications.',
+    website: 'https://www.alfafence.us',
+  },
+  {
     _id: 'ball-fabrics',
     name: 'Ball Fabrics',
     slug: 'ball-fabrics',
@@ -54,6 +63,15 @@ const fallbackManufacturers = [
     logoUrl: '/manufacturers/hi-motion-logo.jpg',
     description: 'Premium cantilever gate hardware and rolling gate solutions engineered for smooth, reliable operation in demanding environments.',
     website: 'https://himotions.com',
+  },
+  {
+    _id: 'locinox',
+    name: 'Locinox',
+    slug: 'locinox',
+    logo: null,
+    logoUrl: '/manufacturers/LocinoxLogo.jpg',
+    description: 'Industry-leading manufacturer of high-quality gate locks, hinges, and closers designed for security and durability in all weather conditions.',
+    website: 'https://www.locinoxusa.com',
   },
   {
     _id: 'max-controls',

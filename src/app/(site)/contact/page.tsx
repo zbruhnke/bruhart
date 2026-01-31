@@ -14,9 +14,9 @@ const fallbackData = {
 // Fallback site settings
 const fallbackSettings = {
   phone: '(318) 344-5731',
-  email: 'info@bruhart.com',
+  email: 'contact@bruhart.com',
   salesEmail: 'sales@bruhart.com',
-  supportEmail: 'support@bruhart.com',
+  billingEmail: 'billing@bruhart.com',
   address: {
     street: '7111 US Hwy 27',
     city: 'Branford',
@@ -43,7 +43,7 @@ export default async function ContactPage() {
   const phone = siteSettings?.phone || fallbackSettings.phone;
   const email = siteSettings?.email || fallbackSettings.email;
   const salesEmail = siteSettings?.salesEmail || fallbackSettings.salesEmail;
-  const supportEmail = siteSettings?.supportEmail || fallbackSettings.supportEmail;
+  const billingEmail = siteSettings?.billingEmail || fallbackSettings.billingEmail;
   const address = siteSettings?.address || fallbackSettings.address;
 
   return (
@@ -117,8 +117,8 @@ export default async function ContactPage() {
                       <a href={`mailto:${salesEmail}`} className="block text-foreground-muted hover:text-primary transition-colors">
                         {salesEmail}
                       </a>
-                      <a href={`mailto:${supportEmail}`} className="block text-foreground-muted hover:text-primary transition-colors">
-                        {supportEmail}
+                      <a href={`mailto:${billingEmail}`} className="block text-foreground-muted hover:text-primary transition-colors">
+                        {billingEmail}
                       </a>
                     </div>
                   </div>

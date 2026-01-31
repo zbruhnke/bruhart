@@ -6,7 +6,7 @@ import { getSiteSettings } from "@/sanity/client";
 const fallbackSettings = {
   siteName: "Bru-Hart Industries",
   phone: "(318) 344-5731",
-  email: "info@bruhart.com",
+  email: "contact@bruhart.com",
   emergencyPhone: "(318) 344-5731",
   address: {
     street: "7111 US Hwy 27",

@@ -1,7 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  /* Industrial Blue/Steel Gray Theme */
+  /* Purple Theme (Default) */
+  --primary: #5D3A7A;           /* Muted deep purple */
+  --primary-dark: #3D2654;      /* Very dark purple */
+  --primary-light: #7B5299;     /* Medium purple */
+  --accent: #8B5CF6;            /* Purple accent */
+  --accent-light: #A78BFA;      /* Light purple accent */
+  --steel: #64748b;             /* Steel gray */
+  --steel-light: #94a3b8;       /* Light steel */
+  --steel-dark: #4B3D5A;        /* Purple-tinted dark */
+  --background: #ffffff;
+  --background-alt: #f8fafc;
+  --foreground: #2D1F3D;        /* Dark purple for footer */
+  --foreground-muted: #64748b;
+  --border: #e2e8f0;
+  --success: #10b981;
+  --warning: #f59e0b;
+}
+
+/* Blue Theme - activated via ?theme=blue */
+:root.theme-blue {
   --primary: #1e3a5f;           /* Deep industrial blue */
   --primary-dark: #0f2744;      /* Darker blue */
   --primary-light: #2d5a8a;     /* Lighter blue */
@@ -10,13 +29,7 @@
   --steel: #64748b;             /* Steel gray */
   --steel-light: #94a3b8;       /* Light steel */
   --steel-dark: #475569;        /* Dark steel */
-  --background: #ffffff;
-  --background-alt: #f8fafc;
-  --foreground: #0f172a;
-  --foreground-muted: #64748b;
-  --border: #e2e8f0;
-  --success: #10b981;
-  --warning: #f59e0b;
+  --foreground: #0f172a;        /* Dark blue for footer */
 }
 
 @theme inline {

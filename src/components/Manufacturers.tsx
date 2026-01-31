@@ -5,6 +5,14 @@ import { urlFor } from '@/sanity/client';
 // Fallback data when Sanity data isn't available
 const fallbackManufacturers = [
   {
+    _id: 'alfafence',
+    name: 'AlfaFence',
+    slug: 'alfafence',
+    logo: null,
+    logoUrl: '/manufacturers/AF_logo.jpg',
+    website: 'https://www.alfafence.us',
+  },
+  {
     _id: 'ball-fabrics',
     name: 'Ball Fabrics',
     slug: 'ball-fabrics',
@@ -43,6 +51,14 @@ const fallbackManufacturers = [
     logo: null,
     logoUrl: '/manufacturers/hi-motion-logo.jpg',
     website: 'https://himotions.com',
+  },
+  {
+    _id: 'locinox',
+    name: 'Locinox',
+    slug: 'locinox',
+    logo: null,
+    logoUrl: '/manufacturers/LocinoxLogo.jpg',
+    website: 'https://www.locinoxusa.com',
   },
   {
     _id: 'max-controls',
