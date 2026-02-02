@@ -17,7 +17,6 @@ async function getFonts() {
   return [
     { name: 'Barlow', data: barlowExtraBold, weight: 800, style: 'normal' },
     { name: 'Barlow', data: barlowMedium, weight: 500, style: 'normal' },
-    // Use Barlow for body text too since Inter is problematic
     { name: 'Inter', data: barlowMedium, weight: 700, style: 'normal' },
     { name: 'Inter', data: barlowMedium, weight: 400, style: 'normal' },
   ];
@@ -37,189 +36,265 @@ async function getLogoDataUrl() {
   return `data:image/svg+xml,${encodeURIComponent(logoSvg)}`;
 }
 
-// The OG image component as a plain object (satori uses this format)
+// Create OG image matching the hero section design
 async function createOgImage() {
   const backgroundImage = await getBackgroundImageDataUrl();
   const logoDataUrl = await getLogoDataUrl();
 
   return {
-  type: 'div',
-  props: {
-    style: {
-      height: '100%',
-      width: '100%',
-      display: 'flex',
-      fontFamily: 'Inter',
-      backgroundColor: '#362347',
-      position: 'relative',
+    type: 'div',
+    props: {
+      style: {
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        fontFamily: 'Inter',
+        backgroundColor: '#362347',
+        position: 'relative',
+      },
+      children: [
+        // Background image
+        {
+          type: 'img',
+          props: {
+            src: backgroundImage,
+            width: 1200,
+            height: 630,
+            style: {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            },
+          },
+        },
+        // Purple gradient overlay (matching hero)
+        {
+          type: 'div',
+          props: {
+            style: {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: 'linear-gradient(135deg, rgba(54, 35, 71, 0.88) 0%, rgba(78, 50, 104, 0.82) 50%, rgba(101, 65, 128, 0.78) 100%)',
+            },
+          },
+        },
+        // Content wrapper
+        {
+          type: 'div',
+          props: {
+            style: {
+              position: 'relative',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              padding: '50px 60px',
+              height: '100%',
+              width: '100%',
+            },
+            children: [
+              // Top section with logo
+              {
+                type: 'img',
+                props: {
+                  src: logoDataUrl,
+                  width: 220,
+                  height: 61,
+                },
+              },
+              // Main content area
+              {
+                type: 'div',
+                props: {
+                  style: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '20px',
+                  },
+                  children: [
+                    // Badge
+                    {
+                      type: 'div',
+                      props: {
+                        style: {
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                          padding: '10px 18px',
+                          borderRadius: '24px',
+                          alignSelf: 'flex-start',
+                        },
+                        children: [
+                          // Amber dot
+                          {
+                            type: 'div',
+                            props: {
+                              style: {
+                                width: '10px',
+                                height: '10px',
+                                backgroundColor: '#f59e0b',
+                                borderRadius: '50%',
+                              },
+                            },
+                          },
+                          // Badge text
+                          {
+                            type: 'span',
+                            props: {
+                              style: {
+                                color: 'white',
+                                fontSize: '16px',
+                                fontWeight: 500,
+                              },
+                              children: 'Wholesale Fencing & Gate Distributor',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    // Title with two colors
+                    {
+                      type: 'div',
+                      props: {
+                        style: {
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '0px',
+                        },
+                        children: [
+                          {
+                            type: 'span',
+                            props: {
+                              style: {
+                                fontSize: '52px',
+                                fontWeight: 700,
+                                color: 'white',
+                                lineHeight: 1.15,
+                              },
+                              children: 'High-Security Gate',
+                            },
+                          },
+                          {
+                            type: 'span',
+                            props: {
+                              style: {
+                                fontSize: '52px',
+                                fontWeight: 700,
+                                color: 'white',
+                                lineHeight: 1.15,
+                              },
+                              children: 'Systems for ',
+                            },
+                          },
+                          {
+                            type: 'span',
+                            props: {
+                              style: {
+                                fontSize: '52px',
+                                fontWeight: 700,
+                                color: '#f59e0b',
+                                lineHeight: 1.15,
+                              },
+                              children: 'Critical Infrastructure',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    // Subtitle
+                    {
+                      type: 'span',
+                      props: {
+                        style: {
+                          fontSize: '20px',
+                          color: 'rgba(255, 255, 255, 0.85)',
+                          lineHeight: 1.5,
+                          maxWidth: '700px',
+                        },
+                        children: 'Industry-leading crash-rated gates, barrier systems, and operators protecting data centers, airports, utilities, and government facilities.',
+                      },
+                    },
+                  ],
+                },
+              },
+              // Bottom stats bar
+              {
+                type: 'div',
+                props: {
+                  style: {
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    justifyContent: 'space-between',
+                  },
+                  children: [
+                    // Stats
+                    {
+                      type: 'div',
+                      props: {
+                        style: {
+                          display: 'flex',
+                          gap: '50px',
+                        },
+                        children: [
+                          {
+                            type: 'div',
+                            props: {
+                              style: { display: 'flex', flexDirection: 'column' },
+                              children: [
+                                { type: 'span', props: { style: { fontSize: '32px', fontWeight: 700, color: 'white' }, children: '45+' } },
+                                { type: 'span', props: { style: { fontSize: '14px', color: 'rgba(255, 255, 255, 0.7)' }, children: 'Years Experience' } },
+                              ],
+                            },
+                          },
+                          {
+                            type: 'div',
+                            props: {
+                              style: { display: 'flex', flexDirection: 'column' },
+                              children: [
+                                { type: 'span', props: { style: { fontSize: '32px', fontWeight: 700, color: 'white' }, children: '50' } },
+                                { type: 'span', props: { style: { fontSize: '14px', color: 'rgba(255, 255, 255, 0.7)' }, children: 'States Served' } },
+                              ],
+                            },
+                          },
+                          {
+                            type: 'div',
+                            props: {
+                              style: { display: 'flex', flexDirection: 'column' },
+                              children: [
+                                { type: 'span', props: { style: { fontSize: '32px', fontWeight: 700, color: 'white' }, children: '1M+' } },
+                                { type: 'span', props: { style: { fontSize: '14px', color: 'rgba(255, 255, 255, 0.7)' }, children: 'Cycles Tested' } },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    // URL
+                    {
+                      type: 'span',
+                      props: {
+                        style: {
+                          fontSize: '16px',
+                          color: 'rgba(255, 255, 255, 0.6)',
+                        },
+                        children: 'bruhart.com',
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        },
+      ],
     },
-    children: [
-      // Background image
-      {
-        type: 'img',
-        props: {
-          src: backgroundImage,
-          width: 1200,
-          height: 630,
-          style: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-          },
-        },
-      },
-      // Purple gradient overlay
-      {
-        type: 'div',
-        props: {
-          style: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(135deg, rgba(54, 35, 71, 0.85) 0%, rgba(78, 50, 104, 0.80) 50%, rgba(101, 65, 128, 0.75) 100%)',
-          },
-        },
-      },
-      // Content wrapper
-      {
-        type: 'div',
-        props: {
-          style: {
-            position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            padding: '60px',
-            height: '100%',
-            width: '100%',
-          },
-          children: [
-            // Logo - using the actual SVG logo
-            {
-              type: 'img',
-              props: {
-                src: logoDataUrl,
-                width: 280,
-                height: 78,
-              },
-            },
-            // Main content
-            {
-              type: 'div',
-              props: {
-                style: {
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '24px',
-                },
-                children: [
-                  // Title
-                  {
-                    type: 'span',
-                    props: {
-                      style: {
-                        fontSize: '56px',
-                        fontWeight: 700,
-                        color: 'white',
-                        lineHeight: 1.1,
-                        maxWidth: '900px',
-                      },
-                      children: 'High-Security Gate Systems & Critical Infrastructure Protection',
-                    },
-                  },
-                  // Subtitle
-                  {
-                    type: 'span',
-                    props: {
-                      style: {
-                        fontSize: '24px',
-                        color: 'rgba(255, 255, 255, 0.8)',
-                        lineHeight: 1.4,
-                        maxWidth: '800px',
-                      },
-                      children: 'Industry-leading crash-rated gates, barrier systems, and operators.',
-                    },
-                  },
-                ],
-              },
-            },
-            // Bottom bar
-            {
-              type: 'div',
-              props: {
-                style: {
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                },
-                children: [
-                  // URL
-                  {
-                    type: 'span',
-                    props: {
-                      style: {
-                        fontSize: '18px',
-                        color: 'rgba(255, 255, 255, 0.6)',
-                      },
-                      children: 'bruhart.com',
-                    },
-                  },
-                  // Stats
-                  {
-                    type: 'div',
-                    props: {
-                      style: {
-                        display: 'flex',
-                        gap: '40px',
-                      },
-                      children: [
-                        {
-                          type: 'div',
-                          props: {
-                            style: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
-                            children: [
-                              { type: 'span', props: { style: { fontSize: '28px', fontWeight: 700, color: 'white' }, children: '45+' } },
-                              { type: 'span', props: { style: { fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }, children: 'Years' } },
-                            ],
-                          },
-                        },
-                        {
-                          type: 'div',
-                          props: {
-                            style: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
-                            children: [
-                              { type: 'span', props: { style: { fontSize: '28px', fontWeight: 700, color: 'white' }, children: '50' } },
-                              { type: 'span', props: { style: { fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }, children: 'States' } },
-                            ],
-                          },
-                        },
-                        {
-                          type: 'div',
-                          props: {
-                            style: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
-                            children: [
-                              { type: 'span', props: { style: { fontSize: '28px', fontWeight: 700, color: 'white' }, children: '1M+' } },
-                              { type: 'span', props: { style: { fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }, children: 'Cycles' } },
-                            ],
-                          },
-                        },
-                      ],
-                    },
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
-    ],
-  },
-};
+  };
 }
 
 async function generateOGImage() {
