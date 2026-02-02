@@ -24,7 +24,7 @@ async function getFonts() {
 
 // Load and encode background image
 async function getBackgroundImageDataUrl() {
-  const imagePath = join(rootDir, 'public', 'images', 'bruhart_work', 'IMG_1287.jpeg');
+  const imagePath = join(rootDir, 'public', 'images', 'bruhart_work', 'IMG_4252.jpeg');
   const imageBuffer = await readFile(imagePath);
   return `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
 }
