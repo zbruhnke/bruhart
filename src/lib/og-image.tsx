@@ -31,28 +31,47 @@ export async function getOGBackgroundImage(imagePath: string): Promise<string | 
   }
 }
 
-// Font loading for OG images - Inter for everything (reliable)
+// Font loading for OG images - Barlow for logo, Inter for body
 export async function getOGFonts() {
-  // Inter Black for headlines
-  const interBlack = await fetch(
-    'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuBWYAZ9hjp-Ek-_0ew.woff'
-  ).then((res) => res.arrayBuffer());
+  // Fetch with user-agent to get woff format from Google Fonts
+  const fetchFont = (url: string) =>
+    fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+      },
+    }).then((res) => res.arrayBuffer());
 
-  // Inter Bold
-  const interBold = await fetch(
+  // Barlow ExtraBold (800) for BRU-HART
+  const barlowExtraBold = await fetchFont(
+    'https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3_-gs51os.woff2'
+  );
+
+  // Barlow Medium (500) for INDUSTRIES
+  const barlowMedium = await fetchFont(
+    'https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E30-4s51os.woff2'
+  );
+
+  // Inter Bold for body headlines
+  const interBold = await fetchFont(
     'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYAZ9hjp-Ek-_0ew.woff'
-  ).then((res) => res.arrayBuffer());
+  );
 
-  // Inter Regular
-  const inter = await fetch(
+  // Inter Regular for body text
+  const inter = await fetchFont(
     'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjp-Ek-_0ew.woff'
-  ).then((res) => res.arrayBuffer());
+  );
 
   return [
     {
-      name: 'Inter',
-      data: interBlack,
-      weight: 900 as const,
+      name: 'Barlow',
+      data: barlowExtraBold,
+      weight: 800 as const,
+      style: 'normal' as const,
+    },
+    {
+      name: 'Barlow',
+      data: barlowMedium,
+      weight: 500 as const,
       style: 'normal' as const,
     },
     {
@@ -100,7 +119,7 @@ export function OGLogo(): ReactElement {
       <span
         style={{
           fontSize: '44px',
-          fontFamily: 'Inter, sans-serif',
+          fontFamily: 'Barlow, sans-serif',
           fontWeight: 800,
           color: 'white',
         }}
@@ -122,7 +141,7 @@ export function OGLogo(): ReactElement {
       <span
         style={{
           fontSize: '13px',
-          fontFamily: 'Inter, sans-serif',
+          fontFamily: 'Barlow, sans-serif',
           fontWeight: 500,
           color: 'white',
           letterSpacing: '7px',
@@ -150,7 +169,7 @@ export function OGImageLayout({ title, subtitle, badge, backgroundImage }: OGIma
         width: '100%',
         display: 'flex',
         fontFamily: 'Inter',
-        backgroundColor: '#0f2744',
+        backgroundColor: '#362347',
         position: 'relative',
       }}
     >
@@ -180,7 +199,7 @@ export function OGImageLayout({ title, subtitle, badge, backgroundImage }: OGIma
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'linear-gradient(135deg, rgba(15, 39, 68, 0.85) 0%, rgba(30, 58, 95, 0.80) 50%, rgba(45, 74, 111, 0.75) 100%)',
+          background: 'linear-gradient(135deg, rgba(54, 35, 71, 0.85) 0%, rgba(78, 50, 104, 0.80) 50%, rgba(101, 65, 128, 0.75) 100%)',
         }}
       />
       {/* Content wrapper - above background */}
