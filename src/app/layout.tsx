@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "Bru-Hart Industries",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Bru-Hart Industries - High-Security Gate Systems",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Bru-Hart Industries | High-Security Gate Systems",
     description: "Industry-leading crash-rated gates, barrier systems, and operators protecting critical infrastructure.",
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
   },
 };
 
