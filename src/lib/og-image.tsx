@@ -31,43 +31,49 @@ export async function getOGBackgroundImage(imagePath: string): Promise<string | 
   }
 }
 
-// Font loading for OG images - fetch from public folder
+// Helper to fetch font with error handling
+async function fetchFont(url: string): Promise<ArrayBuffer | null> {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    return res.arrayBuffer();
+  } catch {
+    return null;
+  }
+}
+
+// Font loading for OG images - Barlow preferred, Inter fallback
 export async function getOGFonts() {
   const baseUrl = getProductionUrl();
+  const fonts: Array<{ name: string; data: ArrayBuffer; weight: 800 | 700 | 500 | 400; style: 'normal' }> = [];
 
-  const [barlowExtraBold, barlowMedium, interBold, interRegular] = await Promise.all([
-    fetch(`${baseUrl}/fonts/Barlow-ExtraBold.ttf`).then((res) => res.arrayBuffer()),
-    fetch(`${baseUrl}/fonts/Barlow-Medium.ttf`).then((res) => res.arrayBuffer()),
-    fetch(`${baseUrl}/fonts/Inter-Bold.ttf`).then((res) => res.arrayBuffer()),
-    fetch(`${baseUrl}/fonts/Inter-Regular.ttf`).then((res) => res.arrayBuffer()),
+  // Try to load Barlow fonts
+  const [barlowExtraBold, barlowMedium] = await Promise.all([
+    fetchFont(`${baseUrl}/fonts/Barlow-ExtraBold.ttf`),
+    fetchFont(`${baseUrl}/fonts/Barlow-Medium.ttf`),
   ]);
 
-  return [
-    {
-      name: 'Barlow',
-      data: barlowExtraBold,
-      weight: 800 as const,
-      style: 'normal' as const,
-    },
-    {
-      name: 'Barlow',
-      data: barlowMedium,
-      weight: 500 as const,
-      style: 'normal' as const,
-    },
-    {
-      name: 'Inter',
-      data: interBold,
-      weight: 700 as const,
-      style: 'normal' as const,
-    },
-    {
-      name: 'Inter',
-      data: interRegular,
-      weight: 400 as const,
-      style: 'normal' as const,
-    },
-  ];
+  if (barlowExtraBold) {
+    fonts.push({ name: 'Barlow', data: barlowExtraBold, weight: 800, style: 'normal' });
+  }
+  if (barlowMedium) {
+    fonts.push({ name: 'Barlow', data: barlowMedium, weight: 500, style: 'normal' });
+  }
+
+  // Always load Inter as fallback for body text (and logo if Barlow fails)
+  const [interBold, interRegular] = await Promise.all([
+    fetchFont(`${baseUrl}/fonts/Inter-Bold.ttf`),
+    fetchFont(`${baseUrl}/fonts/Inter-Regular.ttf`),
+  ]);
+
+  if (interBold) {
+    fonts.push({ name: 'Inter', data: interBold, weight: 700, style: 'normal' });
+  }
+  if (interRegular) {
+    fonts.push({ name: 'Inter', data: interRegular, weight: 400, style: 'normal' });
+  }
+
+  return fonts;
 }
 
 /**
@@ -100,7 +106,7 @@ export function OGLogo(): ReactElement {
       <span
         style={{
           fontSize: '44px',
-          fontFamily: 'Barlow, sans-serif',
+          fontFamily: 'Barlow, Inter, sans-serif',
           fontWeight: 800,
           color: 'white',
         }}
@@ -122,7 +128,7 @@ export function OGLogo(): ReactElement {
       <span
         style={{
           fontSize: '13px',
-          fontFamily: 'Barlow, sans-serif',
+          fontFamily: 'Barlow, Inter, sans-serif',
           fontWeight: 500,
           color: 'white',
           letterSpacing: '7px',
