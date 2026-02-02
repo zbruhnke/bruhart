@@ -35,7 +35,7 @@ const fallbackLinks = {
     { name: 'Bollards & Barriers', href: '/products#bollards' },
     { name: 'Perimeter & Security Fencing', href: '/products#security-fencing' },
     { name: 'Access Control', href: '/products#access-control' },
-    { name: 'Crash Rated Gates', href: '/products#crash-rated' },
+    { name: 'Crash Rated & Tested Gates', href: '/products#crash-rated' },
     { name: 'Custom Solutions', href: '/products#custom-solutions' },
   ],
   industries: [

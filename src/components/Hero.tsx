@@ -71,7 +71,7 @@ export default function Hero({ data }: HeroProps) {
         }}
       >
         {/* Industrial Blue Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/95 via-primary/90 to-primary-light/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/90 via-primary/80 to-primary-light/70"></div>
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-32">
@@ -85,7 +85,7 @@ export default function Hero({ data }: HeroProps) {
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
             {headline}
-            <span className="text-accent-light"> {headlineHighlight}</span>
+            <span className="text-amber-400"> {headlineHighlight}</span>
           </h1>
 
           {/* Subheadline */}

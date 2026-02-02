@@ -133,7 +133,7 @@ export default function Manufacturers({ showLink = true, data, manufacturers }: 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {displayManufacturers.map((manufacturer) => {
             const logoSrc = manufacturer.logo
-              ? urlFor(manufacturer.logo).width(400).height(200).url()
+              ? urlFor(manufacturer.logo).width(400).fit('max').url()
               : manufacturer.logoUrl || '/manufacturers/placeholder.png';
 
             return (

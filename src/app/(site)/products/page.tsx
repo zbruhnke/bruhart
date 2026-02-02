@@ -75,7 +75,7 @@ const fallbackProducts = [
   },
   {
     id: "crash-rated",
-    name: "Crash Rated Gates",
+    name: "Crash Rated & Tested Gates",
     tagline: "ASTM F2656 Certified Protection",
     description: "ASTM F2656 certified barriers designed to stop vehicles at high speeds. K4, K8, and K12 rated options provide the highest level of perimeter protection for critical infrastructure.",
     features: [

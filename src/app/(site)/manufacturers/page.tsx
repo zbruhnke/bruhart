@@ -139,7 +139,7 @@ export default async function ManufacturersPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {displayManufacturers.map((manufacturer: any) => {
               const logoSrc = manufacturer.logo
-                ? urlFor(manufacturer.logo).width(600).height(300).url()
+                ? urlFor(manufacturer.logo).width(600).fit('max').url()
                 : manufacturer.logoUrl || '/manufacturers/placeholder.png';
 
               return (

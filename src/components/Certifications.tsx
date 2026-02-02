@@ -12,13 +12,12 @@ const fallbackCertifications = [
   { name: 'ASTM F2656', description: 'Vehicle Crash Testing Standard' },
   { name: 'DOS Certified', description: 'Department of State K-Rating' },
   { name: 'UL 325', description: 'Gate Operator Safety Listed' },
-  { name: 'ASIS Member', description: 'Security Industry Association' },
 ];
 
 const fallbackStats = [
   { value: '45+', label: 'Years in Business' },
   { value: '500+', label: 'Projects Completed' },
-  { value: '48', label: 'States Served' },
+  { value: '50', label: 'States Served' },
   { value: '24/7', label: 'Support Available' },
 ];
 
@@ -51,11 +50,6 @@ const certificationIcons = [
     <circle cx="24" cy="24" r="14" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.2"/>
     <text x="24" y="22" textAnchor="middle" fontSize="8" fontWeight="bold" fill="currentColor">UL</text>
     <text x="24" y="32" textAnchor="middle" fontSize="7" fill="currentColor">325</text>
-  </svg>,
-  // ASIS
-  <svg key="asis" className="w-12 h-12" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M24 4L6 12V22C6 33.05 13.68 43.22 24 46C34.32 43.22 42 33.05 42 22V12L24 4Z" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.2"/>
-    <path d="M18 24L22 28L30 20" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>,
 ];
 
@@ -96,7 +90,7 @@ export default function Certifications({ data }: CertificationsProps) {
         </div>
 
         {/* Certifications Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
           {certifications.map((cert, index) => (
             <div
               key={index}

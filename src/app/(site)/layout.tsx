@@ -21,7 +21,7 @@ const fallbackSettings = {
   stats: {
     yearsInBusiness: "45+",
     projectsCompleted: "500+",
-    statesServed: "48",
+    statesServed: "50",
   },
 };
 
