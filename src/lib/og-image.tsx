@@ -33,9 +33,9 @@ export async function getOGBackgroundImage(imagePath: string): Promise<string | 
 
 // Font loading for OG images using Google Fonts API
 export async function getOGFonts() {
-  // Use Google Fonts CSS API to get font URLs, then fetch the actual font files
-  // The CSS API returns different formats based on user-agent
-  const cssUrl = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap';
+  // Use Google Fonts CSS API to get font URLs
+  // Request both Barlow (for logo) and Inter (for body)
+  const cssUrl = 'https://fonts.googleapis.com/css2?family=Barlow:wght@500;800&family=Inter:wght@400;700&display=swap';
 
   const cssResponse = await fetch(cssUrl, {
     headers: {
@@ -45,27 +45,30 @@ export async function getOGFonts() {
   });
 
   const css = await cssResponse.text();
+  const fonts: Array<{ name: string; data: ArrayBuffer; weight: 400 | 500 | 700 | 800; style: 'normal' }> = [];
 
-  // Extract font URLs from CSS
-  const fontUrls = css.match(/src: url\(([^)]+)\)/g)?.map(match =>
-    match.replace('src: url(', '').replace(')', '')
-  ) || [];
+  // Parse CSS to extract font-family and URLs
+  const fontFaceBlocks = css.split('@font-face').slice(1);
 
-  // Fetch the fonts
-  const fonts: Array<{ name: string; data: ArrayBuffer; weight: 400 | 700; style: 'normal' }> = [];
+  for (const block of fontFaceBlocks) {
+    const familyMatch = block.match(/font-family:\s*['"]?([^;'"]+)/);
+    const weightMatch = block.match(/font-weight:\s*(\d+)/);
+    const urlMatch = block.match(/src:\s*url\(([^)]+)\)/);
 
-  for (const url of fontUrls) {
-    try {
-      const fontData = await fetch(url).then(res => res.arrayBuffer());
-      // Determine weight from URL or default
-      const weight = url.includes('700') || url.includes('Bold') ? 700 : 400;
-      fonts.push({ name: 'Inter', data: fontData, weight, style: 'normal' });
-    } catch {
-      // Skip failed fonts
+    if (familyMatch && urlMatch) {
+      const family = familyMatch[1].trim();
+      const weight = parseInt(weightMatch?.[1] || '400', 10) as 400 | 500 | 700 | 800;
+      const url = urlMatch[1];
+
+      try {
+        const fontData = await fetch(url).then(res => res.arrayBuffer());
+        fonts.push({ name: family, data: fontData, weight, style: 'normal' });
+      } catch {
+        // Skip failed fonts
+      }
     }
   }
 
-  // If no fonts loaded, return empty array (Satori has built-in fallback)
   return fonts;
 }
 
@@ -99,8 +102,8 @@ export function OGLogo(): ReactElement {
       <span
         style={{
           fontSize: '44px',
-          fontFamily: 'Inter, sans-serif',
-          fontWeight: 700,
+          fontFamily: 'Barlow, Inter, sans-serif',
+          fontWeight: 800,
           color: 'white',
         }}
       >
@@ -121,8 +124,8 @@ export function OGLogo(): ReactElement {
       <span
         style={{
           fontSize: '13px',
-          fontFamily: 'Inter, sans-serif',
-          fontWeight: 400,
+          fontFamily: 'Barlow, Inter, sans-serif',
+          fontWeight: 500,
           color: 'white',
           letterSpacing: '7px',
           marginTop: '2px',
