@@ -250,6 +250,45 @@ export default async function ProductsPage() {
         </div>
       </section>
 
+      {/* TODO: Uncomment when crash gate video is available
+      <section className="py-24 bg-background-alt">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">
+              See It In Action
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+              Tested. Proven. Trusted.
+            </h2>
+            <p className="text-lg text-foreground-muted max-w-2xl mx-auto">
+              Watch our crash-rated gates perform under real-world testing conditions.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="relative aspect-video rounded-2xl overflow-hidden bg-primary-dark shadow-2xl">
+              <iframe
+                src="YOUR_VIDEO_EMBED_URL"
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+
+            <div className="mt-6 text-center">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                Crash Rated & Tested Gate Demo
+              </h3>
+              <p className="text-foreground-muted">
+                ASTM F2656 certified barrier stopping a vehicle at full speed.
+                Our gates are tested to K4, K8, and K12 ratings for maximum protection.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      */}
+
       {/* CTA */}
       <section className="py-24 bg-primary">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">

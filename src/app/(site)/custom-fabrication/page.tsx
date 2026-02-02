@@ -103,7 +103,7 @@ export default function CustomFabricationPage() {
       </section>
 
       {/* CNC Trucks Section */}
-      <section className="py-16 bg-background">
+      <section id="cnc-trucks" className="py-16 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
@@ -154,6 +154,32 @@ export default function CustomFabricationPage() {
                 className="object-cover"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial */}
+      <section className="py-16 bg-primary">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <svg className="w-12 h-12 text-white/30 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+          <blockquote className="text-xl sm:text-2xl text-white font-medium mb-6 leading-relaxed">
+            &ldquo;These trucks are by far the best I have ever seen over my last forty years in the gate operator business.
+            We currently have well over a million cycles on the trucks. I can attest that these trucks are far superior
+            to any others on the market.&rdquo;
+          </blockquote>
+          <div className="text-white/80">
+            <p className="font-semibold">Dick Loos</p>
+            <p className="text-sm text-white/60">Co-Owner, Vmag</p>
+            <a
+              href="http://www.vmagtech.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-amber-400 hover:text-amber-300 transition-colors"
+            >
+              vmagtech.com
+            </a>
           </div>
         </div>
       </section>
