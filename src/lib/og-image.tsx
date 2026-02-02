@@ -1,6 +1,4 @@
 import { ReactElement } from 'react';
-import { readFile } from 'fs/promises';
-import { join } from 'path';
 
 // Get the base URL for images - works on Vercel and locally
 export function getBaseUrl() {
@@ -33,15 +31,15 @@ export async function getOGBackgroundImage(imagePath: string): Promise<string | 
   }
 }
 
-// Font loading for OG images - local TTF files
+// Font loading for OG images - fetch from public folder
 export async function getOGFonts() {
-  const fontsDir = join(process.cwd(), 'src/fonts');
+  const baseUrl = getProductionUrl();
 
   const [barlowExtraBold, barlowMedium, interBold, interRegular] = await Promise.all([
-    readFile(join(fontsDir, 'Barlow-ExtraBold.ttf')),
-    readFile(join(fontsDir, 'Barlow-Medium.ttf')),
-    readFile(join(fontsDir, 'Inter-Bold.ttf')),
-    readFile(join(fontsDir, 'Inter-Regular.ttf')),
+    fetch(`${baseUrl}/fonts/Barlow-ExtraBold.ttf`).then((res) => res.arrayBuffer()),
+    fetch(`${baseUrl}/fonts/Barlow-Medium.ttf`).then((res) => res.arrayBuffer()),
+    fetch(`${baseUrl}/fonts/Inter-Bold.ttf`).then((res) => res.arrayBuffer()),
+    fetch(`${baseUrl}/fonts/Inter-Regular.ttf`).then((res) => res.arrayBuffer()),
   ]);
 
   return [
