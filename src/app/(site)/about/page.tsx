@@ -62,6 +62,7 @@ const fallbackTimeline = [
   { year: "1980", title: "Industry Roots", description: "Dana Bruhnke starts his career at Southern Steel, beginning 45+ years in the fence and gate industry." },
   { year: "1985", title: "Building Expertise", description: "Joins Jamieson Fence (now Master Halco), spending decades becoming one of the industry's foremost experts in gate fabrication." },
   { year: "2010s", title: "Wholesale Distribution", description: "Founds Premier Access, building relationships with manufacturers and contractors across the country." },
+  { year: "2020", title: "DCB Perimeter", description: "Launches DCB Perimeter, continuing to serve the industry with quality products and expert guidance." },
   { year: "2025", title: "Bru-Hart Launches", description: "Dana partners with a new generation to launch Bru-Hart Industries, focused on high-security and critical infrastructure." },
 ];
 
