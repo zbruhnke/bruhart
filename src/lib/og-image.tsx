@@ -31,48 +31,41 @@ export async function getOGBackgroundImage(imagePath: string): Promise<string | 
   }
 }
 
-// Helper to fetch font with error handling
-async function fetchFont(url: string): Promise<ArrayBuffer | null> {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) return null;
-    return res.arrayBuffer();
-  } catch {
-    return null;
-  }
-}
-
-// Font loading for OG images - Barlow preferred, Inter fallback
+// Font loading for OG images using Google Fonts API
 export async function getOGFonts() {
-  const baseUrl = getProductionUrl();
-  const fonts: Array<{ name: string; data: ArrayBuffer; weight: 800 | 700 | 500 | 400; style: 'normal' }> = [];
+  // Use Google Fonts CSS API to get font URLs, then fetch the actual font files
+  // The CSS API returns different formats based on user-agent
+  const cssUrl = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap';
 
-  // Try to load Barlow fonts
-  const [barlowExtraBold, barlowMedium] = await Promise.all([
-    fetchFont(`${baseUrl}/fonts/Barlow-ExtraBold.ttf`),
-    fetchFont(`${baseUrl}/fonts/Barlow-Medium.ttf`),
-  ]);
+  const cssResponse = await fetch(cssUrl, {
+    headers: {
+      // Request woff format (not woff2) which Satori supports
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
+    },
+  });
 
-  if (barlowExtraBold) {
-    fonts.push({ name: 'Barlow', data: barlowExtraBold, weight: 800, style: 'normal' });
+  const css = await cssResponse.text();
+
+  // Extract font URLs from CSS
+  const fontUrls = css.match(/src: url\(([^)]+)\)/g)?.map(match =>
+    match.replace('src: url(', '').replace(')', '')
+  ) || [];
+
+  // Fetch the fonts
+  const fonts: Array<{ name: string; data: ArrayBuffer; weight: 400 | 700; style: 'normal' }> = [];
+
+  for (const url of fontUrls) {
+    try {
+      const fontData = await fetch(url).then(res => res.arrayBuffer());
+      // Determine weight from URL or default
+      const weight = url.includes('700') || url.includes('Bold') ? 700 : 400;
+      fonts.push({ name: 'Inter', data: fontData, weight, style: 'normal' });
+    } catch {
+      // Skip failed fonts
+    }
   }
-  if (barlowMedium) {
-    fonts.push({ name: 'Barlow', data: barlowMedium, weight: 500, style: 'normal' });
-  }
 
-  // Always load Inter as fallback for body text (and logo if Barlow fails)
-  const [interBold, interRegular] = await Promise.all([
-    fetchFont(`${baseUrl}/fonts/Inter-Bold.ttf`),
-    fetchFont(`${baseUrl}/fonts/Inter-Regular.ttf`),
-  ]);
-
-  if (interBold) {
-    fonts.push({ name: 'Inter', data: interBold, weight: 700, style: 'normal' });
-  }
-  if (interRegular) {
-    fonts.push({ name: 'Inter', data: interRegular, weight: 400, style: 'normal' });
-  }
-
+  // If no fonts loaded, return empty array (Satori has built-in fallback)
   return fonts;
 }
 
@@ -106,8 +99,8 @@ export function OGLogo(): ReactElement {
       <span
         style={{
           fontSize: '44px',
-          fontFamily: 'Barlow, Inter, sans-serif',
-          fontWeight: 800,
+          fontFamily: 'Inter, sans-serif',
+          fontWeight: 700,
           color: 'white',
         }}
       >
@@ -128,8 +121,8 @@ export function OGLogo(): ReactElement {
       <span
         style={{
           fontSize: '13px',
-          fontFamily: 'Barlow, Inter, sans-serif',
-          fontWeight: 500,
+          fontFamily: 'Inter, sans-serif',
+          fontWeight: 400,
           color: 'white',
           letterSpacing: '7px',
           marginTop: '2px',
