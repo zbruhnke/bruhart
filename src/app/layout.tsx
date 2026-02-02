@@ -34,11 +34,20 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Bru-Hart Industries",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Bru-Hart Industries - High-Security Gate Systems",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Bru-Hart Industries | High-Security Gate Systems",
     description: "Industry-leading crash-rated gates, barrier systems, and operators protecting critical infrastructure.",
+    images: ["/og-image.png"],
   },
 };
 
