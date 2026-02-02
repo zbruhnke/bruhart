@@ -31,38 +31,28 @@ export async function getOGBackgroundImage(imagePath: string): Promise<string | 
   }
 }
 
-// Font loading for OG images - Barlow for logo, Inter for body
+// Font loading for OG images - Inter for everything (reliable)
 export async function getOGFonts() {
-  // Barlow ExtraBold for BRU-HART
-  const barlowBold = await fetch(
-    'https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3_-gs51os.woff2'
-  ).then((res) => res.arrayBuffer());
-
-  // Barlow Medium for INDUSTRIES
-  const barlowMedium = await fetch(
-    'https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E30-4s51os.woff2'
-  ).then((res) => res.arrayBuffer());
-
-  // Inter fonts for body text
-  const interBold = await fetch(
+  // Inter Black for headlines
+  const interBlack = await fetch(
     'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuBWYAZ9hjp-Ek-_0ew.woff'
   ).then((res) => res.arrayBuffer());
 
+  // Inter Bold
+  const interBold = await fetch(
+    'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYAZ9hjp-Ek-_0ew.woff'
+  ).then((res) => res.arrayBuffer());
+
+  // Inter Regular
   const inter = await fetch(
     'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjp-Ek-_0ew.woff'
   ).then((res) => res.arrayBuffer());
 
   return [
     {
-      name: 'Barlow',
-      data: barlowBold,
-      weight: 800 as const,
-      style: 'normal' as const,
-    },
-    {
-      name: 'Barlow',
-      data: barlowMedium,
-      weight: 500 as const,
+      name: 'Inter',
+      data: interBlack,
+      weight: 900 as const,
       style: 'normal' as const,
     },
     {
@@ -110,7 +100,7 @@ export function OGLogo(): ReactElement {
       <span
         style={{
           fontSize: '44px',
-          fontFamily: 'Barlow, sans-serif',
+          fontFamily: 'Inter, sans-serif',
           fontWeight: 800,
           color: 'white',
         }}
@@ -132,7 +122,7 @@ export function OGLogo(): ReactElement {
       <span
         style={{
           fontSize: '13px',
-          fontFamily: 'Barlow, sans-serif',
+          fontFamily: 'Inter, sans-serif',
           fontWeight: 500,
           color: 'white',
           letterSpacing: '7px',
