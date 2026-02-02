@@ -31,45 +31,11 @@ export async function getOGBackgroundImage(imagePath: string): Promise<string | 
   }
 }
 
-// Font loading for OG images using Google Fonts API
+// Font loading for OG images - return empty to use Satori's built-in font
 export async function getOGFonts() {
-  // Use Google Fonts CSS API to get font URLs
-  // Request both Barlow (for logo) and Inter (for body)
-  const cssUrl = 'https://fonts.googleapis.com/css2?family=Barlow:wght@500;800&family=Inter:wght@400;700&display=swap';
-
-  const cssResponse = await fetch(cssUrl, {
-    headers: {
-      // Request woff format (not woff2) which Satori supports
-      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
-    },
-  });
-
-  const css = await cssResponse.text();
-  const fonts: Array<{ name: string; data: ArrayBuffer; weight: 400 | 500 | 700 | 800; style: 'normal' }> = [];
-
-  // Parse CSS to extract font-family and URLs
-  const fontFaceBlocks = css.split('@font-face').slice(1);
-
-  for (const block of fontFaceBlocks) {
-    const familyMatch = block.match(/font-family:\s*['"]?([^;'"]+)/);
-    const weightMatch = block.match(/font-weight:\s*(\d+)/);
-    const urlMatch = block.match(/src:\s*url\(([^)]+)\)/);
-
-    if (familyMatch && urlMatch) {
-      const family = familyMatch[1].trim();
-      const weight = parseInt(weightMatch?.[1] || '400', 10) as 400 | 500 | 700 | 800;
-      const url = urlMatch[1];
-
-      try {
-        const fontData = await fetch(url).then(res => res.arrayBuffer());
-        fonts.push({ name: family, data: fontData, weight, style: 'normal' });
-      } catch {
-        // Skip failed fonts
-      }
-    }
-  }
-
-  return fonts;
+  // Satori has a built-in Noto Sans font that works without any configuration
+  // Custom fonts from Google Fonts return woff2 which edge runtime doesn't support
+  return [];
 }
 
 /**
@@ -102,8 +68,7 @@ export function OGLogo(): ReactElement {
       <span
         style={{
           fontSize: '44px',
-          fontFamily: 'Barlow, Inter, sans-serif',
-          fontWeight: 800,
+          fontWeight: 700,
           color: 'white',
         }}
       >
@@ -124,8 +89,7 @@ export function OGLogo(): ReactElement {
       <span
         style={{
           fontSize: '13px',
-          fontFamily: 'Barlow, Inter, sans-serif',
-          fontWeight: 500,
+          fontWeight: 400,
           color: 'white',
           letterSpacing: '7px',
           marginTop: '2px',
