@@ -250,7 +250,7 @@ export default async function ProductsPage() {
         </div>
       </section>
 
-      {/* TODO: Uncomment when crash gate video is available
+      {/* See It In Action - Video Section */}
       <section className="py-24 bg-background-alt">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -268,7 +268,7 @@ export default async function ProductsPage() {
           <div className="max-w-4xl mx-auto">
             <div className="relative aspect-video rounded-2xl overflow-hidden bg-primary-dark shadow-2xl">
               <iframe
-                src="YOUR_VIDEO_EMBED_URL"
+                src="https://www.youtube.com/embed/4Do_0B4R6aI"
                 className="absolute inset-0 w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -287,7 +287,6 @@ export default async function ProductsPage() {
           </div>
         </div>
       </section>
-      */}
 
       {/* CTA */}
       <section className="py-24 bg-primary">

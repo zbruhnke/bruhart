@@ -2,16 +2,18 @@ import { ReactElement } from 'react';
 
 // Get the base URL for images - works on Vercel and locally
 export function getBaseUrl() {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
   }
-  return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  return 'https://www.bruhart.com';
 }
 
 // Get production URL for fetching images in edge functions
-// Uses NEXT_PUBLIC_SITE_URL env var, falls back to bruhart.vercel.app
 function getProductionUrl() {
-  return process.env.NEXT_PUBLIC_SITE_URL || 'https://bruhart.vercel.app';
+  return process.env.NEXT_PUBLIC_SITE_URL || 'https://www.bruhart.com';
 }
 
 // Fetch image and convert to base64 data URL for OG images
@@ -29,9 +31,20 @@ export async function getOGBackgroundImage(imagePath: string): Promise<string | 
   }
 }
 
-// Font loading for OG images - Inter Black for bold text
+// Font loading for OG images - Barlow for logo, Inter for body
 export async function getOGFonts() {
-  const interBlack = await fetch(
+  // Barlow ExtraBold for BRU-HART
+  const barlowBold = await fetch(
+    'https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3_-gs51os.woff2'
+  ).then((res) => res.arrayBuffer());
+
+  // Barlow Medium for INDUSTRIES
+  const barlowMedium = await fetch(
+    'https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E30-4s51os.woff2'
+  ).then((res) => res.arrayBuffer());
+
+  // Inter fonts for body text
+  const interBold = await fetch(
     'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuBWYAZ9hjp-Ek-_0ew.woff'
   ).then((res) => res.arrayBuffer());
 
@@ -41,9 +54,21 @@ export async function getOGFonts() {
 
   return [
     {
+      name: 'Barlow',
+      data: barlowBold,
+      weight: 800 as const,
+      style: 'normal' as const,
+    },
+    {
+      name: 'Barlow',
+      data: barlowMedium,
+      weight: 500 as const,
+      style: 'normal' as const,
+    },
+    {
       name: 'Inter',
-      data: interBlack,
-      weight: 900 as const,
+      data: interBold,
+      weight: 700 as const,
       style: 'normal' as const,
     },
     {
@@ -70,7 +95,7 @@ const ARROW_DATA_URL = `data:image/svg+xml;base64,${ARROW_SVG_BASE64}`;
 
 /**
  * OG-compatible logo that matches Logo.tsx design
- * Uses Satori-native text rendering + SVG for the arrow
+ * Structure: BRU-HART on top, arrow below, INDUSTRIES at bottom
  */
 export function OGLogo(): ReactElement {
   return (
@@ -81,57 +106,37 @@ export function OGLogo(): ReactElement {
         alignItems: 'flex-start',
       }}
     >
-      {/* Arrow with text overlay */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          position: 'relative',
-        }}
-      >
-        {/* Left line */}
-        <div
-          style={{
-            width: '36px',
-            height: '4px',
-            backgroundColor: 'white',
-          }}
-        />
-
-        {/* Text */}
-        <span
-          style={{
-            fontSize: '44px',
-            fontFamily: 'Inter',
-            fontWeight: 900,
-            color: 'white',
-            letterSpacing: '3px',
-            margin: '0 12px',
-          }}
-        >
-          BRU-HART
-        </span>
-
-        {/* Right line + arrow head using SVG */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`data:image/svg+xml,${encodeURIComponent('<svg viewBox="0 0 50 20" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="10" x2="35" y2="10" stroke="#ffffff" stroke-width="4"/><polygon points="50,10 36,3 36,17" fill="#ffffff"/></svg>')}`}
-          alt=""
-          width={50}
-          height={20}
-        />
-      </div>
-
-      {/* INDUSTRIES subtitle */}
+      {/* BRU-HART Text - top, closer to arrow */}
       <span
         style={{
-          fontSize: '14px',
-          fontFamily: 'Inter',
-          fontWeight: 400,
+          fontSize: '44px',
+          fontFamily: 'Barlow, sans-serif',
+          fontWeight: 800,
           color: 'white',
-          letterSpacing: '8px',
-          marginTop: '4px',
-          marginLeft: '40px',
+        }}
+      >
+        BRU-HART
+      </span>
+
+      {/* Arrow with chevron tails and arrowhead */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`data:image/svg+xml,${encodeURIComponent('<svg viewBox="0 0 220 16" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="0,2 8,8 0,14" stroke="#ffffff" stroke-width="3" fill="none"/><polyline points="10,2 18,8 10,14" stroke="#ffffff" stroke-width="3" fill="none"/><line x1="20" y1="8" x2="206" y2="8" stroke="#ffffff" stroke-width="3"/><polygon points="220,8 206,2 206,14" fill="#ffffff"/></svg>')}`}
+        alt=""
+        width={220}
+        height={16}
+        style={{ marginTop: '2px' }}
+      />
+
+      {/* INDUSTRIES subtitle - bottom, closer to arrow */}
+      <span
+        style={{
+          fontSize: '13px',
+          fontFamily: 'Barlow, sans-serif',
+          fontWeight: 500,
+          color: 'white',
+          letterSpacing: '7px',
+          marginTop: '2px',
         }}
       >
         INDUSTRIES
@@ -271,12 +276,12 @@ export function OGImageLayout({ title, subtitle, badge, backgroundImage }: OGIma
             <span style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>Years</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span style={{ fontSize: '28px', fontWeight: 700, color: 'white' }}>500+</span>
-            <span style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>Projects</span>
+            <span style={{ fontSize: '28px', fontWeight: 700, color: 'white' }}>50</span>
+            <span style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>States</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span style={{ fontSize: '28px', fontWeight: 700, color: 'white' }}>100%</span>
-            <span style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>Certified</span>
+            <span style={{ fontSize: '28px', fontWeight: 700, color: 'white' }}>1M+</span>
+            <span style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.6)' }}>Cycles</span>
           </div>
         </div>
       </div>

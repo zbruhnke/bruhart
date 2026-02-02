@@ -1,0 +1,62 @@
+<svg viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500;800&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- BRU-HART Text -->
+  <text
+    x="90"
+    y="21"
+    font-family="Barlow, sans-serif"
+    font-weight="800"
+    font-size="20"
+    text-anchor="middle"
+    fill="#1a1a1a"
+  >BRU-HART</text>
+
+  <!-- First chevron tail -->
+  <polyline
+    points="4,22 10,28 4,34"
+    stroke="#1a1a1a"
+    stroke-width="2"
+    fill="none"
+  />
+
+  <!-- Second chevron tail -->
+  <polyline
+    points="12,22 18,28 12,34"
+    stroke="#1a1a1a"
+    stroke-width="2"
+    fill="none"
+  />
+
+  <!-- Arrow line -->
+  <line
+    x1="20"
+    y1="28"
+    x2="168"
+    y2="28"
+    stroke="#1a1a1a"
+    stroke-width="2"
+  />
+
+  <!-- Arrow head -->
+  <polygon
+    points="180,28 168,22 168,34"
+    fill="#1a1a1a"
+  />
+
+  <!-- INDUSTRIES Text -->
+  <text
+    x="90"
+    y="40"
+    font-family="Barlow, sans-serif"
+    font-weight="500"
+    font-size="9"
+    text-anchor="middle"
+    letter-spacing="5"
+    fill="#1a1a1a"
+  >INDUSTRIES</text>
+</svg>

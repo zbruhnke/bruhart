@@ -156,6 +156,49 @@ export default function Manufacturers({ showLink = true, data, manufacturers }: 
               </a>
             );
           })}
+
+          {/* Partner CTA Card - only show if it would complete an incomplete row */}
+          {displayManufacturers.length % 4 !== 0 && (displayManufacturers.length + 1) % 4 === 0 && (
+            <Link
+              href="/contact"
+              className="group bg-white rounded-lg p-4 flex flex-col items-center justify-center h-24 transition-shadow hover:shadow-lg"
+            >
+              <span className="text-slate-400 text-base font-medium group-hover:text-amber-500 transition-all duration-300">
+                Your Logo Here?
+              </span>
+              <span className="text-slate-400 text-xs mt-1 group-hover:text-slate-600 transition-all duration-300">
+                Partner with us
+              </span>
+              {/* Brand arrow - matches logo chevron style */}
+              <svg
+                className="w-16 h-3 mt-2 opacity-50 group-hover:opacity-100 transition-all duration-300"
+                viewBox="0 0 80 12"
+                fill="none"
+              >
+                <polyline
+                  points="0,1 4,6 0,11"
+                  className="stroke-purple-600"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <polyline
+                  points="6,1 10,6 6,11"
+                  className="stroke-purple-600"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <line
+                  x1="12" y1="6" x2="70" y2="6"
+                  className="stroke-purple-600"
+                  strokeWidth="2"
+                />
+                <polygon
+                  points="80,6 70,1 70,11"
+                  className="fill-purple-600"
+                />
+              </svg>
+            </Link>
+          )}
         </div>
 
         {/* Link to full page */}

@@ -57,7 +57,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
   const phone = settings?.phone || "(318) 344-5731";
   const email = settings?.email || "contact@bruhart.com";
   const address = settings?.address || {
-    street: "7111 US Hwy 27",
+    street: "7135 US Hwy 27",
     city: "Branford",
     state: "FL",
     zip: "32008",
@@ -88,9 +88,9 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
     <footer className="bg-foreground text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Main Footer */}
-        <div className="py-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        <div className="py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand Column */}
-          <div className="col-span-2">
+          <div className="sm:col-span-2 lg:col-span-2">
             <Link href="/" className="inline-block mb-6">
               <Logo className="h-12 w-auto" color="white" />
             </Link>
@@ -171,7 +171,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
 
         {/* Contact Bar */}
         <div className="py-8 border-t border-white/10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <div className="flex items-center gap-3">
               <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -199,18 +199,10 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-steel-light text-sm">
+        <div className="py-6 border-t border-white/10">
+          <p className="text-steel-light text-sm text-center">
             © {new Date().getFullYear()} {siteName}. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <Link href="/privacy" className="text-steel-light hover:text-white transition-colors text-sm">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-steel-light hover:text-white transition-colors text-sm">
-              Terms of Service
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

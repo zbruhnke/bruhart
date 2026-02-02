@@ -1,5 +1,11 @@
+import { Metadata } from "next";
 import { getContactPage, getSiteSettings } from "@/sanity/client";
 import ContactForm from "@/components/ContactForm";
+
+export const metadata: Metadata = {
+  title: "Contact Us | Bru-Hart Industries",
+  description: "Get in touch with Bru-Hart Industries for quotes, technical support, or to discuss your security gate and fencing requirements. Call (318) 344-5731 or request a quote online.",
+};
 
 // Fallback data for contact page
 const fallbackData = {
@@ -18,7 +24,7 @@ const fallbackSettings = {
   salesEmail: 'sales@bruhart.com',
   billingEmail: 'billing@bruhart.com',
   address: {
-    street: '7111 US Hwy 27',
+    street: '7135 US Hwy 27',
     city: 'Branford',
     state: 'FL',
     zip: '32008',
@@ -146,7 +152,7 @@ export default async function ContactPage() {
               {/* Google Maps */}
               <div className="mt-8 aspect-square bg-background-alt rounded-xl overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.9068664044166!2d-82.8847631!3d29.953357399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e8d53858009793%3A0xed8774c40ed6c70d!2s7111%20US-27%2C%20Branford%2C%20FL%2032008!5e0!3m2!1sen!2sus!4v1767908717766!5m2!1sen!2sus"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.9068664044166!2d-82.8847631!3d29.953357399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e8d53858009793%3A0xed8774c40ed6c70d!2s7135%20US-27%2C%20Branford%2C%20FL%2032008!5e0!3m2!1sen!2sus!4v1767908717766!5m2!1sen!2sus"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

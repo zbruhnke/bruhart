@@ -3,7 +3,6 @@ interface CertificationsProps {
     certificationsSectionTitle?: string;
     certificationsSectionDescription?: string;
     certifications?: Array<{ name: string; description: string }>;
-    stats?: Array<{ value: string; label: string }>;
   };
 }
 
@@ -12,13 +11,6 @@ const fallbackCertifications = [
   { name: 'ASTM F2656', description: 'Vehicle Crash Testing Standard' },
   { name: 'DOS Certified', description: 'Department of State K-Rating' },
   { name: 'UL 325', description: 'Gate Operator Safety Listed' },
-];
-
-const fallbackStats = [
-  { value: '45+', label: 'Years in Business' },
-  { value: '500+', label: 'Projects Completed' },
-  { value: '50', label: 'States Served' },
-  { value: '24/7', label: 'Support Available' },
 ];
 
 const fallbackSection = {
@@ -57,28 +49,10 @@ export default function Certifications({ data }: CertificationsProps) {
   const sectionTitle = data?.certificationsSectionTitle || fallbackSection.certificationsSectionTitle;
   const sectionDescription = data?.certificationsSectionDescription || fallbackSection.certificationsSectionDescription;
   const certifications = data?.certifications && data.certifications.length > 0 ? data.certifications : fallbackCertifications;
-  const stats = data?.stats && data.stats.length > 0 ? data.stats : fallbackStats;
 
   return (
     <section className="py-24 bg-primary">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-white mb-2">
-                {stat.value}
-              </div>
-              <div className="text-white/70 text-sm sm:text-base">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Divider */}
-        <div className="border-t border-white/20 mb-16"></div>
-
         {/* Certifications Header */}
         <div className="text-center mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">

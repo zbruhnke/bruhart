@@ -108,9 +108,17 @@ export default function CustomFabricationPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <div className="lg:order-1">
-              <span className="text-sm font-semibold text-accent uppercase tracking-wider">
-                Precision Components
-              </span>
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-sm font-semibold text-accent uppercase tracking-wider">
+                  Precision Components
+                </span>
+                <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
+                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                  Made in USA
+                </span>
+              </div>
               <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
                 CNC Milled Trucks
               </h2>
@@ -127,12 +135,12 @@ export default function CustomFabricationPage() {
                 </h3>
                 <ul className="space-y-3">
                   {[
+                    "Made in USA—domestic manufacturing, reliable supply",
                     "CNC machined to exact tolerances—consistent quality",
                     "Designed specifically for BH Track system",
                     "Heavy-duty construction handles commercial loads",
                     "Smooth rolling action your customers will feel",
-                    "Long service life means fewer warranty issues",
-                    "Available in quantity at wholesale pricing",
+                    "Lifetime warranty with competitive pricing",
                   ].map((feature) => (
                     <li key={feature} className="flex items-start gap-2 text-foreground-muted">
                       <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

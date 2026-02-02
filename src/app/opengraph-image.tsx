@@ -126,16 +126,16 @@ export default async function Image() {
           {/* Bottom stats */}
           <div style={{ display: 'flex', gap: '60px' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span style={{ fontSize: '36px', fontWeight: 900, color: 'white' }}>500+</span>
-              <span style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.6)' }}>Projects Completed</span>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span style={{ fontSize: '36px', fontWeight: 900, color: 'white' }}>45+</span>
               <span style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.6)' }}>Years Experience</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span style={{ fontSize: '36px', fontWeight: 900, color: 'white' }}>100%</span>
-              <span style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.6)' }}>ASTM Certified</span>
+              <span style={{ fontSize: '36px', fontWeight: 900, color: 'white' }}>50</span>
+              <span style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.6)' }}>States Served</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span style={{ fontSize: '36px', fontWeight: 900, color: 'white' }}>1M+</span>
+              <span style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.6)' }}>Cycles Tested</span>
             </div>
           </div>
         </div>

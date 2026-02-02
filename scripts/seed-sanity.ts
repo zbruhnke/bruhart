@@ -318,7 +318,7 @@ const siteSettings = {
   supportEmail: 'support@bruhart.com',
   emergencyPhone: '(318) 344-5731',
   address: {
-    street: '7111 US Hwy 27',
+    street: '7135 US Hwy 27',
     city: 'Branford',
     state: 'FL',
     zip: '32008',
