@@ -1,4 +1,6 @@
 import { ReactElement } from 'react';
+import { readFile } from 'fs/promises';
+import { join } from 'path';
 
 // Get the base URL for images - works on Vercel and locally
 export function getBaseUrl() {
@@ -31,35 +33,16 @@ export async function getOGBackgroundImage(imagePath: string): Promise<string | 
   }
 }
 
-// Font loading for OG images - Barlow for logo, Inter for body
+// Font loading for OG images - local TTF files
 export async function getOGFonts() {
-  // Fetch with user-agent to get woff format from Google Fonts
-  const fetchFont = (url: string) =>
-    fetch(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-      },
-    }).then((res) => res.arrayBuffer());
+  const fontsDir = join(process.cwd(), 'src/fonts');
 
-  // Barlow ExtraBold (800) for BRU-HART
-  const barlowExtraBold = await fetchFont(
-    'https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E3_-gs51os.woff2'
-  );
-
-  // Barlow Medium (500) for INDUSTRIES
-  const barlowMedium = await fetchFont(
-    'https://fonts.gstatic.com/s/barlow/v12/7cHqv4kjgoGqM7E30-4s51os.woff2'
-  );
-
-  // Inter Bold for body headlines
-  const interBold = await fetchFont(
-    'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYAZ9hjp-Ek-_0ew.woff'
-  );
-
-  // Inter Regular for body text
-  const inter = await fetchFont(
-    'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjp-Ek-_0ew.woff'
-  );
+  const [barlowExtraBold, barlowMedium, interBold, interRegular] = await Promise.all([
+    readFile(join(fontsDir, 'Barlow-ExtraBold.ttf')),
+    readFile(join(fontsDir, 'Barlow-Medium.ttf')),
+    readFile(join(fontsDir, 'Inter-Bold.ttf')),
+    readFile(join(fontsDir, 'Inter-Regular.ttf')),
+  ]);
 
   return [
     {
@@ -82,7 +65,7 @@ export async function getOGFonts() {
     },
     {
       name: 'Inter',
-      data: inter,
+      data: interRegular,
       weight: 400 as const,
       style: 'normal' as const,
     },
