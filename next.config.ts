@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/webmail',
+        destination: 'https://giowm1188.siteground.biz/webmail/log-in',
+        permanent: false,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
