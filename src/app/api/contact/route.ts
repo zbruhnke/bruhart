@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     // Send email notification
     try {
       await resend.emails.send({
-        from: 'Bru-Hart Website <onboarding@resend.dev>', // Change to your domain once verified
+        from: 'Bru-Hart Website <bruhart@m.ordinary.company>',
         to: NOTIFICATION_EMAIL,
         replyTo: email,
         subject: `New Contact Form Submission: ${reason}`,
