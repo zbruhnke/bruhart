@@ -80,6 +80,10 @@ const fallbackManufacturers = [
   },
 ];
 
+const fallbackLogoUrls = Object.fromEntries(
+  fallbackManufacturers.map((manufacturer) => [manufacturer.slug, manufacturer.logoUrl])
+);
+
 const fallbackSection = {
   manufacturersSectionLabel: 'Our Partners',
   manufacturersSectionTitle: 'Manufacturers We Carry',
@@ -136,23 +140,29 @@ export default function Manufacturers({ showLink = true, data, manufacturers }: 
           {displayManufacturers.map((manufacturer) => {
             const logoSrc = manufacturer.logo
               ? urlFor(manufacturer.logo).width(400).fit('max').url()
-              : manufacturer.logoUrl || '/manufacturers/placeholder.png';
+              : manufacturer.logoUrl || fallbackLogoUrls[manufacturer.slug];
 
             return (
               <Link
                 key={manufacturer._id}
                 href={`/manufacturers/${manufacturer.slug}`}
-                className="group bg-white rounded-lg p-6 flex items-center justify-center h-24 transition-shadow hover:shadow-lg"
+                className="group bg-white rounded-lg p-5 flex items-center justify-center h-24 transition-shadow hover:shadow-lg"
               >
-                <div className="relative w-full h-full">
-                  <Image
-                    src={logoSrc}
-                    alt={manufacturer.name}
-                    fill
-                    className="object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  />
-                </div>
+                {logoSrc ? (
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={logoSrc}
+                      alt={manufacturer.name}
+                      fill
+                      className="object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    />
+                  </div>
+                ) : (
+                  <span className="text-center text-sm font-semibold text-slate-700">
+                    {manufacturer.name}
+                  </span>
+                )}
               </Link>
             );
           })}

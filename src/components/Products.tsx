@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import { urlFor } from '@/sanity/client';
 
 type SanityImageSource = Parameters<typeof urlFor>[0];
+type MaybeSanityImage = SanityImageSource | null | undefined;
 
 interface Product {
   _id: string;
@@ -120,6 +121,69 @@ const fallbackProducts: Product[] = [
   },
 ];
 
+const fallbackProductImageUrls: Record<string, string> = {
+  'commercial-residential': '/images/bruhart_work/IMG_1961.jpeg',
+  'commercial-residential-gates': '/images/bruhart_work/IMG_1961.jpeg',
+  'commercial-gates': '/images/bruhart_work/IMG_1961.jpeg',
+  'bollards': '/images/products/pop-up-bollards-2.jpg',
+  'bollards-barriers': '/images/products/pop-up-bollards-2.jpg',
+  'security-fencing': '/images/bruhart_work/a1330cc2-a330-41e0-ad91-d8c6d5203efd.jpeg',
+  'perimeter-security-fencing': '/images/bruhart_work/a1330cc2-a330-41e0-ad91-d8c6d5203efd.jpeg',
+  'access-control': '/images/bruhart_work/IMG_1453.jpeg',
+  'access-control-automation': '/images/bruhart_work/IMG_1453.jpeg',
+  'gate-operators': '/images/bruhart_work/IMG_1453.jpeg',
+  'crash-rated': '/images/bruhart_work/Attachment.jpeg',
+  'crash-rated-gates': '/images/bruhart_work/Attachment.jpeg',
+  'crash-rated-barriers': '/images/products/pop-up-bollards-1.jpg',
+  'custom-solutions': '/images/bruhart_work/IMG_1960.jpeg',
+  'custom-fabrication': '/images/bruhart_work/IMG_1960.jpeg',
+  'cantilever-gate-systems': '/images/products/BHTrack.jpg',
+  'chain-link-fence-supplies': '/images/products/welded-wire-fencing.jpeg',
+  'wood-fence-materials': '/images/bruhart_work/IMG_4254.jpeg',
+  'vinyl-fence-supplies': '/images/bruhart_work/IMG_4252.jpeg',
+  'agricultural-fencing': '/images/products/welded-wire-fencing.jpeg',
+  'field-fence-woven-wire': '/images/products/welded-wire-fencing.jpeg',
+  'farm-ranch-gates': '/images/bruhart_work/IMG_2670.jpeg',
+  'fence-hardware': '/images/products/cnc-trucks.jpg',
+};
+
+const normalizeLookupKey = (value?: string) =>
+  value?.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+const hasSanityImage = (image: MaybeSanityImage): image is SanityImageSource => {
+  if (!image) {
+    return false;
+  }
+
+  if (typeof image === 'string') {
+    return image.length > 0;
+  }
+
+  if (typeof image === 'object') {
+    const asset = (image as { asset?: { _ref?: string; _id?: string } | null }).asset;
+    return Boolean(asset?._ref || asset?._id);
+  }
+
+  return true;
+};
+
+const getProductImageUrl = (product: Product) => {
+  if (hasSanityImage(product.image)) {
+    return urlFor(product.image).width(800).height(500).fit('crop').url();
+  }
+
+  if (product.imageUrl) {
+    return product.imageUrl;
+  }
+
+  const slugKey = normalizeLookupKey(product.slug || product._id);
+  const nameKey = normalizeLookupKey(product.name);
+
+  return (slugKey && fallbackProductImageUrls[slugKey])
+    || (nameKey && fallbackProductImageUrls[nameKey])
+    || '/images/bruhart_work/IMG_1287.jpeg';
+};
+
 // Fallback section data
 const fallbackSection = {
   productsSectionLabel: 'Our Products',
@@ -159,24 +223,23 @@ export default function Products({ data, products }: ProductsProps) {
             const icon = productIcons[slug] || defaultIcon;
             const features = product.features || [];
 
-            const imageUrl = product.image
-              ? urlFor(product.image).width(400).height(250).url()
-              : product.imageUrl;
+            const imageUrl = getProductImageUrl(product);
 
             return (
               <Link
                 key={product._id}
                 href={`/products#${slug}`}
-                className="group relative bg-white border border-border rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+                className="group relative flex h-full flex-col bg-white border border-border rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-lg transition-all duration-300"
               >
                 {/* Image or Icon */}
                 {imageUrl ? (
-                  <div className="relative h-48 w-full overflow-hidden">
+                  <div className="relative h-48 w-full overflow-hidden bg-slate-100">
                     <Image
                       src={imageUrl}
                       alt={product.name}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
                 ) : (
@@ -188,7 +251,7 @@ export default function Products({ data, products }: ProductsProps) {
                 )}
 
                 {/* Content */}
-                <div className="p-8">
+                <div className="flex flex-1 flex-col p-8">
                   <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
                     {product.name}
                   </h3>
@@ -198,7 +261,7 @@ export default function Products({ data, products }: ProductsProps) {
 
                   {/* Features */}
                   {features.length > 0 && (
-                    <ul className="space-y-2">
+                    <ul className="mt-auto space-y-2 pr-8">
                       {features.slice(0, 3).map((feature) => (
                         <li key={feature} className="flex items-center text-sm text-steel">
                           <svg className="w-4 h-4 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

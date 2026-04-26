@@ -105,6 +105,10 @@ const fallbackManufacturers = [
   },
 ];
 
+const fallbackLogoUrls = Object.fromEntries(
+  fallbackManufacturers.map((manufacturer) => [manufacturer.slug, manufacturer.logoUrl])
+);
+
 const fallbackPage = {
   heroHeading: 'Manufacturers We Represent',
   heroSubtext: 'Bru-Hart is selective about the manufacturers and products we support. Some jobs call for domestic products, some call for imported products, and every job deserves the best fit for the application.',
@@ -152,7 +156,7 @@ export default async function ManufacturersPage() {
             {displayManufacturers.map((manufacturer) => {
               const logoSrc = manufacturer.logo
                 ? urlFor(manufacturer.logo).width(600).fit('max').url()
-                : manufacturer.logoUrl || '/manufacturers/placeholder.png';
+                : manufacturer.logoUrl || fallbackLogoUrls[manufacturer.slug];
 
               return (
                 <div
@@ -161,15 +165,21 @@ export default async function ManufacturersPage() {
                 >
                   {/* Logo Section */}
                   <div className="bg-slate-50 p-8 flex items-center justify-center h-48 border-b border-border">
-                    <div className="relative w-full h-full flex items-center justify-center">
-                      <Image
-                        src={logoSrc}
-                        alt={manufacturer.name}
-                        fill
-                        className="object-contain p-4 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    </div>
+                    {logoSrc ? (
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        <Image
+                          src={logoSrc}
+                          alt={manufacturer.name}
+                          fill
+                          className="object-contain p-4 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
+                    ) : (
+                      <span className="text-center text-xl font-bold text-slate-700">
+                        {manufacturer.name}
+                      </span>
+                    )}
                   </div>
 
                   {/* Content Section */}

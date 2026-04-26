@@ -187,7 +187,7 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center lg:gap-1">
+          <div className="hidden xl:flex xl:items-center xl:gap-1">
             {navigation.map((item) => (
               <div
                 key={item.name}
@@ -224,7 +224,7 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex lg:items-center lg:gap-4">
+          <div className="hidden xl:flex xl:items-center xl:gap-4">
             <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} className="text-sm font-medium text-steel hover:text-primary transition-colors">
               <span className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -244,7 +244,7 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="lg:hidden p-2 text-steel hover:text-primary"
+            className="xl:hidden p-2 text-steel hover:text-primary"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <span className="sr-only">Open menu</span>
@@ -262,7 +262,7 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border">
+          <div className="xl:hidden py-4 border-t border-border">
             {navigation.map((item) => (
               <div key={item.name}>
                 <Link

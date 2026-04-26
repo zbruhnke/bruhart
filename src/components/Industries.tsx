@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { urlFor } from '@/sanity/client';
 
 type SanityImageSource = Parameters<typeof urlFor>[0];
+type MaybeSanityImage = SanityImageSource | null | undefined;
 
 interface IndustriesProps {
   data?: {
@@ -118,11 +119,58 @@ const fallbackIndustries: Array<{
 // Fallback image URLs by slug - using real project photos
 const fallbackImageUrls: Record<string, string> = {
   'data-centers': '/images/bruhart_work/IMG_1910.jpeg',
+  'data-center-security': '/images/bruhart_work/IMG_1910.jpeg',
+  'data-center-security-gates': '/images/bruhart_work/IMG_1910.jpeg',
   'airports': '/images/bruhart_work/IMG_4029.jpeg',
+  'airports-aviation': '/images/bruhart_work/IMG_4029.jpeg',
+  'airport-perimeter-security': '/images/bruhart_work/IMG_4029.jpeg',
   'utilities': '/images/bruhart_work/IMG_3969.jpeg',
+  'utilities-energy': '/images/bruhart_work/IMG_3969.jpeg',
+  'utility-substation-security': '/images/bruhart_work/IMG_3969.jpeg',
   'government': '/images/bruhart_work/IMG_1976.jpeg',
+  'government-military': '/images/bruhart_work/IMG_1976.jpeg',
+  'government-facility-security': '/images/bruhart_work/IMG_1976.jpeg',
   'ports': '/images/bruhart_work/IMG_1905.jpeg',
+  'ports-logistics': '/images/bruhart_work/IMG_1905.jpeg',
   'corporate': '/images/bruhart_work/IMG_3972.jpeg',
+  'corporate-campuses': '/images/bruhart_work/IMG_3972.jpeg',
+};
+
+const normalizeLookupKey = (value?: string) =>
+  value?.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+const hasSanityImage = (image: MaybeSanityImage): image is SanityImageSource => {
+  if (!image) {
+    return false;
+  }
+
+  if (typeof image === 'string') {
+    return image.length > 0;
+  }
+
+  if (typeof image === 'object') {
+    const asset = (image as { asset?: { _ref?: string; _id?: string } | null }).asset;
+    return Boolean(asset?._ref || asset?._id);
+  }
+
+  return true;
+};
+
+const getIndustryImageUrl = (industry: NonNullable<IndustriesProps['industries']>[number]) => {
+  if (hasSanityImage(industry.image)) {
+    return urlFor(industry.image).width(800).height(500).fit('crop').url();
+  }
+
+  if (industry.imageUrl) {
+    return industry.imageUrl;
+  }
+
+  const slugKey = normalizeLookupKey(industry.slug || industry._id);
+  const nameKey = normalizeLookupKey(industry.name);
+
+  return (slugKey && fallbackImageUrls[slugKey])
+    || (nameKey && fallbackImageUrls[nameKey])
+    || '/images/bruhart_work/IMG_1910.jpeg';
 };
 
 // Fallback section data
@@ -160,24 +208,23 @@ export default function Industries({ data, industries }: IndustriesProps) {
           {displayIndustries.map((industry) => {
             const slug = industry.slug || industry._id;
             const icon = industryIcons[slug] || defaultIcon;
-            const imageUrl = industry.image
-              ? urlFor(industry.image).width(400).height(250).url()
-              : industry.imageUrl || fallbackImageUrls[slug];
+            const imageUrl = getIndustryImageUrl(industry);
 
             return (
               <Link
                 key={industry._id}
                 href={`/industries#${slug}`}
-                className="group bg-white rounded-xl overflow-hidden border border-border hover:shadow-lg hover:border-primary/30 transition-all block"
+                className="group flex h-full flex-col bg-white rounded-xl overflow-hidden border border-border hover:shadow-lg hover:border-primary/30 transition-all"
               >
                 {/* Image or Icon */}
                 {imageUrl ? (
-                  <div className="relative h-48 w-full overflow-hidden">
+                  <div className="relative h-48 w-full overflow-hidden bg-slate-100">
                     <Image
                       src={imageUrl}
                       alt={industry.name}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
                 ) : (
@@ -187,7 +234,7 @@ export default function Industries({ data, industries }: IndustriesProps) {
                     </div>
                   </div>
                 )}
-                <div className="p-8">
+                <div className="flex flex-1 flex-col p-8">
                   <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
                     {industry.name}
                   </h3>
