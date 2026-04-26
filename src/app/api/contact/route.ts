@@ -2,21 +2,31 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@sanity/client'
 import { Resend } from 'resend'
 
-const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  apiVersion: '2024-01-01',
-  token: process.env.SANITY_WRITE_TOKEN,
-  useCdn: false,
-})
-
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 // Email address to receive notifications (set in environment variables)
 const NOTIFICATION_EMAIL = process.env.CONTACT_NOTIFICATION_EMAIL || 'sales@bruhart.com'
 
 export async function POST(request: NextRequest) {
   try {
+    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+    const token = process.env.SANITY_WRITE_TOKEN
+
+    if (!projectId || !token) {
+      console.error('Contact form is missing Sanity configuration')
+      return NextResponse.json(
+        { error: 'Contact form is not configured' },
+        { status: 503 }
+      )
+    }
+
+    const client = createClient({
+      projectId,
+      dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+      apiVersion: '2024-01-01',
+      token,
+      useCdn: false,
+    })
+    const resend = new Resend(process.env.RESEND_API_KEY)
+
     const body = await request.json()
 
     const { firstName, lastName, email, phone, company, reason, message } = body
