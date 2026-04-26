@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/client';
 
+type SanityImageSource = Parameters<typeof urlFor>[0];
+
 interface IndustriesProps {
   data?: {
     industriesSectionLabel?: string;
@@ -14,11 +16,7 @@ interface IndustriesProps {
     name: string;
     slug?: string;
     description?: string;
-    image?: {
-      asset: {
-        _ref: string;
-      };
-    };
+    image?: SanityImageSource | null;
     imageUrl?: string;
   }>;
 }
@@ -70,7 +68,7 @@ const fallbackIndustries: Array<{
   name: string;
   slug: string;
   description: string;
-  image?: { asset: { _ref: string } };
+  image?: SanityImageSource | null;
   imageUrl?: string;
 }> = [
   {
@@ -162,7 +160,7 @@ export default function Industries({ data, industries }: IndustriesProps) {
           {displayIndustries.map((industry) => {
             const slug = industry.slug || industry._id;
             const icon = industryIcons[slug] || defaultIcon;
-            const imageUrl = industry.image?.asset?._ref
+            const imageUrl = industry.image
               ? urlFor(industry.image).width(400).height(250).url()
               : industry.imageUrl || fallbackImageUrls[slug];
 

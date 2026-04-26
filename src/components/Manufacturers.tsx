@@ -91,7 +91,7 @@ interface Manufacturer {
   _id: string;
   name: string;
   slug: string;
-  logo?: SanityImageSource;
+  logo?: SanityImageSource | null;
   logoUrl?: string;
   website?: string;
 }

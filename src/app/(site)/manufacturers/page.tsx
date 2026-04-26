@@ -9,7 +9,7 @@ interface ManufacturerItem {
   _id: string;
   name: string;
   slug: string;
-  logo?: SanityImageSource;
+  logo?: SanityImageSource | null;
   logoUrl?: string;
   description?: string;
   website?: string;

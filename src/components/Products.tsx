@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { ReactNode } from 'react';
 import { urlFor } from '@/sanity/client';
 
+type SanityImageSource = Parameters<typeof urlFor>[0];
+
 interface Product {
   _id: string;
   name: string;
@@ -10,11 +12,7 @@ interface Product {
   tagline?: string;
   description?: string;
   features?: string[];
-  image?: {
-    asset: {
-      _ref: string;
-    };
-  };
+  image?: SanityImageSource | null;
   imageUrl?: string;
 }
 
@@ -161,7 +159,7 @@ export default function Products({ data, products }: ProductsProps) {
             const icon = productIcons[slug] || defaultIcon;
             const features = product.features || [];
 
-            const imageUrl = product.image?.asset?._ref
+            const imageUrl = product.image
               ? urlFor(product.image).width(400).height(250).url()
               : product.imageUrl;
 

@@ -1,17 +1,15 @@
 import Link from 'next/link';
 import { urlFor } from '@/sanity/client';
 
+type SanityImageSource = Parameters<typeof urlFor>[0];
+
 interface HeroProps {
   data?: {
     heroBadge?: string;
     heroHeadline?: string;
     heroHeadlineHighlight?: string;
     heroSubheadline?: string;
-    heroBackgroundImage?: {
-      asset: {
-        _ref: string;
-      };
-    };
+    heroBackgroundImage?: SanityImageSource | null;
     heroBackgroundImageUrl?: string;
     heroPrimaryCta?: string;
     heroPrimaryCtaLink?: string;
@@ -45,7 +43,7 @@ export default function Hero({ data }: HeroProps) {
 
   // Use Sanity image if uploaded, otherwise fall back to URL field, then hardcoded fallback
   let backgroundImageUrl = fallback.heroBackgroundImageUrl;
-  if (data?.heroBackgroundImage?.asset) {
+  if (data?.heroBackgroundImage) {
     backgroundImageUrl = urlFor(data.heroBackgroundImage).width(1920).quality(85).url();
   } else if (data?.heroBackgroundImageUrl) {
     backgroundImageUrl = data.heroBackgroundImageUrl;
