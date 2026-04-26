@@ -91,6 +91,8 @@ const normalizeFooterLink = (link: FooterLink): FooterLink => {
   const nameMap: Record<string, string> = {
     'Crash Rated & Tested Gates': 'Crash Rated Gates',
     'Crash-Rated & Tested Gates': 'Crash Rated Gates',
+    'Local & Ag': 'North Florida',
+    'Local + Ag': 'North Florida',
   };
 
   return {
@@ -211,10 +213,10 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
             </ul>
           </div>
 
-          {/* Local & Ag */}
+          {/* North Florida */}
           <div>
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Local & Ag
+              North Florida
             </h3>
             <ul className="space-y-3">
               {localAgLinks.map((link) => (

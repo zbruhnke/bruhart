@@ -68,7 +68,7 @@ const fallbackNavigation: NavItem[] = [
     ],
   },
   {
-    name: 'Local & Ag',
+    name: 'North Florida',
     href: '/service-areas/branford-fl-agricultural-fencing',
     children: [
       { name: 'Branford Agricultural Fencing', href: '/service-areas/branford-fl-agricultural-fencing' },
@@ -123,6 +123,8 @@ const normalizeNavItem = (item: NavItem): NavItem => {
   const nameMap: Record<string, string> = {
     'Crash Rated & Tested Gates': 'Crash Rated Gates',
     'Crash-Rated & Tested Gates': 'Crash Rated Gates',
+    'Local & Ag': 'North Florida',
+    'Local + Ag': 'North Florida',
   };
 
   return {
@@ -150,9 +152,9 @@ const appendMissingLinks = (existing: NavItem[], additions: NavItem[]) => {
 const enhanceNavigation = (items: NavItem[]) => {
   const normalized = items.map(normalizeNavItem);
   const expertSourcing = fallbackNavigation.find((item) => item.href === '/expert-sourcing');
-  const localAg = fallbackNavigation.find((item) => item.name === 'Local & Ag');
+  const localNorthFlorida = fallbackNavigation.find((item) => item.href === '/service-areas/branford-fl-agricultural-fencing');
 
-  return appendMissingLinks(normalized, [expertSourcing, localAg].filter(Boolean) as NavItem[]);
+  return appendMissingLinks(normalized, [expertSourcing, localNorthFlorida].filter(Boolean) as NavItem[]);
 };
 
 const uniqueLinks = (links: Array<{ name: string; href: string }>) => {
