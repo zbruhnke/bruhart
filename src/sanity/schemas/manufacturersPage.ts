@@ -21,7 +21,7 @@ export const manufacturersPage = {
       type: 'text',
       rows: 3,
       group: 'hero',
-      initialValue: "As an authorized manufacturer's representative, we bring you direct access to industry-leading security and fencing solutions from trusted brands.",
+      initialValue: "Bru-Hart is selective about the manufacturers and products it supports, helping buyers match trusted fence, gate, access-control, and security products to the job.",
     },
 
     // CTA Section

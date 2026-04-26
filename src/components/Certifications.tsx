@@ -8,14 +8,14 @@ interface CertificationsProps {
 
 // Fallback data
 const fallbackCertifications = [
-  { name: 'ASTM F2656', description: 'Vehicle Crash Testing Standard' },
-  { name: 'DOS Certified', description: 'Department of State K-Rating' },
-  { name: 'UL 325', description: 'Gate Operator Safety Listed' },
+  { name: 'ASTM F2656', description: 'Vehicle security barrier rating framework' },
+  { name: 'K-Rated References', description: 'Legacy Department of State rating terminology' },
+  { name: 'UL 325', description: 'Automated gate operator safety standard' },
 ];
 
 const fallbackSection = {
-  certificationsSectionTitle: 'Industry Certifications & Standards',
-  certificationsSectionDescription: 'Our products meet the highest security standards required by government agencies and private sector organizations worldwide.',
+  certificationsSectionTitle: 'Standards & Documentation Support',
+  certificationsSectionDescription: 'We help project teams align gates, barriers, operators, and access-control components with the standards and rating documentation required for each job.',
 };
 
 // Icons for certifications (by index/type)

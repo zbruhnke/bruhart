@@ -249,6 +249,39 @@ export default function CustomFabricationPage() {
         </div>
       </section>
 
+      <section className="py-16 bg-background-alt">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-10">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              Component Guides for Fabricators
+            </h2>
+            <p className="text-lg text-foreground-muted">
+              Use these focused pages when you need track or truck details before requesting wholesale pricing.
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            <Link
+              href="/custom-fabrication/enclosed-aluminum-gate-track"
+              className="rounded-lg border border-border bg-white p-6 transition-shadow hover:shadow-lg"
+            >
+              <h3 className="text-lg font-semibold text-foreground mb-2">Enclosed Aluminum Gate Track</h3>
+              <p className="text-sm leading-6 text-foreground-muted">
+                Made-in-USA BH Track systems for fabricators building smoother commercial and industrial gates.
+              </p>
+            </Link>
+            <Link
+              href="/custom-fabrication/cnc-milled-gate-trucks"
+              className="rounded-lg border border-border bg-white p-6 transition-shadow hover:shadow-lg"
+            >
+              <h3 className="text-lg font-semibold text-foreground mb-2">CNC-Milled Gate Trucks</h3>
+              <p className="text-sm leading-6 text-foreground-muted">
+                Precision truck assemblies designed to pair with BH Track and reduce field callbacks.
+              </p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* The System Together */}
       <section className="py-16 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

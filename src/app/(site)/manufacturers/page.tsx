@@ -3,9 +3,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getManufacturers, getManufacturersPage, urlFor } from '@/sanity/client';
 
+type SanityImageSource = Parameters<typeof urlFor>[0];
+
+interface ManufacturerItem {
+  _id: string;
+  name: string;
+  slug: string;
+  logo?: SanityImageSource;
+  logoUrl?: string;
+  description?: string;
+  website?: string;
+}
+
 export const metadata: Metadata = {
   title: 'Manufacturers We Represent | Bru-Hart Industries',
-  description: 'Bru-Hart Industries proudly represents leading manufacturers of high-security gate systems, fencing, and access control solutions.',
+  description: 'Bru-Hart Industries carries respected fence, gate, access control, and security manufacturers selected for job fit, reliability, support, and field performance.',
 };
 
 // Fallback data
@@ -95,9 +107,9 @@ const fallbackManufacturers = [
 
 const fallbackPage = {
   heroHeading: 'Manufacturers We Represent',
-  heroSubtext: "As an authorized manufacturer's representative, we bring you direct access to industry-leading security and fencing solutions from trusted brands.",
+  heroSubtext: 'Bru-Hart is selective about the manufacturers and products we support. Some jobs call for domestic products, some call for imported products, and every job deserves the best fit for the application.',
   ctaHeading: 'Need Help Choosing the Right Solution?',
-  ctaSubtext: 'Our team has deep expertise with all of our manufacturer partners. Let us help you find the perfect products for your project.',
+  ctaSubtext: 'Tell us the job, the constraints, and the product category. We will help you sort through manufacturer options without defaulting to weak substitutes.',
   ctaButtonText: 'Contact Us',
   ctaButtonLink: '/contact',
 };
@@ -115,7 +127,7 @@ export default async function ManufacturersPage() {
   const ctaButtonText = pageData?.ctaButtonText || fallbackPage.ctaButtonText;
   const ctaButtonLink = pageData?.ctaButtonLink || fallbackPage.ctaButtonLink;
 
-  const displayManufacturers = manufacturers && manufacturers.length > 0 ? manufacturers : fallbackManufacturers;
+  const displayManufacturers: ManufacturerItem[] = manufacturers && manufacturers.length > 0 ? manufacturers : fallbackManufacturers;
 
   return (
     <>
@@ -137,7 +149,7 @@ export default async function ManufacturersPage() {
       <section className="py-20 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {displayManufacturers.map((manufacturer: any) => {
+            {displayManufacturers.map((manufacturer) => {
               const logoSrc = manufacturer.logo
                 ? urlFor(manufacturer.logo).width(600).fit('max').url()
                 : manufacturer.logoUrl || '/manufacturers/placeholder.png';
@@ -168,14 +180,12 @@ export default async function ManufacturersPage() {
                     <p className="text-foreground-muted mb-4">
                       {manufacturer.description}
                     </p>
-                    {manufacturer.website && (
-                      <a
-                        href={manufacturer.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                      <Link
+                        href={`/manufacturers/${manufacturer.slug}`}
                         className="inline-flex items-center text-primary hover:text-primary/80 font-medium transition-colors"
                       >
-                        Visit Website
+                        Bru-Hart support page
                         <svg
                           className="ml-2 w-4 h-4"
                           fill="none"
@@ -186,11 +196,34 @@ export default async function ManufacturersPage() {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth={2}
-                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
                           />
                         </svg>
-                      </a>
-                    )}
+                      </Link>
+                      {manufacturer.website && (
+                        <a
+                          href={manufacturer.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-sm font-medium text-foreground-muted hover:text-foreground transition-colors"
+                        >
+                          Manufacturer website
+                          <svg
+                            className="ml-2 w-4 h-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               );

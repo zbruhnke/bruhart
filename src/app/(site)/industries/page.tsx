@@ -3,6 +3,30 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { getIndustries, urlFor } from "@/sanity/client";
 
+type SanityImageSource = Parameters<typeof urlFor>[0];
+
+interface IndustryItem {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  challenges: string[];
+  solutions: string[];
+  image: string | null;
+}
+
+interface SanityIndustry {
+  _id: string;
+  slug?: string;
+  name: string;
+  tagline: string;
+  description: string;
+  challenges?: string[];
+  solutions?: string[];
+  image?: SanityImageSource;
+  imageUrl?: string;
+}
+
 export const metadata: Metadata = {
   title: "Industries We Serve | Bru-Hart Industries",
   description: "Specialized security solutions for data centers, airports, utilities, government facilities, and more.",
@@ -19,7 +43,7 @@ const fallbackImageUrls: Record<string, string> = {
 };
 
 // Fallback industries when Sanity is empty
-const fallbackIndustries = [
+const fallbackIndustries: IndustryItem[] = [
   {
     id: "data-centers",
     name: "Data Centers",
@@ -80,16 +104,16 @@ const fallbackIndustries = [
   {
     id: "government",
     name: "Government & Military",
-    tagline: "DOS Certified Security",
-    description: "Government facilities and military installations require the highest levels of security certification. Our DOS-certified barriers and access systems meet the stringent requirements of federal agencies.",
+    tagline: "DOS/K-Rated Security",
+    description: "Government facilities and military installations require carefully documented security ratings. Our barrier and access-control options can support DOS/K-rating conversations by product and configuration.",
     challenges: [
-      "DOS certification requirements",
+      "DOS/K-rating requirements",
       "High-security clearance zones",
       "Anti-terrorism standards",
       "Multi-level access control",
     ],
     solutions: [
-      "DOS-certified crash barriers",
+      "DOS/K-rated barrier options",
       "Anti-ram vehicle barriers",
       "Secure entry pavilions",
       "Biometric access integration",
@@ -136,6 +160,13 @@ const fallbackIndustries = [
   },
 ];
 
+const industryGuides = [
+  { name: "Data Center Security Gates", href: "/industries/data-center-security-gates", description: "Vehicle gates, barriers, fencing, and access control for uptime-critical facilities." },
+  { name: "Utility Substation Security", href: "/industries/utility-substation-security", description: "Substation fencing, gates, barriers, and crew-access planning for exposed utility assets." },
+  { name: "Airport Perimeter Security", href: "/industries/airport-perimeter-security", description: "Airside gates, service-road access, crash barriers, and high-cycle controls." },
+  { name: "Government Facility Security", href: "/industries/government-facility-security", description: "Crash-rated gates, bollards, barriers, and documented security products for restricted sites." },
+];
+
 // Icons for each industry (by slug) - used as fallback when no image
 const industryIcons: Record<string, ReactNode> = {
   "data-centers": (
@@ -172,11 +203,11 @@ const industryIcons: Record<string, ReactNode> = {
 
 export default async function IndustriesPage() {
   // Fetch industries from Sanity
-  const sanityIndustries = await getIndustries();
+  const sanityIndustries = await getIndustries() as SanityIndustry[];
 
   // Use Sanity industries if available, otherwise use fallback
-  const industries = sanityIndustries && sanityIndustries.length > 0
-    ? sanityIndustries.map((ind: any) => {
+  const industries: IndustryItem[] = sanityIndustries && sanityIndustries.length > 0
+    ? sanityIndustries.map((ind) => {
         const id = ind.slug || ind._id;
         return {
           id,
@@ -209,11 +240,34 @@ export default async function IndustriesPage() {
         </div>
       </section>
 
+      <section className="py-16 bg-background-alt">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-10">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Focused Industry Guides</h2>
+            <p className="text-lg text-foreground-muted">
+              Use these pages when the project brief starts with the facility type instead of a product category.
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {industryGuides.map((guide) => (
+              <Link
+                key={guide.href}
+                href={guide.href}
+                className="rounded-lg border border-border bg-white p-6 transition-shadow hover:shadow-lg"
+              >
+                <h3 className="text-lg font-semibold text-foreground mb-2">{guide.name}</h3>
+                <p className="text-sm leading-6 text-foreground-muted">{guide.description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Industries */}
       <section className="py-16 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-24">
-            {industries.map((industry: any, index: number) => (
+            {industries.map((industry, index) => (
               <div
                 key={industry.id}
                 id={industry.id}
@@ -322,7 +376,7 @@ export default async function IndustriesPage() {
       <section className="py-24 bg-primary">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Don't See Your Industry?
+            Don&apos;t See Your Industry?
           </h2>
           <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
             We work with facilities across many sectors. Contact us to discuss your specific security requirements.

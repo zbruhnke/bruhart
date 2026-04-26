@@ -2,18 +2,42 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { getProducts, urlFor } from "@/sanity/client";
 
+type SanityImageSource = Parameters<typeof urlFor>[0];
+
+interface ProductItem {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  features: string[];
+  applications: string[];
+  image: string | null;
+}
+
+interface SanityProduct {
+  _id: string;
+  slug?: string;
+  name: string;
+  tagline: string;
+  description: string;
+  features?: string[];
+  applications?: string[];
+  image?: SanityImageSource;
+  imageUrl?: string;
+}
+
 export const metadata: Metadata = {
   title: "Products | Bru-Hart Industries",
   description: "Explore our complete line of commercial and residential gates, bollards, security fencing, and access control systems.",
 };
 
 // Fallback products when Sanity is empty
-const fallbackProducts = [
+const fallbackProducts: ProductItem[] = [
   {
     id: "commercial-residential",
     name: "Commercial & Residential Gates",
     tagline: "Custom Gate Solutions",
-    description: "Custom slide, swing, and vertical lift gates for commercial properties and residences. From decorative estate gates to industrial-grade security barriers, we provide complete gate solutions. Crash-rated options available for high-security applications requiring ASTM F2656 certification.",
+    description: "Custom slide, swing, and vertical lift gates for commercial properties and residences. From decorative estate gates to industrial-grade security barriers, we provide complete gate solutions. Crash-rated options are available for high-security applications with project-specific rating documentation requirements.",
     features: [
       "Slide, swing, and vertical lift configurations",
       "Crash-rated options (K4/K8/K12)",
@@ -75,13 +99,13 @@ const fallbackProducts = [
   },
   {
     id: "crash-rated",
-    name: "Crash Rated & Tested Gates",
-    tagline: "ASTM F2656 Certified Protection",
-    description: "ASTM F2656 certified barriers designed to stop vehicles at high speeds. K4, K8, and K12 rated options provide the highest level of perimeter protection for critical infrastructure.",
+    name: "Crash Rated Gates",
+    tagline: "Rated Vehicle Mitigation",
+    description: "Crash-rated gate and barrier options for critical infrastructure protection. K4, K8, and K12 rated configurations are available by product, application, and documentation requirements.",
     features: [
-      "ASTM F2656 certified",
+      "Crash-rated configurations",
       "K4/K8/K12 ratings available",
-      "DOS certified options",
+      "Specification support",
       "Slide, swing, and beam configurations",
       "Rapid deployment options (EFO)",
       "Integration with existing security systems",
@@ -107,13 +131,43 @@ const fallbackProducts = [
   },
 ];
 
+const productGuides = [
+  { name: "Crash Rated Gates", href: "/products/crash-rated-gates", description: "Slide, swing, cantilever, vertical lift, and beam gate options for rated vehicle mitigation." },
+  { name: "Crash Rated Barriers", href: "/products/crash-rated-barriers", description: "Bollards, wedges, beams, crash gates, and perimeter barriers for layered site protection." },
+  { name: "Perimeter Security Fencing", href: "/products/perimeter-security-fencing", description: "Anti-climb, anti-cut, crash-rated, and access-control-ready fence systems." },
+  { name: "Access Control & Automation", href: "/products/access-control-automation", description: "Gate operators, card readers, keypads, barrier arms, loops, and safety devices." },
+  { name: "Cantilever Gate Systems", href: "/products/cantilever-gate-systems", description: "Commercial cantilever gates, enclosed track, trucks, operators, and component planning." },
+  { name: "Bollards & Barriers", href: "/products/bollards-barriers", description: "Fixed, removable, retractable, decorative, and crash-rated vehicle mitigation options." },
+];
+
+const wholesaleCategoryGuides = [
+  { name: "Chain Link Fence Supplies", href: "/products/chain-link-fence-supplies", description: "Fabric, posts, rails, fittings, gates, privacy slats, and chain link hardware." },
+  { name: "Wood Fence Materials", href: "/products/wood-fence-materials", description: "Pickets, posts, rails, privacy layouts, gates, and repair materials." },
+  { name: "Vinyl Fence Supplies", href: "/products/vinyl-fence-supplies", description: "Vinyl privacy, picket, ranch rail, posts, rails, gates, and hardware." },
+  { name: "Ornamental Aluminum Fence", href: "/products/ornamental-aluminum-fence", description: "Aluminum panels, gates, pool fence, and architectural fence options." },
+  { name: "Fence Pipe & Tube", href: "/products/fence-pipe-tube", description: "Pipe, tube, posts, rails, brace material, and gate frame material." },
+  { name: "Commercial Gates", href: "/products/commercial-gates", description: "Slide, swing, vertical lift, barrier arm, estate, and custom gate support." },
+  { name: "Gate Operators", href: "/products/gate-operators", description: "Slide, swing, barrier arm, controls, loops, photo eyes, and access accessories." },
+  { name: "Fence Hardware", href: "/products/fence-hardware", description: "Hinges, latches, caps, fasteners, tension bands, truss rods, rollers, and guides." },
+  { name: "Temporary Fence Panels", href: "/products/temporary-fence-panels", description: "Temporary panels, stands, clamps, gates, barricades, and site-control materials." },
+];
+
+const agriculturalGuides = [
+  { name: "Agricultural Fencing", href: "/products/agricultural-fencing", description: "Farm fence, wire, posts, braces, gates, and material planning for working North Florida properties." },
+  { name: "Field Fence & Woven Wire", href: "/products/field-fence-woven-wire", description: "Woven wire, posts, tensioning, braces, and gate planning for livestock and rural boundaries." },
+  { name: "Horse Fencing", href: "/products/horse-fencing", description: "No-climb, board, rail, gate, post, and hardware support for horse properties and paddocks." },
+  { name: "Barbed Wire & High-Tensile", href: "/products/barbed-wire-high-tensile-fence", description: "Wire fence packages for cattle, pasture boundaries, and long rural runs." },
+  { name: "Farm & Ranch Gates", href: "/products/farm-ranch-gates", description: "Pasture gates, driveway gates, equipment openings, hinges, latches, and gate posts." },
+  { name: "Fence Materials & Supplies", href: "/products/fence-materials-supplies", description: "Posts, wire, gates, braces, clips, staples, hardware, and repair materials." },
+];
+
 export default async function ProductsPage() {
   // Fetch products from Sanity
-  const sanityProducts = await getProducts();
+  const sanityProducts = await getProducts() as SanityProduct[];
 
   // Use Sanity products if available, otherwise use fallback
-  const products = sanityProducts && sanityProducts.length > 0
-    ? sanityProducts.map((p: any) => ({
+  const products: ProductItem[] = sanityProducts && sanityProducts.length > 0
+    ? sanityProducts.map((p) => ({
         id: p.slug || p._id,
         name: p.name,
         tagline: p.tagline,
@@ -145,7 +199,7 @@ export default async function ProductsPage() {
       <section className="sticky top-20 z-40 bg-white border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav className="flex gap-1 overflow-x-auto py-4 scrollbar-hide">
-            {products.map((product: any) => (
+            {products.map((product) => (
               <a
                 key={product.id}
                 href={`#${product.id}`}
@@ -158,11 +212,108 @@ export default async function ProductsPage() {
         </div>
       </section>
 
+      <section className="py-16 bg-background-alt">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-10">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Detailed Product Guides</h2>
+            <p className="text-lg text-foreground-muted">
+              Start with these focused pages when you need to spec a specific gate, barrier, fence, or access-control package.
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {productGuides.map((guide) => (
+              <Link
+                key={guide.href}
+                href={guide.href}
+                className="rounded-lg border border-border bg-white p-6 transition-shadow hover:shadow-lg"
+              >
+                <h3 className="text-lg font-semibold text-foreground mb-2">{guide.name}</h3>
+                <p className="text-sm leading-6 text-foreground-muted">{guide.description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-10">
+            <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">
+              Wholesale Fence Supply
+            </p>
+            <h2 className="text-3xl font-bold text-foreground mb-4">Core Fence Supply Categories</h2>
+            <p className="text-lg text-foreground-muted">
+              Bru-Hart is expanding beyond a small brochure site into product-category pages that can compete with national fence supply distributors while still routing buyers into practical RFQ conversations.
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {wholesaleCategoryGuides.map((guide) => (
+              <Link
+                key={guide.href}
+                href={guide.href}
+                className="rounded-lg border border-border bg-background-alt p-6 transition-shadow hover:shadow-lg"
+              >
+                <h3 className="text-lg font-semibold text-foreground mb-2">{guide.name}</h3>
+                <p className="text-sm leading-6 text-foreground-muted">{guide.description}</p>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-8">
+            <Link
+              href="/manufacturers"
+              className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary-dark"
+            >
+              View manufacturer support pages
+              <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-10">
+            <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">
+              Local & Agricultural
+            </p>
+            <h2 className="text-3xl font-bold text-foreground mb-4">Agricultural Fence & Gate Guides</h2>
+            <p className="text-lg text-foreground-muted">
+              Bru-Hart&apos;s Branford presence includes serving local agricultural fence, gate, and material needs for farms, ranches, homesteads, and rural properties.
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {agriculturalGuides.map((guide) => (
+              <Link
+                key={guide.href}
+                href={guide.href}
+                className="rounded-lg border border-border bg-background-alt p-6 transition-shadow hover:shadow-lg"
+              >
+                <h3 className="text-lg font-semibold text-foreground mb-2">{guide.name}</h3>
+                <p className="text-sm leading-6 text-foreground-muted">{guide.description}</p>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-8">
+            <Link
+              href="/service-areas/branford-fl-agricultural-fencing"
+              className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary-dark"
+            >
+              View Branford agricultural fencing support
+              <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Products */}
       <section className="py-16 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-24">
-            {products.map((product: any, index: number) => (
+            {products.map((product, index) => (
               <div
                 key={product.id}
                 id={product.id}
@@ -250,18 +401,18 @@ export default async function ProductsPage() {
         </div>
       </section>
 
-      {/* See It In Action - Video Section */}
+      {/* Rating Reference - Video Section */}
       <section className="py-24 bg-background-alt">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-3">
-              See It In Action
+              Rating Reference
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              Tested. Proven. Trusted.
+              Understanding Vehicle Mitigation Ratings
             </h2>
             <p className="text-lg text-foreground-muted max-w-2xl mx-auto">
-              Watch our crash-rated gates perform under real-world testing conditions.
+              Crash-rated gate specifications should be matched to the site, rating requirement, and product documentation. Crash-tested language should only be used when a specific configuration has supporting physical test documentation.
             </p>
           </div>
 
@@ -277,11 +428,10 @@ export default async function ProductsPage() {
 
             <div className="mt-6 text-center">
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                Crash Rated & Tested Gate Demo
+                Crash Rating Reference
               </h3>
               <p className="text-foreground-muted">
-                ASTM F2656 certified barrier stopping a vehicle at full speed.
-                Our gates are tested to K4, K8, and K12 ratings for maximum protection.
+                Reference footage can help explain vehicle mitigation concepts, but rating documentation should be confirmed for the specific gate, barrier, and configuration being specified.
               </p>
             </div>
           </div>

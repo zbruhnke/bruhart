@@ -106,10 +106,10 @@ const fallbackProducts: Product[] = [
   },
   {
     _id: 'crash-rated',
-    name: 'Crash Rated & Tested Gates',
+    name: 'Crash Rated Gates',
     slug: 'crash-rated',
-    description: 'ASTM F2656 certified barriers designed to stop vehicles at high speeds. K4, K8, and K12 rated options for critical infrastructure protection.',
-    features: ['ASTM F2656 Certified', 'K4/K8/K12 Ratings', 'DOS Certified'],
+    description: 'Crash-rated gate and barrier options for critical infrastructure protection, including K4, K8, and K12 rating conversations by product and configuration.',
+    features: ['Crash Rated Options', 'K4/K8/K12 Ratings', 'Specification Support'],
     imageUrl: '/images/bruhart_work/Attachment.jpeg',
   },
   {

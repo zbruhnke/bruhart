@@ -17,14 +17,14 @@ export const homePage = {
       title: 'Hero Badge Text',
       type: 'string',
       group: 'hero',
-      initialValue: 'Wholesale Fencing & Gate Distributor',
+      initialValue: 'Expert Fence, Gate & Perimeter Sourcing',
     },
     {
       name: 'heroHeadline',
       title: 'Hero Headline',
       type: 'string',
       group: 'hero',
-      initialValue: 'High-Security Gate Systems for',
+      initialValue: 'When the job cannot be solved by',
     },
     {
       name: 'heroHeadlineHighlight',
@@ -32,7 +32,7 @@ export const homePage = {
       type: 'string',
       group: 'hero',
       description: 'The accented part of the headline',
-      initialValue: 'Critical Infrastructure',
+      initialValue: 'a commodity quote',
     },
     {
       name: 'heroSubheadline',
@@ -74,14 +74,14 @@ export const homePage = {
       title: 'Secondary CTA Button Text',
       type: 'string',
       group: 'hero',
-      initialValue: 'View Products',
+      initialValue: 'Expert Sourcing',
     },
     {
       name: 'heroSecondaryCtaLink',
       title: 'Secondary CTA Link',
       type: 'string',
       group: 'hero',
-      initialValue: '/products',
+      initialValue: '/expert-sourcing',
     },
     {
       name: 'heroStatsLabel',
@@ -242,7 +242,7 @@ export const homePage = {
       type: 'text',
       rows: 2,
       group: 'manufacturers',
-      initialValue: 'We proudly partner with industry-leading manufacturers to bring you the highest quality security solutions.',
+      initialValue: 'We are selective about the manufacturers and products we support, using reputation, job fit, documentation, and field performance to guide recommendations.',
     },
     {
       name: 'manufacturersLinkText',
@@ -258,7 +258,7 @@ export const homePage = {
       title: 'CTA Headline',
       type: 'string',
       group: 'cta',
-      initialValue: 'Ready to Secure Your Facility?',
+      initialValue: 'Need the right answer before you buy?',
     },
     {
       name: 'ctaDescription',
@@ -272,7 +272,7 @@ export const homePage = {
       title: 'CTA Primary Button Text',
       type: 'string',
       group: 'cta',
-      initialValue: 'Request a Consultation',
+      initialValue: 'Request Expert Help',
     },
     {
       name: 'ctaPrimaryButtonLink',

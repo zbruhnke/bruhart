@@ -20,9 +20,9 @@ interface CTAProps {
 
 // Fallback data
 const fallbackData = {
-  ctaHeadline: 'Ready to Secure Your Facility?',
-  ctaDescription: 'Our team of security experts is ready to help you design and implement the perfect perimeter protection solution for your specific needs.',
-  ctaPrimaryButtonText: 'Request a Consultation',
+  ctaHeadline: 'Need the right answer before you buy?',
+  ctaDescription: 'Bring Bru-Hart the hard fence, gate, hardware, access-control, or sourcing problem. The goal is to help you avoid the wrong product path before the quote becomes the mistake.',
+  ctaPrimaryButtonText: 'Request Expert Help',
   ctaPrimaryButtonLink: '/contact',
   ctaCards: [
     { title: 'Sales Inquiries', description: 'Get a custom quote for your project', contactType: 'email' as const, contactValue: 'sales@bruhart.com' },

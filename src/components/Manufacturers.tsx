@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { urlFor } from '@/sanity/client';
 
+type SanityImageSource = Parameters<typeof urlFor>[0];
+
 // Fallback data when Sanity data isn't available
 const fallbackManufacturers = [
   {
@@ -80,8 +82,8 @@ const fallbackManufacturers = [
 
 const fallbackSection = {
   manufacturersSectionLabel: 'Our Partners',
-  manufacturersSectionTitle: 'Manufacturers We Represent',
-  manufacturersSectionDescription: 'We proudly partner with industry-leading manufacturers to bring you the highest quality security solutions.',
+  manufacturersSectionTitle: 'Manufacturers We Carry',
+  manufacturersSectionDescription: 'We are selective about the brands and products we support, using manufacturer reputation, job fit, documentation, and field performance to guide recommendations.',
   manufacturersLinkText: 'View all manufacturers & learn more',
 };
 
@@ -89,7 +91,7 @@ interface Manufacturer {
   _id: string;
   name: string;
   slug: string;
-  logo?: any;
+  logo?: SanityImageSource;
   logoUrl?: string;
   website?: string;
 }
@@ -137,11 +139,9 @@ export default function Manufacturers({ showLink = true, data, manufacturers }: 
               : manufacturer.logoUrl || '/manufacturers/placeholder.png';
 
             return (
-              <a
+              <Link
                 key={manufacturer._id}
-                href={manufacturer.website || '#'}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/manufacturers/${manufacturer.slug}`}
                 className="group bg-white rounded-lg p-6 flex items-center justify-center h-24 transition-shadow hover:shadow-lg"
               >
                 <div className="relative w-full h-full">
@@ -153,7 +153,7 @@ export default function Manufacturers({ showLink = true, data, manufacturers }: 
                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   />
                 </div>
-              </a>
+              </Link>
             );
           })}
 

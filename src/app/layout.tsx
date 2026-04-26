@@ -25,12 +25,12 @@ const getBaseUrl = () => {
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseUrl()),
-  title: "Bru-Hart Industries | High-Security Gate Systems",
-  description: "Industry-leading crash-rated gates, barrier systems, and operators protecting data centers, airports, utilities, and government facilities across North America.",
-  keywords: "crash rated gates, security gates, barrier systems, data center security, airport security, infrastructure protection, ASTM F2656, DOS certified",
+  title: "Bru-Hart Industries | Expert Fence, Gate & Perimeter Sourcing",
+  description: "Expert fence, gate, access-control, hardware, barrier, and agricultural sourcing for buyers who need the right product and the right counsel before the quote.",
+  keywords: "crash rated gates, security gates, barrier systems, data center security, airport security, infrastructure protection, ASTM F2656, DOS rated",
   openGraph: {
-    title: "Bru-Hart Industries | High-Security Gate Systems",
-    description: "Industry-leading crash-rated gates, barrier systems, and operators protecting critical infrastructure.",
+    title: "Bru-Hart Industries | Expert Fence, Gate & Perimeter Sourcing",
+    description: "Expert sourcing and product judgment for fence, gate, access-control, barrier, and agricultural projects.",
     type: "website",
     locale: "en_US",
     siteName: "Bru-Hart Industries",
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bru-Hart Industries | High-Security Gate Systems",
-    description: "Industry-leading crash-rated gates, barrier systems, and operators protecting critical infrastructure.",
+    title: "Bru-Hart Industries | Expert Fence, Gate & Perimeter Sourcing",
+    description: "Expert sourcing and product judgment for fence, gate, access-control, barrier, and agricultural projects.",
     images: ["/og-image.jpg"],
   },
 };
@@ -57,7 +57,7 @@ const jsonLd = {
   "@type": "LocalBusiness",
   "@id": "https://www.bruhart.com",
   name: "Bru-Hart Industries",
-  description: "Wholesale fencing and gate distributor specializing in high-security gate systems, crash-rated barriers, and access control solutions for critical infrastructure.",
+  description: "Wholesale fencing and gate distributor specializing in expert sourcing, high-security gate systems, crash-rated barriers, access control solutions, agricultural fencing, and custom gate components.",
   url: "https://www.bruhart.com",
   telephone: "+1-318-344-5731",
   email: "sales@bruhart.com",
@@ -93,7 +93,10 @@ const jsonLd = {
     "Access control",
     "Perimeter security",
     "Data center security",
-    "ASTM F2656 certified products",
+    "ASTM F2656 rated products",
+    "Expert fence and gate sourcing",
+    "Hard-to-source fence products",
+    "Special-order gate components",
   ],
 };
 

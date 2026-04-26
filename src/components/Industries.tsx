@@ -98,7 +98,7 @@ const fallbackIndustries: Array<{
     _id: 'government',
     name: 'Government & Military',
     slug: 'government',
-    description: 'DOS-certified anti-ram barriers and high-security entry systems for federal facilities.',
+    description: 'DOS/K-rated anti-ram barrier options and high-security entry systems for federal facilities.',
     imageUrl: '/images/bruhart_work/IMG_1976.jpeg',
   },
   {

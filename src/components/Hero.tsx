@@ -22,15 +22,15 @@ interface HeroProps {
 
 // Fallback data
 const fallback = {
-  heroBadge: 'Wholesale Fencing & Gate Distributor',
-  heroHeadline: 'High-Security Gate Systems for',
-  heroHeadlineHighlight: 'Critical Infrastructure',
-  heroSubheadline: 'Industry-leading crash-rated gates, barrier systems, and operators protecting data centers, airports, utilities, and government facilities across North America.',
+  heroBadge: 'Expert Fence, Gate & Perimeter Sourcing',
+  heroHeadline: 'When the job cannot be solved by',
+  heroHeadlineHighlight: 'a commodity quote',
+  heroSubheadline: 'Bru-Hart helps contractors, facilities, landowners, and security teams source the right fence, gate, access-control, hardware, and barrier products when getting it wrong is expensive.',
   heroBackgroundImageUrl: '/images/bruhart_work/IMG_1287.jpeg',
   heroPrimaryCta: 'Get a Quote',
   heroPrimaryCtaLink: '/contact',
-  heroSecondaryCta: 'View Products',
-  heroSecondaryCtaLink: '/products',
+  heroSecondaryCta: 'Expert Sourcing',
+  heroSecondaryCtaLink: '/expert-sourcing',
 };
 
 export default function Hero({ data }: HeroProps) {
@@ -104,19 +104,19 @@ export default function Hero({ data }: HeroProps) {
 
           {/* Trust indicators */}
           <div className="mt-16 pt-8 border-t border-white/20">
-            <p className="text-white/60 text-sm mb-4">Premium solutions from domestic &amp; international manufacturers</p>
+            <p className="text-white/60 text-sm mb-4">Product judgment, manufacturer context, and sourcing help for hard fence and gate problems</p>
             <div className="flex flex-wrap items-center gap-8">
               <div className="text-white/80">
                 <div className="text-3xl font-bold">45+</div>
                 <div className="text-sm text-white/60">Years Experience</div>
               </div>
               <div className="text-white/80">
-                <div className="text-3xl font-bold">50</div>
-                <div className="text-sm text-white/60">States Served</div>
+                <div className="text-3xl font-bold">Hard</div>
+                <div className="text-sm text-white/60">Problems Welcome</div>
               </div>
               <div className="text-white/80">
-                <div className="text-3xl font-bold">1M+</div>
-                <div className="text-sm text-white/60">Cycles Tested</div>
+                <div className="text-3xl font-bold">Right</div>
+                <div className="text-sm text-white/60">Product First</div>
               </div>
             </div>
           </div>

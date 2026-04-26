@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import ExpertSourcing from "@/components/ExpertSourcing";
 import Products from "@/components/Products";
 import Industries from "@/components/Industries";
 import Certifications from "@/components/Certifications";
@@ -20,6 +21,7 @@ export default async function Home() {
   return (
     <>
       <Hero data={homePageData} />
+      <ExpertSourcing />
       <Products data={homePageData} products={products} />
       <Industries data={homePageData} industries={industries} />
       <Certifications data={homePageData} />

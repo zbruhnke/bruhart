@@ -23,6 +23,7 @@ interface SiteSettings {
   };
   footerDescription?: string;
   footerProductLinks?: FooterLink[];
+  footerLocalAgLinks?: FooterLink[];
   footerIndustryLinks?: FooterLink[];
   footerCompanyLinks?: FooterLink[];
   footerResourceLinks?: FooterLink[];
@@ -32,26 +33,86 @@ interface SiteSettings {
 // Fallback footer links
 const fallbackLinks = {
   products: [
-    { name: 'Commercial & Residential Gates', href: '/products#commercial-residential' },
-    { name: 'Bollards & Barriers', href: '/products#bollards' },
-    { name: 'Perimeter & Security Fencing', href: '/products#security-fencing' },
-    { name: 'Access Control', href: '/products#access-control' },
-    { name: 'Crash Rated & Tested Gates', href: '/products#crash-rated' },
-    { name: 'Custom Solutions', href: '/products#custom-solutions' },
+    { name: 'Crash Rated Gates', href: '/products/crash-rated-gates' },
+    { name: 'Crash Rated Barriers', href: '/products/crash-rated-barriers' },
+    { name: 'Perimeter Security Fencing', href: '/products/perimeter-security-fencing' },
+    { name: 'Access Control', href: '/products/access-control-automation' },
+    { name: 'Cantilever Gate Systems', href: '/products/cantilever-gate-systems' },
+    { name: 'Bollards & Barriers', href: '/products/bollards-barriers' },
+    { name: 'Chain Link Supplies', href: '/products/chain-link-fence-supplies' },
+    { name: 'Wood Fence Materials', href: '/products/wood-fence-materials' },
+    { name: 'Gate Operators', href: '/products/gate-operators' },
+    { name: 'Fence Hardware', href: '/products/fence-hardware' },
+  ],
+  localAg: [
+    { name: 'Branford Ag Fencing', href: '/service-areas/branford-fl-agricultural-fencing' },
+    { name: 'Agricultural Fencing', href: '/products/agricultural-fencing' },
+    { name: 'Field Fence & Woven Wire', href: '/products/field-fence-woven-wire' },
+    { name: 'Horse Fencing', href: '/products/horse-fencing' },
+    { name: 'Farm & Ranch Gates', href: '/products/farm-ranch-gates' },
+    { name: 'Fence Materials', href: '/products/fence-materials-supplies' },
   ],
   industries: [
-    { name: 'Data Centers', href: '/industries#data-centers' },
-    { name: 'Airports', href: '/industries#airports' },
-    { name: 'Utilities', href: '/industries#utilities' },
-    { name: 'Government', href: '/industries#government' },
+    { name: 'Data Centers', href: '/industries/data-center-security-gates' },
+    { name: 'Airports', href: '/industries/airport-perimeter-security' },
+    { name: 'Utilities', href: '/industries/utility-substation-security' },
+    { name: 'Government', href: '/industries/government-facility-security' },
     { name: 'Ports & Logistics', href: '/industries#ports' },
     { name: 'Corporate', href: '/industries#corporate' },
   ],
   company: [
     { name: 'About Us', href: '/about' },
+    { name: 'Expert Sourcing', href: '/expert-sourcing' },
+    { name: 'Industry Experience', href: '/about/fence-industry-experience' },
+    { name: 'Why Contractors Call', href: '/about/why-contractors-call-bruhart' },
+    { name: 'Hard-to-Source Products', href: '/resources/hard-to-source-fence-gate-products' },
+    { name: 'Reviews', href: '/reviews' },
+    { name: 'Case Studies', href: '/case-studies' },
+    { name: 'Ask a Fence Expert', href: '/resources/ask-a-fence-expert' },
     { name: 'Our Partners', href: '/manufacturers' },
     { name: 'Contact', href: '/contact' },
   ],
+};
+
+const normalizeFooterLink = (link: FooterLink): FooterLink => {
+  const hrefMap: Record<string, string> = {
+    '/products#commercial-residential': '/products/commercial-gates',
+    '/products#bollards': '/products/bollards-barriers',
+    '/products#security-fencing': '/products/perimeter-security-fencing',
+    '/products#access-control': '/products/access-control-automation',
+    '/products#crash-rated': '/products/crash-rated-gates',
+    '/products#custom-solutions': '/custom-fabrication',
+    '/industries#data-centers': '/industries/data-center-security-gates',
+    '/industries#airports': '/industries/airport-perimeter-security',
+    '/industries#utilities': '/industries/utility-substation-security',
+    '/industries#government': '/industries/government-facility-security',
+  };
+
+  const nameMap: Record<string, string> = {
+    'Crash Rated & Tested Gates': 'Crash Rated Gates',
+    'Crash-Rated & Tested Gates': 'Crash Rated Gates',
+  };
+
+  return {
+    name: nameMap[link.name] || link.name,
+    href: hrefMap[link.href] || link.href,
+  };
+};
+
+const mergeFooterLinks = (links: FooterLink[] | undefined, fallback: FooterLink[], required: FooterLink[] = []) => {
+  const base = links && links.length > 0 ? links.map(normalizeFooterLink) : fallback;
+  const seen = new Set(base.map((link) => link.href));
+
+  return [
+    ...base,
+    ...required.filter((link) => {
+      if (seen.has(link.href)) {
+        return false;
+      }
+      seen.add(link.href);
+      return true;
+    }),
+  ];
 };
 
 export default function Footer({ settings }: { settings?: SiteSettings }) {
@@ -65,18 +126,23 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
   };
   const socialLinks = settings?.socialLinks || {};
   const siteName = settings?.siteName || "Bru-Hart Industries";
-  const footerDescription = settings?.footerDescription || "Wholesale fencing and gate distributor specializing in high-security gate systems and crash-rated barriers for critical infrastructure.";
+  const footerDescription = settings?.footerDescription || "Wholesale fencing and gate distributor for buyers who need expert sourcing, product judgment, high-security gates, agricultural fence materials, and hard-to-find components.";
 
   // Use Sanity links or fallback
-  const productLinks = settings?.footerProductLinks && settings.footerProductLinks.length > 0
-    ? settings.footerProductLinks
-    : fallbackLinks.products;
-  const industryLinks = settings?.footerIndustryLinks && settings.footerIndustryLinks.length > 0
-    ? settings.footerIndustryLinks
-    : fallbackLinks.industries;
-  const companyLinks = settings?.footerCompanyLinks && settings.footerCompanyLinks.length > 0
-    ? settings.footerCompanyLinks
-    : fallbackLinks.company;
+  const productLinks = mergeFooterLinks(settings?.footerProductLinks, fallbackLinks.products, [
+    { name: 'Chain Link Supplies', href: '/products/chain-link-fence-supplies' },
+    { name: 'Gate Operators', href: '/products/gate-operators' },
+    { name: 'Fence Hardware', href: '/products/fence-hardware' },
+  ]);
+  const localAgLinks = mergeFooterLinks(settings?.footerLocalAgLinks, fallbackLinks.localAg);
+  const industryLinks = mergeFooterLinks(settings?.footerIndustryLinks, fallbackLinks.industries);
+  const companyLinks = mergeFooterLinks(settings?.footerCompanyLinks, fallbackLinks.company, [
+    { name: 'Expert Sourcing', href: '/expert-sourcing' },
+    { name: 'Hard-to-Source Products', href: '/resources/hard-to-source-fence-gate-products' },
+    { name: 'Reviews', href: '/reviews' },
+    { name: 'Case Studies', href: '/case-studies' },
+    { name: 'Ask a Fence Expert', href: '/resources/ask-a-fence-expert' },
+  ]);
 
   // Check if any social links are set
   const hasLinkedIn = socialLinks.linkedin && socialLinks.linkedin !== '#';
@@ -90,7 +156,7 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
     <footer className="bg-foreground text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Main Footer */}
-        <div className="py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div className="py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-10">
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-2">
             <Link href="/" className="inline-block mb-6">
@@ -136,6 +202,22 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
             </h3>
             <ul className="space-y-3">
               {productLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-steel-light hover:text-white transition-colors text-sm">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Local & Ag */}
+          <div>
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+              Local & Ag
+            </h3>
+            <ul className="space-y-3">
+              {localAgLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-steel-light hover:text-white transition-colors text-sm">
                     {link.name}
