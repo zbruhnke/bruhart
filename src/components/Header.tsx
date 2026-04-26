@@ -300,10 +300,12 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="lg:hidden p-2 text-steel hover:text-primary"
+            className="lg:hidden inline-flex items-center gap-2 rounded-lg p-2 text-steel hover:text-primary"
+            aria-expanded={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <span className="sr-only">Open menu</span>
+            <span className="hidden sm:inline text-sm font-semibold">Menu</span>
             {mobileMenuOpen ? (
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -318,39 +320,65 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border">
-            {navigation.map((item) => (
-              <div key={item.name}>
+          <div className="lg:hidden -mx-4 sm:-mx-6 mt-0 max-h-[calc(100vh-5rem)] overflow-y-auto border-t border-border bg-white shadow-xl lg:shadow-none">
+            <div className="px-4 py-5 sm:px-6">
+              <div className="grid gap-3 sm:grid-cols-2">
                 <Link
-                  href={item.href}
-                  className="block py-3 text-base font-medium text-foreground hover:text-primary"
+                  href={headerCtaLink}
+                  className="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-4 text-sm font-semibold text-white"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  {item.name}
+                  {headerCtaText}
                 </Link>
-                {item.children && (
-                  <div className="pl-4">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.name}
-                        href={child.href}
-                        className="block py-2 text-sm text-steel hover:text-primary"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {child.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                <a
+                  href={`tel:${phone.replace(/[^0-9+]/g, '')}`}
+                  className="inline-flex items-center justify-center rounded-xl border border-border px-6 py-4 text-sm font-semibold text-foreground hover:border-primary hover:text-primary"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Call {phone}
+                </a>
               </div>
-            ))}
-            <div className="mt-4 pt-4 border-t border-border">
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 border-t border-border bg-background-alt px-4 py-5 sm:grid-cols-2 sm:px-6">
+              {navigation.map((item) => (
+                <div key={item.name} className="rounded-2xl border border-border bg-white p-4 shadow-sm">
+                  <Link
+                    href={item.href}
+                    className="flex items-center justify-between gap-3 text-base font-bold text-foreground hover:text-primary"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                    <svg className="w-4 h-4 flex-shrink-0 text-steel" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                  {item.children && (
+                    <div className="mt-3 grid gap-2">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.name}
+                          href={child.href}
+                          className="rounded-lg px-3 py-2 text-sm font-medium text-steel hover:bg-cream hover:text-primary"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {child.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="px-4 py-5 sm:px-6">
               <Link
-                href={headerCtaLink}
-                className="block w-full text-center px-6 py-3 text-sm font-semibold text-white bg-primary rounded-lg"
+                href="/resources/tier-1-content-packets"
+                className="block rounded-2xl border border-primary/20 bg-primary/5 p-4 text-sm text-foreground hover:border-primary/40"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {headerCtaText}
+                <span className="block font-bold text-primary">Review the SEO content packet</span>
+                <span className="mt-1 block text-steel">Open the Dana walkthrough, Tier 1 page requirements, and proof-asset checklist.</span>
               </Link>
             </div>
           </div>
