@@ -15,7 +15,7 @@ const proofSlots = [
   {
     title: 'Contractor Testimonials',
     description:
-      'Quotes from fence contractors, gate fabricators, and installers who rely on Bru-Hart for product judgment, sourcing, and component support.',
+      'Quotes from fence contractors, gate fabricators, and installers who buy from Bru-Hart or rely on Bru-Hart for product judgment, sourcing, and component support.',
   },
   {
     title: 'Manufacturer Feedback',
@@ -86,6 +86,7 @@ export default function ReviewsPage() {
                 ['Testimonials', '20 short quotes from contractors, customers, and manufacturers.'],
                 ['Photos', 'Project, product, yard, delivery, material, and before/after photos.'],
                 ['Context', 'Who the buyer was, what they needed, what Bru-Hart supplied, and what changed.'],
+                ['Boundary', 'Bru-Hart does not install. Reviews should reflect materials, components, sourcing, technical support, or installer recommendations.'],
                 ['Permission', 'Approval to publish the quote, company name, photo, or anonymized story.'],
               ].map(([label, value]) => (
                 <div key={label} className="grid gap-2 p-5 sm:grid-cols-[160px_1fr]">

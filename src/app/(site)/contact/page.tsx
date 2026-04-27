@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getContactPage, getSiteSettings } from "@/sanity/client";
 import ContactForm from "@/components/ContactForm";
+import SupplyOnlyNotice from "@/components/SupplyOnlyNotice";
 
 export const metadata: Metadata = {
   title: "Contact Us | Bru-Hart Industries",
@@ -10,11 +11,11 @@ export const metadata: Metadata = {
 // Fallback data for contact page
 const fallbackData = {
   heroHeading: 'Get in Touch',
-  heroSubtext: 'Whether you need a quote, technical support, or want to discuss your security requirements, our team is here to help.',
+  heroSubtext: 'Whether you need materials, technical support, product guidance, or an installer recommendation, our team is here to help.',
   contactInfoTitle: 'Contact Information',
   businessHours: 'Mon-Fri 8am-6pm CT',
-  emergencyLabel: '24/7 Emergency Support',
-  emergencyNote: 'For existing customers only',
+  emergencyLabel: 'Technical Support',
+  emergencyNote: 'Product and materials support only. Bru-Hart does not provide installation labor.',
 };
 
 // Fallback site settings
@@ -31,6 +32,9 @@ const fallbackSettings = {
   },
 };
 
+const normalizeContactReason = (reason: string) =>
+  reason === 'Schedule a Consultation' ? 'Product Guidance' : reason;
+
 export default async function ContactPage() {
   const [contactPageData, siteSettings] = await Promise.all([
     getContactPage(),
@@ -39,18 +43,36 @@ export default async function ContactPage() {
 
   // Merge with fallbacks
   const heroHeading = contactPageData?.heroHeading || fallbackData.heroHeading;
-  const heroSubtext = contactPageData?.heroSubtext || fallbackData.heroSubtext;
+  const heroSubtext = contactPageData?.heroSubtext === 'Whether you need a quote, technical support, or want to discuss your security requirements, our team is here to help.'
+    ? fallbackData.heroSubtext
+    : contactPageData?.heroSubtext || fallbackData.heroSubtext;
   const contactInfoTitle = contactPageData?.contactInfoTitle || fallbackData.contactInfoTitle;
   const businessHours = contactPageData?.businessHours || fallbackData.businessHours;
-  const emergencyLabel = contactPageData?.emergencyLabel || fallbackData.emergencyLabel;
-  const emergencyNote = contactPageData?.emergencyNote || fallbackData.emergencyNote;
+  const emergencyLabel = contactPageData?.emergencyLabel === '24/7 Emergency Support'
+    ? fallbackData.emergencyLabel
+    : contactPageData?.emergencyLabel || fallbackData.emergencyLabel;
+  const emergencyNote = contactPageData?.emergencyNote === 'For existing customers only'
+    ? fallbackData.emergencyNote
+    : contactPageData?.emergencyNote || fallbackData.emergencyNote;
   const showEmergencySupport = contactPageData?.showEmergencySupport !== false; // Default to true
 
   const phone = siteSettings?.phone || fallbackSettings.phone;
-  const email = siteSettings?.email || fallbackSettings.email;
   const salesEmail = siteSettings?.salesEmail || fallbackSettings.salesEmail;
   const billingEmail = siteSettings?.billingEmail || fallbackSettings.billingEmail;
   const address = siteSettings?.address || fallbackSettings.address;
+  const contactFormData = {
+    formTitle: contactPageData?.formTitle,
+    formSubtext: contactPageData?.formSubtext,
+    contactReasons: Array.from(
+      new Set((contactPageData?.contactReasons && contactPageData.contactReasons.length > 0 ? contactPageData.contactReasons : undefined)?.map(normalizeContactReason))
+    ),
+    submitButtonText: contactPageData?.submitButtonText,
+    submittingText: contactPageData?.submittingText,
+    successMessage: contactPageData?.successMessage,
+    successDescription: contactPageData?.successDescription,
+    errorMessage: contactPageData?.errorMessage,
+    errorDescription: contactPageData?.errorDescription,
+  };
 
   return (
     <>
@@ -64,6 +86,7 @@ export default async function ContactPage() {
             <p className="text-xl text-white/80">
               {heroSubtext}
             </p>
+            <SupplyOnlyNotice dark compact className="mt-8 max-w-2xl" />
           </div>
         </div>
       </section>
@@ -77,6 +100,8 @@ export default async function ContactPage() {
               <h2 className="text-2xl font-bold text-foreground mb-6">{contactInfoTitle}</h2>
 
               <div className="space-y-6">
+                <SupplyOnlyNotice compact />
+
                 {/* Address */}
                 <div className="flex gap-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -166,7 +191,7 @@ export default async function ContactPage() {
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <ContactForm data={contactPageData} />
+              <ContactForm data={contactFormData} />
             </div>
           </div>
         </div>

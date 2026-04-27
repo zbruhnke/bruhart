@@ -171,6 +171,12 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
             <p className="text-steel-light mb-6 max-w-xs">
               {footerDescription}
             </p>
+            <div className="mb-6 max-w-xs rounded-xl border border-white/10 bg-white/5 p-4">
+              <p className="text-xs font-bold uppercase tracking-wider text-accent-light">Supply Only</p>
+              <p className="mt-2 text-sm leading-6 text-steel-light">
+                Bru-Hart sells materials and components. We provide technical support and installer recommendations, but we do not install anything we sell.
+              </p>
+            </div>
             {hasSocialLinks && (
               <div className="flex gap-4">
                 {hasLinkedIn && (

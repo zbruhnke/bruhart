@@ -32,7 +32,7 @@ export default function NotFound() {
             <p className="text-white/80 mb-4">
               We're a wholesale distributor of high-security fencing, gates, and access control systems
               with over 45 years of experience. From crash-rated barriers to custom gate solutions,
-              we provide end-to-end perimeter security for critical infrastructure.
+              we supply materials, components, technical support, and installer recommendations for critical infrastructure.
             </p>
             <p className="text-white/80">
               Looking for something specific? Our team is here to help.

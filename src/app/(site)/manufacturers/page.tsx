@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import SupplyOnlyNotice from '@/components/SupplyOnlyNotice';
 import { getManufacturers, getManufacturersPage, urlFor } from '@/sanity/client';
 
 type SanityImageSource = Parameters<typeof urlFor>[0];
@@ -55,7 +56,7 @@ const fallbackManufacturers = [
     slug: 'fencetrac',
     logo: null,
     logoUrl: '/manufacturers/fencetrac-fence-systems-1000px.png',
-    description: 'Revolutionary fence framing systems that create clean, modern commercial fencing with superior strength and faster installation.',
+    description: 'Revolutionary fence framing systems that create clean, modern commercial fencing with superior strength and efficient installer workflows.',
     website: 'https://fencetrac.com',
   },
   {
@@ -112,8 +113,8 @@ const fallbackLogoUrls = Object.fromEntries(
 const fallbackPage = {
   heroHeading: 'Manufacturers We Represent',
   heroSubtext: 'Bru-Hart is selective about the manufacturers and products we support. Some jobs call for domestic products, some call for imported products, and every job deserves the best fit for the application.',
-  ctaHeading: 'Need Help Choosing the Right Solution?',
-  ctaSubtext: 'Tell us the job, the constraints, and the product category. We will help you sort through manufacturer options without defaulting to weak substitutes.',
+  ctaHeading: 'Need Help Choosing the Right Materials?',
+  ctaSubtext: 'Tell us the job, the constraints, and the product category. We will help you sort through manufacturer options, documentation, and installer paths without defaulting to weak substitutes.',
   ctaButtonText: 'Contact Us',
   ctaButtonLink: '/contact',
 };
@@ -145,6 +146,7 @@ export default async function ManufacturersPage() {
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               {heroSubtext}
             </p>
+            <SupplyOnlyNotice dark compact className="mx-auto mt-8 max-w-2xl text-left" />
           </div>
         </div>
       </section>
@@ -251,6 +253,7 @@ export default async function ManufacturersPage() {
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">
             {ctaSubtext}
           </p>
+          <SupplyOnlyNotice dark compact className="mx-auto mb-8 max-w-2xl text-left" />
           <Link
             href={ctaButtonLink}
             className="inline-flex items-center justify-center px-8 py-3 bg-amber-500 text-white font-semibold rounded-lg hover:bg-amber-600 transition-colors"

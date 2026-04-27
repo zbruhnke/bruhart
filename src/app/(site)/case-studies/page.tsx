@@ -25,7 +25,8 @@ const caseStudyTemplate = [
   ['Site or buyer', 'Contractor, landowner, fabricator, facility, or project type.'],
   ['Bru-Hart role', 'Supplied, sourced, specified, advised, fabricated, or coordinated.'],
   ['Product mix', 'Fence, gate, wire, posts, hardware, operators, track, trucks, or barriers.'],
-  ['Result', 'Faster quote, better fit, fewer callbacks, stronger access, or cleaner install.'],
+  ['Result', 'Faster quote, better fit, fewer callbacks, stronger access, or cleaner contractor/customer install.'],
+  ['Boundary', 'Bru-Hart supplied materials, components, sourcing help, technical support, or installer recommendations; Bru-Hart did not perform installation labor.'],
   ['Proof', 'Photos, testimonial, owner note, manufacturer context, or approved project detail.'],
 ];
 

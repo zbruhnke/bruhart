@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getProducts, urlFor } from "@/sanity/client";
+import SupplyOnlyNotice from "@/components/SupplyOnlyNotice";
 
 type SanityImageSource = Parameters<typeof urlFor>[0];
 
@@ -28,7 +29,7 @@ interface SanityProduct {
 
 export const metadata: Metadata = {
   title: "Products | Bru-Hart Industries",
-  description: "Explore our complete line of commercial and residential gates, bollards, security fencing, and access control systems.",
+  description: "Explore commercial and residential gates, bollards, security fencing, access control materials, components, and technical support from Bru-Hart Industries.",
 };
 
 // Fallback products when Sanity is empty
@@ -188,9 +189,10 @@ export default async function ProductsPage() {
               Security Products Built for Critical Infrastructure
             </h1>
             <p className="text-xl text-white/80">
-              From crash-rated barriers to integrated access control, our products meet
-              the highest security standards required by government and enterprise facilities.
+              From crash-rated barriers to integrated access control, Bru-Hart supplies
+              materials, components, documentation support, and product guidance for demanding facilities.
             </p>
+            <SupplyOnlyNotice dark compact className="mt-8 max-w-2xl" />
           </div>
         </div>
       </section>
@@ -442,17 +444,18 @@ export default async function ProductsPage() {
       <section className="py-24 bg-primary">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Need Help Choosing the Right Solution?
+            Need Help Choosing the Right Materials?
           </h2>
           <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-            Our security experts can help you identify the best products for your specific requirements.
+            Our product experts can help you identify the right materials, components, documentation, and installer path for your specific requirements.
           </p>
+          <SupplyOnlyNotice dark compact className="mx-auto mb-8 max-w-2xl text-left" />
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-primary bg-white hover:bg-gray-100 rounded-lg transition-colors"
             >
-              Schedule a Consultation
+              Request Product Guidance
             </Link>
             <a
               href="tel:+1-318-344-5731"

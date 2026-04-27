@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ReactNode } from 'react';
 import { urlFor } from '@/sanity/client';
+import SupplyOnlyNotice from '@/components/SupplyOnlyNotice';
 
 type SanityImageSource = Parameters<typeof urlFor>[0];
 type MaybeSanityImage = SanityImageSource | null | undefined;
@@ -188,14 +189,20 @@ const getProductImageUrl = (product: Product) => {
 const fallbackSection = {
   productsSectionLabel: 'Our Products',
   productsSectionTitle: 'Complete Security Gate Solutions',
-  productsSectionDescription: 'From crash-rated barriers to integrated access control, we provide end-to-end perimeter security solutions for the most demanding applications.',
+  productsSectionDescription: 'From crash-rated barriers to integrated access control, we supply perimeter security materials, components, and technical guidance for demanding applications.',
   productsCtaText: 'Explore Our Solutions',
 };
+
+const supplyOnlyText = (value: string) =>
+  value.replace(
+    'From crash-rated barriers to integrated access control, we provide end-to-end perimeter security solutions for the most demanding applications.',
+    fallbackSection.productsSectionDescription
+  );
 
 export default function Products({ data, products }: ProductsProps) {
   const sectionLabel = data?.productsSectionLabel || fallbackSection.productsSectionLabel;
   const sectionTitle = data?.productsSectionTitle || fallbackSection.productsSectionTitle;
-  const sectionDescription = data?.productsSectionDescription || fallbackSection.productsSectionDescription;
+  const sectionDescription = supplyOnlyText(data?.productsSectionDescription || fallbackSection.productsSectionDescription);
   const ctaText = data?.productsCtaText || fallbackSection.productsCtaText;
 
   const displayProducts = products && products.length > 0 ? products : fallbackProducts;
@@ -214,6 +221,7 @@ export default function Products({ data, products }: ProductsProps) {
           <p className="text-lg text-foreground-muted">
             {sectionDescription}
           </p>
+          <SupplyOnlyNotice compact className="mx-auto mt-8 max-w-2xl text-left" />
         </div>
 
         {/* Products Grid */}

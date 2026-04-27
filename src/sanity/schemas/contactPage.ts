@@ -12,11 +12,11 @@ export const contactPage = {
     // Visibility Toggles
     {
       name: 'showEmergencySupport',
-      title: 'Show Emergency Support Section',
+      title: 'Show Technical Support Section',
       type: 'boolean',
       group: 'visibility',
       initialValue: true,
-      description: 'Toggle the 24/7 Emergency Support section on/off',
+      description: 'Toggle the technical support section on/off',
     },
 
     // Hero
@@ -52,17 +52,17 @@ export const contactPage = {
     },
     {
       name: 'emergencyLabel',
-      title: 'Emergency Support Label',
+      title: 'Technical Support Label',
       type: 'string',
       group: 'contactInfo',
-      initialValue: '24/7 Emergency Support',
+      initialValue: 'Technical Support',
     },
     {
       name: 'emergencyNote',
-      title: 'Emergency Support Note',
+      title: 'Technical Support Note',
       type: 'string',
       group: 'contactInfo',
-      initialValue: 'For existing customers only',
+      initialValue: 'Product and materials support only. Bru-Hart does not provide installation labor.',
     },
 
     // Form Section
@@ -89,7 +89,8 @@ export const contactPage = {
       initialValue: [
         'Request a Quote',
         'Technical Support',
-        'Schedule a Consultation',
+        'Product Guidance',
+        'Installer Recommendation',
         'Product Information',
         'Partnership Inquiry',
         'Other',

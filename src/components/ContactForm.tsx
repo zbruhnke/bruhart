@@ -23,7 +23,8 @@ const fallbackData = {
   contactReasons: [
     "Request a Quote",
     "Technical Support",
-    "Schedule a Consultation",
+    "Product Guidance",
+    "Installer Recommendation",
     "Product Information",
     "Partnership Inquiry",
     "Other",
@@ -36,10 +37,16 @@ const fallbackData = {
   errorDescription: 'Please try again or call us directly.',
 };
 
+const normalizeContactReason = (reason: string) =>
+  reason === 'Schedule a Consultation' ? 'Product Guidance' : reason;
+
 export default function ContactForm({ data }: ContactFormProps) {
   const formTitle = data?.formTitle || fallbackData.formTitle;
   const formSubtext = data?.formSubtext || fallbackData.formSubtext;
-  const contactReasons = data?.contactReasons && data.contactReasons.length > 0 ? data.contactReasons : fallbackData.contactReasons;
+  const sourceContactReasons = data?.contactReasons && data.contactReasons.length > 0 ? data.contactReasons : fallbackData.contactReasons;
+  const contactReasons = Array.from(
+    new Set([...sourceContactReasons.map(normalizeContactReason), 'Installer Recommendation'])
+  );
   const submitButtonText = data?.submitButtonText || fallbackData.submitButtonText;
   const submittingText = data?.submittingText || fallbackData.submittingText;
   const successMessage = data?.successMessage || fallbackData.successMessage;
@@ -105,6 +112,12 @@ export default function ContactForm({ data }: ContactFormProps) {
     <div className="bg-white rounded-2xl border border-border p-8 lg:p-12">
       <h2 className="text-2xl font-bold text-foreground mb-2">{formTitle}</h2>
       <p className="text-foreground-muted mb-8">{formSubtext}</p>
+      <div className="mb-8 rounded-xl border border-primary/20 bg-primary/5 p-4">
+        <p className="text-sm font-semibold text-foreground">Supply-only note</p>
+        <p className="mt-1 text-sm leading-6 text-foreground-muted">
+          Bru-Hart sells materials and components. We do not install anything we sell, but we can provide technical support and recommend experienced installers when needed.
+        </p>
+      </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

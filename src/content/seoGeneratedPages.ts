@@ -851,7 +851,7 @@ function toProductPage(seed: ProductSeed): SeoLandingPage {
       {
         title: 'Plan the full package',
         body:
-          `${seed.label} is rarely the only thing a customer needs. Gates, posts, fittings, hardware, operators, braces, or repair parts often determine whether the installed system works cleanly.`,
+          `${seed.label} is rarely the only thing a customer needs. Gates, posts, fittings, hardware, operators, braces, or repair parts often determine whether the finished system works cleanly after the customer or installer puts it in place.`,
         bullets: family.productTypes.slice(0, 3).map((item) => `Coordinate ${item} with the rest of the fence or gate package`),
       },
     ],
@@ -1291,7 +1291,7 @@ function toAboutPage(seed: AboutSeed): SeoLandingPage {
       {
         title: 'How the decision gets clearer',
         body:
-          'The best buyers do not just need a category name. They need to understand what changes price, lead time, fit, compliance, field performance, and support after the product is installed.',
+          'The best buyers do not just need a category name. They need to understand what changes price, lead time, fit, compliance, field performance, and support after the product is put in service by the customer, contractor, or installer.',
         bullets: [
           'Clarify the real use case before quoting',
           'Route complex decisions to expert sourcing when a commodity answer is not enough',

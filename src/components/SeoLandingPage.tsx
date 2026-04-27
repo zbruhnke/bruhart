@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { SeoLandingPage as SeoLandingPageContent } from '@/content/seoLandingPages';
+import SupplyOnlyNotice from '@/components/SupplyOnlyNotice';
 
 const publicText = (value: string) =>
   value
@@ -80,18 +81,21 @@ export default function SeoLandingPage({ page }: { page: SeoLandingPageContent }
               {publicText(page.intro)}
             </p>
           </div>
-          <div className="rounded-lg border border-border bg-background-alt p-6">
-            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
-              Project Fit
-            </h2>
-            <ul className="space-y-3">
-              {page.highlights.map((highlight) => (
-                <li key={highlight} className="flex gap-3 text-sm leading-6 text-foreground-muted">
-                  <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
-                  <span>{publicText(highlight)}</span>
-                </li>
-              ))}
-            </ul>
+          <div className="space-y-6">
+            <SupplyOnlyNotice compact />
+            <div className="rounded-lg border border-border bg-background-alt p-6">
+              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+                Project Fit
+              </h2>
+              <ul className="space-y-3">
+                {page.highlights.map((highlight) => (
+                  <li key={highlight} className="flex gap-3 text-sm leading-6 text-foreground-muted">
+                    <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
+                    <span>{publicText(highlight)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>

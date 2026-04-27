@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { getIndustries, urlFor } from "@/sanity/client";
+import SupplyOnlyNotice from "@/components/SupplyOnlyNotice";
 
 type SanityImageSource = Parameters<typeof urlFor>[0];
 
@@ -29,7 +30,7 @@ interface SanityIndustry {
 
 export const metadata: Metadata = {
   title: "Industries We Serve | Bru-Hart Industries",
-  description: "Specialized security solutions for data centers, airports, utilities, government facilities, and more.",
+  description: "Fence, gate, barrier, and access-control materials with technical support for data centers, airports, utilities, government facilities, and more.",
 };
 
 // Fallback image URLs by industry ID - using real project photos
@@ -233,9 +234,10 @@ export default async function IndustriesPage() {
               Industries We Serve
             </h1>
             <p className="text-xl text-white/80">
-              We specialize in high-security applications where failure is not an option.
-              Each industry has unique challenges—we have the expertise to address them.
+              We support high-security applications where failure is not an option.
+              Each industry has unique material, documentation, and coordination requirements.
             </p>
+            <SupplyOnlyNotice dark compact className="mt-8 max-w-2xl" />
           </div>
         </div>
       </section>
@@ -379,8 +381,9 @@ export default async function IndustriesPage() {
             Don&apos;t See Your Industry?
           </h2>
           <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-            We work with facilities across many sectors. Contact us to discuss your specific security requirements.
+            We support facilities across many sectors with product selection, sourcing, documentation guidance, and experienced installer recommendations.
           </p>
+          <SupplyOnlyNotice dark compact className="mx-auto mb-8 max-w-2xl text-left" />
           <Link
             href="/contact"
             className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-primary bg-white hover:bg-gray-100 rounded-lg transition-colors"

@@ -80,7 +80,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
     eyebrow: 'Crash Rated Gate Systems',
     heroTitle: 'Crash rated gates for critical access points',
     heroDescription:
-      'Bru-Hart helps contractors, owners, and security teams specify gate systems that combine rated vehicle mitigation, day-to-day access control, and field-ready installation support.',
+      'Bru-Hart helps contractors, owners, and security teams specify gate systems that combine rated vehicle mitigation, day-to-day access control, and field-ready technical support for customer or installer-led work.',
     introTitle: 'The gate is usually the weakest point in a secure perimeter.',
     intro:
       'High-security fences, walls, and barriers still need openings for vehicles, crews, deliveries, and emergency access. Those openings need more than a heavy-looking gate. They need the right crash rating, foundation approach, operator, safety devices, and controls for the actual threat profile.',
@@ -250,7 +250,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       {
         title: 'Coordinate barriers with controls and site geometry',
         body:
-          'Barrier performance depends on more than the product. The approach path, foundation, utility conflicts, control sequence, and safety devices all determine whether the installation works in the field.',
+          'Barrier performance depends on more than the product. The approach path, foundation, utility conflicts, control sequence, and safety devices all determine whether the customer or installer-led work performs in the field.',
         bullets: [
           'Approach-speed review before selecting a rating',
           'Operator, signal, loop, and guard-control planning',
@@ -579,7 +579,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       {
         question: 'When should I use a cantilever gate instead of a track gate?',
         answer:
-          'A cantilever gate is often better where a ground track would collect debris, conflict with traffic, create maintenance issues, or be difficult to install cleanly.',
+          'A cantilever gate is often better where a ground track would collect debris, conflict with traffic, create maintenance issues, or be difficult for the installer to put in place cleanly.',
       },
       {
         question: 'Can cantilever gates be automated?',
@@ -638,7 +638,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       {
         title: 'Aesthetic and operational details matter',
         body:
-          'Covers, lighting, finish, drainage, power, manual operation, and maintenance access all affect whether the system performs well after installation.',
+          'Covers, lighting, finish, drainage, power, manual operation, and maintenance access all affect whether the system performs well after the customer or installer puts it in service.',
         bullets: [
           'Decorative covers and finish coordination',
           'Manual override and power-loss behavior',
@@ -663,7 +663,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       {
         question: 'Are decorative bollards crash rated?',
         answer:
-          'Not automatically. Decorative covers can be used with rated cores, but the rating depends on the barrier assembly, product documentation, and installation requirements.',
+          'Not automatically. Decorative covers can be used with rated cores, but the rating depends on the barrier assembly, product documentation, and manufacturer/site installation requirements.',
       },
       {
         question: 'What is the difference between removable and retractable bollards?',
@@ -929,7 +929,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
         ],
       },
       {
-        title: 'Coordinate fence materials before installation',
+        title: 'Coordinate fence materials before the customer or installer starts work',
         body:
           'Better outcomes come from reviewing posts, braces, gates, wire or rail, hardware, and total footage before the project starts. That reduces mismatched materials and last-minute runs for missing parts.',
         bullets: [
@@ -1666,7 +1666,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       'Bru-Hart helps secure restricted vehicle openings, perimeter fence lines, public approaches, and staff access points for government and high-security facilities.',
     introTitle: 'Government sites need documented, defensible perimeter choices.',
     intro:
-      'Municipal buildings, military sites, public safety facilities, and restricted campuses often need perimeter products that are more than visually secure. They need selection logic, product documentation, and installation planning that can survive review.',
+      'Municipal buildings, military sites, public safety facilities, and restricted campuses often need perimeter products that are more than visually secure. They need selection logic, product documentation, and installer coordination details that can survive review.',
     highlights: [
       'Crash-rated gates, bollards, beams, wedges, and barrier systems',
       'Anti-climb and crash-rated fence coordination',
@@ -1727,7 +1727,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       {
         question: 'Can security barriers be made less industrial-looking?',
         answer:
-          'Often, yes. Decorative covers, ornamental fencing, architectural infill, and careful placement can improve appearance, but the rated barrier assembly and installation requirements still control performance.',
+          'Often, yes. Decorative covers, ornamental fencing, architectural infill, and careful placement can improve appearance, but the rated barrier assembly and manufacturer/site installation requirements still control performance.',
       },
     ],
     related: [
@@ -1924,7 +1924,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
     ],
     proofTitle: 'Field-Oriented Component Support',
     proof: [
-      'Bru-Hart sells to people who have to make the gate work after installation',
+      'Bru-Hart sells to people who have to make the gate work after the customer or installer puts it in service',
       'Component quality helps protect both customer experience and fabricator reputation',
       'Support comes from fence and gate experience, not generic hardware sales',
     ],
@@ -2033,7 +2033,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       {
         title: 'The rating is not the whole design',
         body:
-          'A barrier rating does not guarantee performance in every site condition. Approach route, impact location, foundation, installation, utilities, topography, and maintenance all affect the finished result.',
+          'A barrier rating does not guarantee performance in every site condition. Approach route, impact location, foundation, installer execution, utilities, topography, and maintenance all affect the finished result.',
         bullets: [
           'Select ratings based on actual approach conditions',
           'Review foundation and utility constraints early',

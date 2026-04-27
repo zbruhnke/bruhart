@@ -3,6 +3,19 @@ import { getAboutPage } from "@/sanity/client";
 import { PortableText } from "@portabletext/react";
 import { ReactNode } from "react";
 import Image from "next/image";
+import SupplyOnlyNotice from "@/components/SupplyOnlyNotice";
+
+interface AboutValue {
+  title: string;
+  description?: string;
+  iconType?: string;
+}
+
+interface TimelineItem {
+  year: string;
+  title: string;
+  description: string;
+}
 
 export const metadata: Metadata = {
   title: "About Us | Bru-Hart Industries",
@@ -38,7 +51,7 @@ const valueIcons: Record<string, ReactNode> = {
 const fallbackValues = [
   {
     title: "Security First",
-    description: "We never compromise on security. Every product we design and install meets the highest industry standards.",
+    description: "We never compromise on product quality, documentation, or technical guidance. Bru-Hart supplies materials and components; installation is handled by customers, contractors, or separate installers.",
     iconType: "shield",
   },
   {
@@ -52,8 +65,8 @@ const fallbackValues = [
     iconType: "people",
   },
   {
-    title: "Lifetime Support",
-    description: "Our relationship doesn't end at installation. We provide ongoing support and maintenance for the life of your system.",
+    title: "Technical Support",
+    description: "Our support does not stop at the sale. We help customers, contractors, and installers understand product fit, documentation, replacement paths, and field questions.",
     iconType: "support",
   },
 ];
@@ -69,8 +82,23 @@ const fallbackTimeline = [
 const fallbackStoryParagraphs = [
   "Bru-Hart is a new company built on 45+ years of industry experience. Our founder, Dana Bruhnke, got his start in the fence business back in 1980 at Southern Steel. He spent decades with Jamieson Fence (now Master Halco) and founded Premier Access, becoming one of the most respected names in the industry. If you've worked in the fence business long enough, you probably know Dana.",
   "That experience matters when you're securing critical infrastructure. We've seen what works and what doesn't across thousands of projects at data centers, utilities, government facilities, and more. We know the products, the manufacturers, and the details that make the difference between a gate that works and one that works right.",
-  "Now Dana has partnered with a new team committed to carrying that expertise forward. Whether you're a contractor looking for reliable wholesale partners or a facility that needs a turnkey solution, Bru-Hart is here to get it done right.",
+  "Now Dana has partnered with a new team committed to carrying that expertise forward. Whether you're a contractor looking for reliable wholesale partners or a facility that needs better material guidance, Bru-Hart is here to help you buy the right products and connect with experienced installers when field labor is needed.",
 ];
+
+const supplyOnlyAboutText = (value: string) =>
+  value
+    .replace(
+      'We never compromise on security. Every product we design and install meets the highest industry standards.',
+      'We never compromise on product quality, documentation, or technical guidance. Bru-Hart supplies materials and components; installation is handled by customers, contractors, or separate installers.'
+    )
+    .replace(
+      "Our relationship doesn't end at installation. We provide ongoing support and maintenance for the life of your system.",
+      "Our support does not stop at the sale. We help customers, contractors, and installers understand product fit, documentation, replacement paths, and field questions."
+    )
+    .replace(
+      "Whether you're a contractor looking for reliable wholesale partners or a facility that needs a turnkey solution, Bru-Hart is here to get it done right.",
+      "Whether you're a contractor looking for reliable wholesale partners or a facility that needs better material guidance, Bru-Hart is here to help you buy the right products and connect with experienced installers when field labor is needed."
+    );
 
 export default async function AboutPage() {
   const aboutContent = await getAboutPage();
@@ -82,10 +110,13 @@ export default async function AboutPage() {
   const storyContent = aboutContent?.storyContent;
   const valuesTitle = aboutContent?.valuesTitle || "Our Values";
   const valuesSubtext = aboutContent?.valuesSubtext || "These principles guide everything we do, from product design to customer service.";
-  const values = aboutContent?.values && aboutContent.values.length > 0 ? aboutContent.values : fallbackValues;
-  const timeline = aboutContent?.timeline && aboutContent.timeline.length > 0 ? aboutContent.timeline : fallbackTimeline;
+  const values: AboutValue[] = (aboutContent?.values && aboutContent.values.length > 0 ? aboutContent.values : fallbackValues).map((value: AboutValue) => ({
+    ...value,
+    description: supplyOnlyAboutText(value.description || ''),
+  }));
+  const timeline: TimelineItem[] = aboutContent?.timeline && aboutContent.timeline.length > 0 ? aboutContent.timeline : fallbackTimeline;
   const ctaTitle = aboutContent?.ctaTitle || "Ready to Work with Us?";
-  const ctaSubtext = aboutContent?.ctaSubtext || "Whether you need crash-rated gates for a data center or custom fabrication for a unique project, we're here to help.";
+  const ctaSubtext = supplyOnlyAboutText(aboutContent?.ctaSubtext || "Whether you need crash-rated gates for a data center or custom fabrication for a unique project, we're here to help.");
   const ctaButtonText = aboutContent?.ctaButtonText || "Get in Touch";
   const ctaButtonLink = aboutContent?.ctaButtonLink || "/contact";
 
@@ -101,6 +132,7 @@ export default async function AboutPage() {
             <p className="text-xl text-white/80">
               {heroSubtext}
             </p>
+            <SupplyOnlyNotice dark compact className="mt-8 max-w-2xl" />
           </div>
         </div>
       </section>
@@ -112,13 +144,13 @@ export default async function AboutPage() {
           <div className="relative aspect-[21/9] rounded-2xl overflow-hidden mb-16">
             <Image
               src="/images/bruhart_work/IMG_1287.jpeg"
-              alt="Bru-Hart team installing high-security fence with crane"
+              alt="Fence and gate project materials being handled on a large job site"
               fill
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
             <div className="absolute bottom-6 left-6 right-6">
-              <p className="text-white/90 text-sm font-medium">Our team at work on a large-scale security installation</p>
+              <p className="text-white/90 text-sm font-medium">Large-scale fence and gate products require the right materials, documentation, and installer coordination.</p>
             </div>
           </div>
 
@@ -130,7 +162,7 @@ export default async function AboutPage() {
                   <PortableText value={storyContent} />
                 ) : (
                   fallbackStoryParagraphs.map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
+                    <p key={index}>{supplyOnlyAboutText(paragraph)}</p>
                   ))
                 )}
               </div>
@@ -138,7 +170,7 @@ export default async function AboutPage() {
             <div className="bg-background-alt rounded-2xl p-8">
               <h3 className="text-xl font-semibold text-foreground mb-6">Company Timeline</h3>
               <div className="space-y-6">
-                {timeline.map((item: any, index: number) => (
+                {timeline.map((item, index) => (
                   <div key={item.year} className="flex gap-4">
                     <div className="flex-shrink-0 w-16 text-right">
                       <span className="text-sm font-bold text-primary">{item.year}</span>
@@ -171,10 +203,10 @@ export default async function AboutPage() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value: any) => (
+            {values.map((value) => (
               <div key={value.title} className="bg-white rounded-xl p-8 border border-border">
                 <div className="text-primary mb-4">
-                  {valueIcons[value.iconType] || valueIcons.shield}
+                  {(value.iconType && valueIcons[value.iconType]) || valueIcons.shield}
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">{value.title}</h3>
                 <p className="text-foreground-muted">{value.description}</p>
@@ -191,6 +223,7 @@ export default async function AboutPage() {
           <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
             {ctaSubtext}
           </p>
+          <SupplyOnlyNotice dark compact className="mx-auto mb-8 max-w-2xl text-left" />
           <a
             href={ctaButtonLink}
             className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-primary bg-white hover:bg-gray-100 rounded-lg transition-colors"
