@@ -88,7 +88,7 @@ const fallbackStoryParagraphs = [
 const supplyOnlyAboutText = (value: string) =>
   value
     .replace(
-      'We never compromise on security. Every product we design and install meets the highest industry standards.',
+      'We never compromise on security. Every product we design and install meets the highest industry standards.', // content-guardrail-disable-line -- legacy Sanity normalization
       'We never compromise on product quality, documentation, or technical guidance. Bru-Hart supplies materials and components; installation is handled by customers, contractors, or separate installers.'
     )
     .replace(
@@ -96,7 +96,7 @@ const supplyOnlyAboutText = (value: string) =>
       "Our support does not stop at the sale. We help customers, contractors, and installers understand product fit, documentation, replacement paths, and field questions."
     )
     .replace(
-      "Whether you're a contractor looking for reliable wholesale partners or a facility that needs a turnkey solution, Bru-Hart is here to get it done right.",
+      "Whether you're a contractor looking for reliable wholesale partners or a facility that needs a turnkey solution, Bru-Hart is here to get it done right.", // content-guardrail-disable-line -- legacy Sanity normalization
       "Whether you're a contractor looking for reliable wholesale partners or a facility that needs better material guidance, Bru-Hart is here to help you buy the right products and connect with experienced installers when field labor is needed."
     );
 

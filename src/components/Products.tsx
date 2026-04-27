@@ -195,7 +195,7 @@ const fallbackSection = {
 
 const supplyOnlyText = (value: string) =>
   value.replace(
-    'From crash-rated barriers to integrated access control, we provide end-to-end perimeter security solutions for the most demanding applications.',
+    'From crash-rated barriers to integrated access control, we provide end-to-end perimeter security solutions for the most demanding applications.', // content-guardrail-disable-line -- legacy Sanity normalization
     fallbackSection.productsSectionDescription
   );
 

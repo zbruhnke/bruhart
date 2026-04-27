@@ -227,7 +227,7 @@ const keywordOpportunityTiers = [
       'fence',
       'gates',
       'fence company',
-      'fence installation',
+      'local fence installer searches',
       'chain link fence',
       'high security fence',
       'fence supply',

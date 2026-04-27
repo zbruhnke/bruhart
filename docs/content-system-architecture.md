@@ -13,6 +13,7 @@ The right model is hybrid:
 | Layer | Best Home | Why |
 | --- | --- | --- |
 | Page templates, routing, sitemap logic, SEO guardrails | Code / Git | These need review, tests, version control, and repeatable structure. |
+| Supply-only language guardrails | Code / Git plus editorial docs | Prevents AI, CMS content, and generated pages from implying Bru-Hart installs anything it sells. |
 | Tier 1 SEO page records once the schema is proven | Sanity, with strict fields | Dana/team can update proof, downloads, FAQs, and availability without code edits. |
 | Product truth matrices | Sanity structured documents or versioned CSV/JSON import | The business needs to update stocked/sourced/special-order status without rewriting pages. |
 | Photos, PDFs, spec sheets, drawings | Sanity asset library | Media needs metadata, approval status, and page mapping. |
@@ -155,13 +156,16 @@ Move these to Sanity as soon as the business starts collecting them:
 
 ## Governance Rules
 
-1. Do not publish invented testimonials, fake review counts, unapproved manufacturer relationship language, or unsupported ratings.
-2. Say "crash rated" only where accurate. Do not say "crash tested" unless exact product-level physical test documentation supports that exact claim.
-3. Every Tier 1 page needs a decision matrix, RFQ checklist, downloads/spec placeholders, proof placeholders, availability notes, and internal links.
-4. Every manufacturer page needs public-carry status, logo permission, supported product lines, stock/sourcing status, and forbidden language.
-5. Every local page needs real local proof or a clear reason to exist. Do not scale thin city pages.
-6. Every proof asset needs approval status and a page mapping before it is reused.
-7. Every page should have a `lastReviewedAt` date once it is managed in Sanity.
+1. Bru-Hart does not install anything it sells. All AI, CMS, SEO, and page-template copy must frame Bru-Hart as a materials/components supplier with technical support, product guidance, sourcing help, documentation support, troubleshooting guidance, and installer recommendations.
+2. Do not publish invented testimonials, fake review counts, unapproved manufacturer relationship language, or unsupported ratings.
+3. Say "crash rated" only where accurate. Do not say "crash tested" unless exact product-level physical test documentation supports that exact claim.
+4. Every Tier 1 page needs a decision matrix, RFQ checklist, downloads/spec placeholders, proof placeholders, availability notes, and internal links.
+5. Every manufacturer page needs public-carry status, logo permission, supported product lines, stock/sourcing status, and forbidden language.
+6. Every local page needs real local proof or a clear reason to exist. Do not scale thin city pages.
+7. Every proof asset needs approval status and a page mapping before it is reused.
+8. Every page should have a `lastReviewedAt` date once it is managed in Sanity.
+
+See `AGENTS.md` and `docs/content-language-guardrails.md` for the exact language rules. The build runs content guardrails to block rendered pages that imply Bru-Hart provides installation services.
 
 ## Bottom Line
 

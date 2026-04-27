@@ -271,7 +271,7 @@ const testimonials = [
   {
     _type: 'testimonial',
     _id: 'testimonial-michael-chen',
-    quote: 'Bru-Hart delivered a turnkey crash-rated gate system that exceeded our security requirements. Their team understood the unique challenges of protecting a Tier IV data center.',
+    quote: 'Bru-Hart helped us source the right crash-rated gate package and documentation for our security requirements. Their team understood the unique challenges of protecting a Tier IV data center.',
     author: 'Michael Chen',
     title: 'Director of Physical Security',
     company: 'Major Cloud Provider',
@@ -280,7 +280,7 @@ const testimonials = [
   {
     _type: 'testimonial',
     _id: 'testimonial-sarah-martinez',
-    quote: 'The installation was completed on schedule with minimal disruption to our operations. The gate system has performed flawlessly for over three years.',
+    quote: 'Bru-Hart helped us identify the right gate materials and support path with minimal disruption to our operations. The gate system has performed flawlessly for over three years.',
     author: 'Sarah Martinez',
     title: 'Facilities Manager',
     company: 'Regional Airport Authority',
@@ -406,7 +406,7 @@ const homePage = {
   ],
   productsSectionLabel: 'Our Products',
   productsSectionTitle: 'Complete Security Gate Solutions',
-  productsSectionDescription: 'From crash-rated barriers to integrated access control, we provide end-to-end perimeter security solutions for the most demanding applications.',
+  productsSectionDescription: 'From crash-rated barriers to integrated access control, we supply perimeter security materials, components, and technical guidance for demanding applications.',
   productsCtaText: 'Explore Our Solutions',
   industriesSectionLabel: 'Industries We Serve',
   industriesSectionTitle: 'Securing Critical Infrastructure',
@@ -605,7 +605,7 @@ const aboutPage = {
     {
       _key: 'value1',
       title: 'Security First',
-      description: 'We never compromise on security. Every product we design and install meets the highest industry standards.',
+      description: 'We never compromise on product quality, documentation, or technical guidance. Bru-Hart supplies materials and components; installation is handled by customers, contractors, or separate installers.',
       iconType: 'shield',
     },
     {

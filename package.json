@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "npm run content:guardrails",
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "npm run content:guardrails:rendered",
     "start": "next start",
     "lint": "eslint",
+    "content:guardrails": "node scripts/check-content-guardrails.mjs --source",
+    "content:guardrails:rendered": "node scripts/check-content-guardrails.mjs --rendered",
     "seed": "npx tsx scripts/seed-sanity.ts"
   },
   "dependencies": {
