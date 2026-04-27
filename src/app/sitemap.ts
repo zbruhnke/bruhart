@@ -24,8 +24,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/manufacturers',
     '/custom-fabrication',
     '/expert-sourcing',
-    '/reviews',
-    '/case-studies',
   ]
 
   const staticEntries = staticPages.map((path) => ({

@@ -164,8 +164,8 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
     ],
     availabilityNotes: [
       { label: 'Product path', value: 'Crash-rated gates are quote-driven and configuration-specific; final availability depends on manufacturer, rating, opening, operator, and documentation requirements.' },
-      { label: 'Claim discipline', value: 'Bru-Hart should describe supported gate configurations as crash rated, not crash tested, unless a specific physical test document supports that exact statement.' },
-      { label: 'Best fit', value: 'The right answer may be a gate, a barrier, or a combined package. Bru-Hart should help choose the system before the buyer locks into a product name.' },
+      { label: 'Claim discipline', value: 'Supported gate configurations are described as crash rated, not crash tested, unless a specific physical test document supports that exact statement.' },
+      { label: 'Best fit', value: 'The right answer may be a gate, a barrier, or a combined package. Bru-Hart helps choose the system before the buyer locks into a product name.' },
     ],
     downloads: [
       { label: 'Crash Gate RFQ Checklist', description: 'A Bru-Hart checklist for opening, rating, operator, access-control, and documentation inputs.', status: 'Planned download' },
@@ -737,7 +737,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       { label: 'Applications', value: 'Pastures, livestock lots, driveways, equipment access, property boundaries, and rural homesteads' },
       { label: 'Local fit', value: 'Branford, Suwannee County, Lafayette County, Gilchrist County, and surrounding North Florida communities' },
     ],
-    proofTitle: 'Why Bru-Hart Should Own This Locally',
+    proofTitle: 'Why This Matters Locally',
     proof: [
       'The company is headquartered in Branford and has a practical reason to serve agricultural properties nearby',
       'Gate and fence experience transfers directly into stronger local fence, gate, and hardware support',
@@ -771,8 +771,8 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       { label: 'Local context', detail: 'Property location, pickup/delivery needs, timeline, and whether the buyer wants stocked, sourced, or special-order options.' },
     ],
     availabilityNotes: [
-      { label: 'Local commitment', value: 'This page should stay visibly useful for Branford and nearby agricultural buyers, not just national security customers.' },
-      { label: 'Product truth', value: 'Stocked, sourced, special-order, and quote-only status should be filled in as Bru-Hart finalizes the local agricultural product mix.' },
+      { label: 'Local commitment', value: 'Branford and nearby agricultural buyers need a clear path for fence, gate, post, wire, and hardware conversations.' },
+      { label: 'Product truth', value: 'Stocked, sourced, special-order, and quote-only status can be confirmed during the quote conversation.' },
       { label: 'Best fit', value: 'The right agricultural fence depends on animal behavior, corners/braces, gate use, terrain, and repairability.' },
     ],
     downloads: [
@@ -1247,7 +1247,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       {
         title: 'Serve neighbors with practical fence products',
         body:
-          'The page should make it obvious that a local property owner can contact Bru-Hart for farm fence, horse fence, wire, posts, gate hardware, and related materials without having to interpret a high-security-only website.',
+          'Local property owners can contact Bru-Hart for farm fence, horse fence, wire, posts, gate hardware, and related materials without having to interpret a high-security-only website.',
         bullets: [
           'Fence and gate support for rural residential and agricultural properties',
           'Material conversations for repairs, expansions, and new fence runs',
@@ -1255,7 +1255,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
         ],
       },
       {
-        title: 'Use local SEO without creating thin town pages',
+        title: 'Serve nearby towns without thin city pages',
         body:
           'Branford deserves a dedicated page because it is the headquarters market and tied to a real local operating commitment. Nearby towns can be mentioned naturally until search data proves that separate service-area pages are justified.',
         bullets: [
@@ -1267,7 +1267,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       {
         title: 'Connect local ag demand to product pages',
         body:
-          'The service-area page should route customers into the exact product categories they need: agricultural fencing, field fence, horse fence, wire fence, farm gates, and general materials.',
+          'This service-area page routes customers into the exact product categories they need: agricultural fencing, field fence, horse fence, wire fence, farm gates, and general materials.',
         bullets: [
           'Internal links to agricultural product pages',
           'Clear quote CTA for local fence and gate materials',
@@ -1282,7 +1282,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       { label: 'Materials', value: 'Wire, posts, braces, clips, staples, strainers, stays, insulators, panels, and compatible accessories' },
       { label: 'Nearby areas', value: 'Branford, O Brien, Live Oak, Fort White, Mayo, Suwannee County, Lafayette County, and Gilchrist County' },
     ],
-    proofTitle: 'Why This Page Deserves To Exist',
+    proofTitle: 'Why This Local Page Matters',
     proof: [
       'It reflects a real local agricultural commitment rather than a generic SEO city page',
       'It gives council members, neighbors, and local buyers an obvious place to see the ag-focused offer',
@@ -1305,11 +1305,11 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
         option: 'High-security / commercial cross-sell',
         chooseWhen: 'A local agricultural, rural commercial, or estate property also needs gates, operators, access control, or stronger perimeter planning.',
         avoidWhen: 'The local buyer just needs simple material guidance and would be confused by national-security language.',
-        notes: 'This page should show the local offer first, then route complex gate needs into the broader Bru-Hart structure.',
+        notes: 'Start with the local fence or material need, then route complex gate, operator, or access-control projects into the broader Bru-Hart structure.',
       },
     ],
     rfqChecklist: [
-      { label: 'Location', detail: 'Property city, road/area, pickup or delivery expectation, and whether Bru-Hart should quote local material support.' },
+      { label: 'Location', detail: 'Property city, road/area, pickup or delivery expectation, and whether the request is for local material support.' },
       { label: 'Property use', detail: 'Pasture, homestead, horse property, cattle operation, garden, driveway, commercial rural site, or repair project.' },
       { label: 'Material list', detail: 'Wire/fence type, posts, brace assemblies, gates, hinges, latches, clips, staples, strainers, and repair parts.' },
       { label: 'Photos', detail: 'Send photos of existing fence, gates, corners, terrain, washouts, animals, and any failed materials.' },
@@ -1317,8 +1317,8 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
     ],
     availabilityNotes: [
       { label: 'Service area', value: 'Branford is the anchor page because it is tied to headquarters and the agricultural land-use commitment.' },
-      { label: 'Expansion rule', value: 'Nearby city pages should be created only when real demand and proof assets justify them.' },
-      { label: 'Proof path', value: 'Local photos, neighbor testimonials, product displays, and project notes should be added before this page is considered mature.' },
+      { label: 'Nearby areas', value: 'O Brien, Live Oak, Fort White, Mayo, Suwannee County, Lafayette County, and Gilchrist County can be handled from the same North Florida service context.' },
+      { label: 'Local fit', value: 'Local photos, neighbor feedback, product displays, and project notes can strengthen this page over time.' },
     ],
     downloads: [
       { label: 'Branford Agricultural Fence Quote Sheet', description: 'A local quote sheet for farm fence, gates, posts, hardware, repair materials, pickup, and delivery inputs.', status: 'Needs PDF/spec sheet' },
@@ -1336,9 +1336,9 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
           'Because the company is headquartered in Branford and has committed to serving agricultural fence, gate, and material needs that fit the surrounding rural community.',
       },
       {
-        question: 'Should Bru-Hart create separate pages for every nearby town?',
+        question: 'Does Bru-Hart need separate pages for every nearby town?',
         answer:
-          'Not yet. The better first move is one strong Branford/North Florida page supported by specific product pages. Separate town pages should only be created if search data and real demand justify them.',
+          'Not by default. A strong Branford/North Florida page supported by specific product pages is more useful than thin duplicate town pages. Separate town pages make sense only when real demand and service history justify them.',
       },
     ],
     related: [
@@ -1819,7 +1819,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
         option: 'Custom track package review',
         chooseWhen: 'The fabricator has an unusual opening, special length, heavy gate, tight schedule, replacement problem, or operator concern.',
         avoidWhen: 'The buyer only wants a generic SKU and will not share the details needed to confirm fit.',
-        notes: 'This is where Dana-style expertise should show: asking better questions before the gate is built.',
+        notes: 'This is where practical gate expertise matters: asking better questions before the gate is built.',
       },
     ],
     rfqChecklist: [
@@ -1830,9 +1830,9 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
       { label: 'Proof', detail: 'Shop drawings, photos of the gate/track, product dimensions, project schedule, and callback problem if applicable.' },
     ],
     availabilityNotes: [
-      { label: 'Product path', value: 'Custom lengths and wholesale support should be confirmed with Bru-Hart before a fabrication schedule is locked.' },
+      { label: 'Product path', value: 'Confirm custom lengths and wholesale support with Bru-Hart before a fabrication schedule is locked.' },
       { label: 'System fit', value: 'Best evaluated with gate weight, opening, truck pairing, operator expectations, and field conditions.' },
-      { label: 'Positioning', value: 'This page should be a signature Bru-Hart differentiator because major distributors are harder to beat on commodity SKUs than on expert component fit.' },
+      { label: 'Positioning', value: 'This is a signature Bru-Hart differentiator because major distributors are harder to beat on commodity SKUs than on expert component fit.' },
     ],
     downloads: [
       { label: 'BH Track Sell Sheet', description: 'Dimensions, profile, pairing notes, order inputs, application fit, and quote requirements.', status: 'Needs PDF/spec sheet' },
@@ -1957,7 +1957,7 @@ export const curatedSeoLandingPages: SeoLandingPage[] = [
     ],
     availabilityNotes: [
       { label: 'Compatibility', value: 'Designed to pair with BH Track; any other use should be reviewed before quoting as compatible.' },
-      { label: 'Proof path', value: 'The page should gain photos, product drawings, tolerances if approved, and fabricator testimonials as soon as they are available.' },
+      { label: 'Product support', value: 'Product photos, approved drawings, tolerances, and fabricator feedback strengthen the quote conversation when available.' },
       { label: 'Sales fit', value: 'Best for fabricators and contractors who care about repeatable gate performance, not only lowest hardware price.' },
     ],
     downloads: [

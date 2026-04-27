@@ -30,6 +30,12 @@ interface SiteSettings {
   [key: string]: unknown;
 }
 
+const publicFooterExcludedHrefs = new Set([
+  '/reviews',
+  '/case-studies',
+  '/resources/tier-1-content-packets',
+]);
+
 // Fallback footer links
 const fallbackLinks = {
   products: [
@@ -66,8 +72,6 @@ const fallbackLinks = {
     { name: 'Industry Experience', href: '/about/fence-industry-experience' },
     { name: 'Why Contractors Call', href: '/about/why-contractors-call-bruhart' },
     { name: 'Hard-to-Source Products', href: '/resources/hard-to-source-fence-gate-products' },
-    { name: 'Reviews', href: '/reviews' },
-    { name: 'Case Studies', href: '/case-studies' },
     { name: 'Ask a Fence Expert', href: '/resources/ask-a-fence-expert' },
     { name: 'Our Partners', href: '/manufacturers' },
     { name: 'Contact', href: '/contact' },
@@ -102,13 +106,15 @@ const normalizeFooterLink = (link: FooterLink): FooterLink => {
 };
 
 const mergeFooterLinks = (links: FooterLink[] | undefined, fallback: FooterLink[], required: FooterLink[] = []) => {
-  const base = links && links.length > 0 ? links.map(normalizeFooterLink) : fallback;
+  const base = (links && links.length > 0 ? links.map(normalizeFooterLink) : fallback).filter(
+    (link) => !publicFooterExcludedHrefs.has(link.href)
+  );
   const seen = new Set(base.map((link) => link.href));
 
   return [
     ...base,
     ...required.filter((link) => {
-      if (seen.has(link.href)) {
+      if (seen.has(link.href) || publicFooterExcludedHrefs.has(link.href)) {
         return false;
       }
       seen.add(link.href);
@@ -141,8 +147,6 @@ export default function Footer({ settings }: { settings?: SiteSettings }) {
   const companyLinks = mergeFooterLinks(settings?.footerCompanyLinks, fallbackLinks.company, [
     { name: 'Expert Sourcing', href: '/expert-sourcing' },
     { name: 'Hard-to-Source Products', href: '/resources/hard-to-source-fence-gate-products' },
-    { name: 'Reviews', href: '/reviews' },
-    { name: 'Case Studies', href: '/case-studies' },
     { name: 'Ask a Fence Expert', href: '/resources/ask-a-fence-expert' },
   ]);
 

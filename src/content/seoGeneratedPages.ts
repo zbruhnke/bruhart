@@ -822,7 +822,7 @@ function toProductPage(seed: ProductSeed): SeoLandingPage {
     heroTitle: `${seed.label} selected around the job, not a generic SKU`,
     heroDescription:
       `Bru-Hart helps ${family.buyer} compare ${seed.label.toLowerCase()} options by application fit, documentation, product support, and the way the material will actually be used in the field.`,
-    introTitle: `${seed.label} should be matched to the real project conditions.`,
+    introTitle: `${seed.label} matched to the real project conditions`,
     intro:
       `${seed.label} decisions should account for ${joinList(family.decisionFactors)}. Bru-Hart's role is to help customers avoid weak products, mismatched components, and false economy whether the best fit is domestic, imported, stocked, sourced, or special-order.`,
     highlights: [
@@ -879,7 +879,7 @@ function toProductPage(seed: ProductSeed): SeoLandingPage {
         option: 'Special-order or sourced option',
         chooseWhen: 'The standard product is not the right fit, the spec requires a particular manufacturer, or timing and documentation need to be reviewed.',
         avoidWhen: 'The job can be solved cleanly with a stocked or simpler package and the special-order path adds unnecessary delay.',
-        notes: 'Bru-Hart should verify availability, lead time, replacement support, and manufacturer documentation before the quote is treated as final.',
+        notes: 'Availability, lead time, replacement support, and manufacturer documentation should be verified before the quote is treated as final.',
       },
     ],
     rfqChecklist: [
@@ -950,7 +950,7 @@ function toServicePage(seed: ServiceSeed): SeoLandingPage {
     heroTitle: `${focus} support for ${seed.city}`,
     heroDescription:
       `Bru-Hart supports ${seed.city} and the surrounding ${seed.region} with practical fence, gate, access-control, and material sourcing built around local rural, commercial, and contractor needs.`,
-    introTitle: `Local pages should reflect real service fit, not boilerplate city swaps.`,
+    introTitle: `${seed.city} fence and gate support without boilerplate city pages`,
     intro:
       `${seed.city} matters because Bru-Hart is building a North Florida footprint around real fence and gate demand. This page gives local buyers a clear path for ${focus.toLowerCase()} without forcing every inquiry through a high-security-only message.`,
     highlights: [
@@ -969,10 +969,10 @@ function toServicePage(seed: ServiceSeed): SeoLandingPage {
       {
         title: 'Serve the local market without thin SEO',
         body:
-          'Bru-Hart should build local pages only where service reality, product fit, and regional demand justify them. Each page should eventually gain local photos, testimonials, or project notes.',
+          'Local service content works best when it reflects real product fit, nearby demand, and practical service reality. Bru-Hart can keep nearby town expansion tied to actual inquiries and customer needs.',
         bullets: [
           'Use real service-area details instead of duplicated city copy',
-          'Add project photos and local proof as soon as they are available',
+          'Use project photos and local feedback as they become available',
           'Keep nearby town expansion tied to actual inquiries and Search Console signal',
         ],
       },
@@ -994,7 +994,7 @@ function toServicePage(seed: ServiceSeed): SeoLandingPage {
       { label: 'Useful details', value: 'Location, footage, gate count, opening widths, product preference, photos, and timeline' },
       { label: 'Region', value: seed.region },
     ],
-    proofTitle: 'Local Proof To Add Next',
+    proofTitle: 'Local Buying Signals',
     proof: [
       'Photos of local material, gates, displays, deliveries, or completed projects',
       'Testimonials from nearby contractors, landowners, and commercial buyers',
@@ -1009,7 +1009,7 @@ function toServicePage(seed: ServiceSeed): SeoLandingPage {
       {
         question: 'Why not create the same page for every town?',
         answer:
-          'Because local SEO should reflect real service and product fit. Bru-Hart should expand town pages where demand, service reality, and proof assets justify them.',
+          'Because local SEO should reflect real service and product fit. Bru-Hart can expand town pages where demand, service reality, and customer activity justify them.',
       },
     ],
     related: [
@@ -1061,7 +1061,7 @@ function toIndustryPage(seed: IndustrySeed): SeoLandingPage {
         bullets: [
           'Standardize components where maintenance matters',
           'Confirm documentation and product availability before bid commitments',
-          'Add proof photos and case studies as projects are completed',
+          'Use project examples and documentation to support future maintenance conversations',
         ],
       },
     ],
@@ -1076,7 +1076,7 @@ function toIndustryPage(seed: IndustrySeed): SeoLandingPage {
     proof: [
       'Fence and gate experience that connects products to field realities',
       'Selective manufacturer support instead of generic catalog guessing',
-      'A proof library of testimonials and case studies should be added as customer stories are collected',
+      'A growing base of testimonials and case studies can support buyer confidence over time',
     ],
     faqs: [
       {
@@ -1154,11 +1154,11 @@ function toResourcePage(seed: ResourceSeed): SeoLandingPage {
       { label: 'Output', value: 'A clearer product, material, or specification conversation' },
       { label: 'Next step', value: 'Request a quote with measurements, photos, timeline, and product preferences' },
     ],
-    proofTitle: 'Proof To Add Over Time',
+    proofTitle: 'Why This Helps The Quote',
     proof: [
-      'Owner field notes and expert Q&A clips',
-      'Project photos, diagrams, and material checklists',
-      'Testimonials or case studies that show the recommendation in the field',
+      'Better inputs reduce blind recommendations',
+      'Photos, diagrams, and material details make product fit easier to verify',
+      'Clear tradeoffs help buyers compare origin, lead time, price, and reliability',
     ],
     faqs: [
       {
@@ -1169,7 +1169,7 @@ function toResourcePage(seed: ResourceSeed): SeoLandingPage {
       {
         question: 'Can Bru-Hart recommend imported products?',
         answer:
-          'Yes. If an imported product is the best available option for the job, Bru-Hart should say so and explain the product-fit reasoning clearly.',
+          'Yes. If an imported product is the best available option for the job, Bru-Hart can explain the product-fit reasoning clearly.',
       },
     ],
     related: seed.related,
@@ -1232,13 +1232,13 @@ function toManufacturerPage(seed: ManufacturerSeed): SeoLandingPage {
     proof: [
       'Strong manufacturers reduce buyer uncertainty before the first sales conversation',
       'Bru-Hart can add customer testimonials and project examples as real proof is collected',
-      'The page should use factual brand support language and avoid unauthorized relationship claims',
+      'Brand support language stays factual and avoids unauthorized relationship claims',
     ],
     faqs: [
       {
         question: `Does Bru-Hart carry every ${seed.label} product?`,
         answer:
-          `Not necessarily. Bru-Hart should confirm the specific ${seed.label} product line, availability, timeline, and application fit during the quote process.`,
+          `Not necessarily. Bru-Hart confirms the specific ${seed.label} product line, availability, timeline, and application fit during the quote process.`,
       },
       {
         question: 'Does product origin determine quality?',
@@ -1265,63 +1265,63 @@ function toAboutPage(seed: AboutSeed): SeoLandingPage {
     eyebrow: 'Bru-Hart Proof',
     heroTitle: seed.label,
     heroDescription:
-      `Bru-Hart is building public proof around the people, product judgment, manufacturer relationships, and local commitments behind the company.`,
+      `Bru-Hart connects buyers with product judgment, manufacturer context, and local commitments that make fence and gate decisions easier to get right.`,
     introTitle: 'Authority has to be visible, not assumed.',
     intro:
-      `${seed.label} matters for ${seed.audience}. Bru-Hart's advantage should show up in the site architecture through clear pages, useful guidance, real testimonials, case studies, photos, and product decisions that reflect field experience.`,
+      `${seed.label} matters for ${seed.audience}. Bru-Hart makes that advantage visible through clear guidance, practical product decisions, and proof-backed support that reflects field experience.`,
     highlights: [
       `Built for ${seed.audience}`,
       `Proof points include ${joinList(seed.proofPoints.slice(0, 3))}`,
       `Business outcomes include ${joinList(seed.outcomes)}`,
-      'Designed to gain testimonials, project photos, and owner commentary as proof assets are collected',
+      'Built to connect buyers with the right product path before a quote is finalized',
     ],
     sections: [
       {
-        title: 'What the market should understand',
+        title: 'What buyers need to understand',
         body:
-          'Bru-Hart is not trying to look large by publishing thin pages. The point is to make real expertise visible across products, local service, manufacturer support, resources, and proof assets.',
-        bullets: seed.proofPoints.map((point) => `Public proof: ${point}`),
+          'Bru-Hart is not a generic price-sheet seller. The value is in product judgment, sourcing context, local support, and knowing which details change the recommendation.',
+        bullets: seed.proofPoints.map((point) => `Buyer signal: ${point}`),
       },
       {
         title: 'How this supports buyers',
         body:
-          'The site should help a buyer move from vague product search to a confident RFQ. That requires product truth, manufacturer context, photos, case studies, and clear next steps.',
+          'A better page helps a buyer move from vague product search to a confident RFQ. That requires product truth, manufacturer context, practical guidance, and clear next steps.',
         bullets: seed.outcomes.map((outcome) => `Buyer outcome: ${outcome}`),
       },
       {
-        title: 'What gets added next',
+        title: 'How the decision gets clearer',
         body:
-          'This page is a proof scaffold. It should be strengthened with quotes, project photos, short videos, customer stories, and field notes as they become available.',
+          'The best buyers do not just need a category name. They need to understand what changes price, lead time, fit, compliance, field performance, and support after the product is installed.',
         bullets: [
-          'Add real testimonials without inventing review language',
-          'Add case studies with product mix, problem, role, and result',
-          'Add owner field notes that competitors cannot copy',
+          'Clarify the real use case before quoting',
+          'Route complex decisions to expert sourcing when a commodity answer is not enough',
+          'Use approved proof and product detail where it helps the buyer make a better decision',
         ],
       },
     ],
-    specTitle: 'Proof Inputs To Collect',
+    specTitle: 'What Buyers Can Evaluate',
     specs: [
-      { label: 'Testimonials', value: 'Customer quotes, contractor comments, and manufacturer feedback once approved' },
-      { label: 'Photos', value: 'Product, yard, project, delivery, installation, and before/after photos' },
-      { label: 'Stories', value: 'Problem, product decision, Bru-Hart role, and measurable or practical result' },
-      { label: 'Review status', value: 'Proof sections are scaffolded now and should be filled only with real customer material' },
+      { label: 'Audience', value: seed.audience },
+      { label: 'Proof points', value: joinList(seed.proofPoints) },
+      { label: 'Buyer outcomes', value: joinList(seed.outcomes) },
+      { label: 'Best next step', value: 'Share product needs, site details, timeline, photos, and documentation requirements before quoting' },
     ],
     proofTitle: 'Why This Strengthens Bru-Hart',
     proof: [
-      'It turns known industry reputation into indexable, linkable pages',
-      'It gives sales a place to send buyers who need confidence before a quote',
-      'It creates the structure needed to publish testimonials and case studies quickly once collected',
+      'It turns known industry reputation into practical buyer guidance',
+      'It gives buyers a clearer way to understand where expert judgment matters',
+      'It supports sales conversations with more context before the first quote',
     ],
     faqs: [
       {
-        question: 'Are these pages claiming reviews that do not exist yet?',
+        question: 'Does Bru-Hart need every buyer to know the company already?',
         answer:
-          'No. The pages are built to receive real proof as it is collected. They should not invent customer quotes, review counts, ratings, or project outcomes.',
+          'No. These pages make the company easier to evaluate for buyers who may not already know the people, product judgment, or supplier relationships behind it.',
       },
       {
-        question: 'Why publish proof infrastructure before every asset is collected?',
+        question: 'Why does this matter before requesting a quote?',
         answer:
-          'Because the business can collect proof quickly, and the site needs a place to put it. Building the structure now lets Bru-Hart move faster when testimonials, photos, and stories arrive.',
+          'Fence and gate quotes can go wrong when the buyer starts with a vague category instead of the application, material requirements, site conditions, and support needs.',
       },
     ],
     related: [
@@ -1362,9 +1362,9 @@ const generatedQualityOverrides: Record<string, Partial<SeoLandingPage>> = {
       { label: 'Site use', detail: 'Residential, commercial, school, utility, storage, rural, security, dog containment, privacy, or temporary repair.' },
     ],
     availabilityNotes: [
-      { label: 'Competitor baseline', value: 'Large distributors already show chain link brochures, specs, drawings, warranties, and mesh/gauge tables. Bru-Hart needs the same buyer utility plus better expert guidance.' },
+      { label: 'Competitor baseline', value: 'Large distributors already show chain link brochures, specs, drawings, warranties, and mesh/gauge tables. This page adds buyer utility plus expert guidance.' },
       { label: 'Product truth', value: 'Fill in stocked, sourced, special-order, and quote-only status for fabric, posts, rails, fittings, gates, slats, and color systems.' },
-      { label: 'Positioning', value: 'Bru-Hart should not try to win every commodity chain-link quote on price. The page should win when the buyer needs the package specified correctly.' },
+      { label: 'Positioning', value: 'This page is strongest when the buyer needs the whole chain-link package specified correctly, not just the cheapest piece count.' },
     ],
     downloads: [
       { label: 'Chain Link Material Checklist', description: 'Checklist for fabric, framework, fittings, gates, privacy, coatings, and repair parts.', status: 'Needs PDF/spec sheet' },
@@ -1389,7 +1389,7 @@ const generatedQualityOverrides: Record<string, Partial<SeoLandingPage>> = {
         option: 'Imported pipe / tube',
         chooseWhen: 'The imported product is the best available fit for the job, documentation is acceptable, and the buyer understands the tradeoffs.',
         avoidWhen: 'The spec, public project, or buyer requirement explicitly requires domestic material or a specific document package.',
-        notes: 'Bru-Hart should say plainly when an imported product is the best option, but tie that recommendation to fit, not cheapness.',
+        notes: 'Say plainly when an imported product is the best option, but tie that recommendation to fit, not cheapness.',
       },
       {
         option: 'Schedule 40 / heavy-wall / special-order',
@@ -1408,7 +1408,7 @@ const generatedQualityOverrides: Record<string, Partial<SeoLandingPage>> = {
     availabilityNotes: [
       { label: 'Competitor baseline', value: 'Binford publicly emphasizes import/domestic pipe and tube, cut-to-order support, Schedule 80 sourcing, and special orders. Bru-Hart must match that clarity and add expert fit guidance.' },
       { label: 'Product truth', value: 'The page needs a real stocked/sourced/special-order matrix for OD, wall, length, finish, origin, and cut options.' },
-      { label: 'Sales fit', value: 'This page should attract contractors and fabricators who need the right pipe/tube answer, not just the cheapest piece count.' },
+      { label: 'Sales fit', value: 'Best for contractors and fabricators who need the right pipe/tube answer, not just the cheapest piece count.' },
     ],
     downloads: [
       { label: 'Fence Pipe & Tube RFQ Sheet', description: 'Order inputs for OD, wall, length, finish, origin, cut requirements, quantity, and application.', status: 'Needs PDF/spec sheet' },
@@ -1433,7 +1433,7 @@ const generatedQualityOverrides: Record<string, Partial<SeoLandingPage>> = {
         option: 'Automated commercial gate package',
         chooseWhen: 'The opening needs an operator, safety devices, loops, access control, power planning, and repeatable daily operation.',
         avoidWhen: 'The site cannot provide enough detail about power, cycles, gate weight, safety devices, and how people/vehicles will move.',
-        notes: 'This is where Bru-Hart should train buyers to send a complete RFQ instead of asking for a generic operator price.',
+        notes: 'This is where buyers need a complete RFQ instead of a generic operator price.',
       },
       {
         option: 'High-security / crash-rated package',
@@ -1450,9 +1450,9 @@ const generatedQualityOverrides: Record<string, Partial<SeoLandingPage>> = {
       { label: 'Documentation', detail: 'Spec documents, manufacturer preference, UL 325 / ASTM F2200 concerns, crash-rating language, drawings, and photos.' },
     ],
     availabilityNotes: [
-      { label: 'Purpose', value: 'This resource should reduce bad RFQs by showing exactly what details change the recommendation.' },
+      { label: 'Purpose', value: 'This resource reduces bad RFQs by showing exactly what details change the recommendation.' },
       { label: 'Expert positioning', value: 'It supports the "call Bru-Hart when the job is not a commodity quote" message without naming private competitor rescue calls.' },
-      { label: 'Proof path', value: 'Add Dana owner notes, annotated diagrams, and anonymized failure/rescue stories as soon as they are approved.' },
+      { label: 'Proof path', value: 'Use annotated diagrams and approved project examples to show how better RFQ detail prevents expensive mistakes.' },
     ],
     downloads: [
       { label: 'Complex Gate Package RFQ Checklist', description: 'The primary downloadable checklist for gate type, opening, hardware, operators, safety, controls, and documentation.', status: 'Needs PDF/spec sheet' },

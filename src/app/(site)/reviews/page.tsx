@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'Reviews & Testimonials | Bru-Hart Industries',
   description:
     'Bru-Hart review and testimonial hub for contractors, manufacturers, local buyers, and project teams as customer proof is collected.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 const proofSlots = [
@@ -53,10 +57,10 @@ export default function ReviewsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h2 className="mb-5 text-3xl font-bold text-foreground">
-              The structure is ready before the review library is full.
+              The review structure is ready before the public proof library is full.
             </h2>
             <p className="text-lg leading-8 text-foreground-muted">
-              Bru-Hart should not invent testimonials, ratings, or review counts. The right move is to build the proof infrastructure now, then fill it with real quotes, photos, and stories as customers and partners provide them.
+              This page is intentionally kept out of search indexes until real testimonials, ratings, photos, and customer stories are approved for publication.
             </p>
           </div>
 

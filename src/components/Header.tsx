@@ -22,6 +22,12 @@ interface SiteSettings {
   [key: string]: unknown;
 }
 
+const publicNavExcludedHrefs = new Set([
+  '/reviews',
+  '/case-studies',
+  '/resources/tier-1-content-packets',
+]);
+
 // Fallback navigation
 const fallbackNavigation: NavItem[] = [
   { name: 'Home', href: '/' },
@@ -98,8 +104,6 @@ const fallbackNavigation: NavItem[] = [
       { name: 'Fence Industry Experience', href: '/about/fence-industry-experience' },
       { name: 'Why Contractors Call Bru-Hart', href: '/about/why-contractors-call-bruhart' },
       { name: 'Branford Local Commitment', href: '/about/branford-local-commitment' },
-      { name: 'Reviews', href: '/reviews' },
-      { name: 'Case Studies', href: '/case-studies' },
       { name: 'Ask a Fence Expert', href: '/resources/ask-a-fence-expert' },
     ],
   },
@@ -130,7 +134,7 @@ const normalizeNavItem = (item: NavItem): NavItem => {
   return {
     name: nameMap[item.name] || item.name,
     href: hrefMap[item.href] || item.href,
-    children: item.children?.map(normalizeNavItem),
+    children: item.children?.map(normalizeNavItem).filter((child) => !publicNavExcludedHrefs.has(child.href)),
   };
 };
 
@@ -150,7 +154,7 @@ const appendMissingLinks = (existing: NavItem[], additions: NavItem[]) => {
 };
 
 const enhanceNavigation = (items: NavItem[]) => {
-  const normalized = items.map(normalizeNavItem);
+  const normalized = items.map(normalizeNavItem).filter((item) => !publicNavExcludedHrefs.has(item.href));
   const expertSourcing = fallbackNavigation.find((item) => item.href === '/expert-sourcing');
   const localNorthFlorida = fallbackNavigation.find((item) => item.href === '/service-areas/branford-fl-agricultural-fencing');
 
@@ -213,8 +217,6 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
       children: uniqueLinks([
         { name: 'About Bru-Hart', href: '/about' },
         ...(aboutNav?.children || []),
-        { name: 'Reviews', href: '/reviews' },
-        { name: 'Case Studies', href: '/case-studies' },
         { name: 'Contact', href: contactNav?.href || '/contact' },
       ]),
     },
@@ -373,16 +375,6 @@ export default function Header({ settings }: { settings?: SiteSettings }) {
               ))}
             </div>
 
-            <div className="px-4 py-5 sm:px-6">
-              <Link
-                href="/resources/tier-1-content-packets"
-                className="block rounded-2xl border border-primary/20 bg-primary/5 p-4 text-sm text-foreground hover:border-primary/40"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span className="block font-bold text-primary">Review the SEO content packet</span>
-                <span className="mt-1 block text-steel">Open the Dana walkthrough, Tier 1 page requirements, and proof-asset checklist.</span>
-              </Link>
-            </div>
           </div>
         )}
       </nav>

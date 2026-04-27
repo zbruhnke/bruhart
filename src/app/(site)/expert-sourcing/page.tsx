@@ -56,45 +56,21 @@ const rfqInputs = [
   ['Proof', 'Photos, drawings, site notes, model numbers, old parts, existing gates, or bid/spec documents.'],
 ];
 
-const expertDownloads = [
+const sourcingStandards = [
   {
-    title: 'Hard-to-Source Product Intake Sheet',
+    title: 'Start with the real constraint',
     description:
-      'Manufacturer, model, dimensions, finish, existing photos, acceptable substitutions, deadline, and domestic/imported requirements.',
-    status: 'Needs PDF/spec sheet',
+      'The right answer depends on the application, deadline, dimensions, compatibility, origin requirements, documentation, and what failure would cost.',
   },
   {
-    title: 'Complex Gate Package RFQ Checklist',
+    title: 'Quote the whole package',
     description:
-      'Opening, gate weight, operator, hardware, safety devices, access control, rating language, drawings, and photos.',
-    status: 'Needs PDF/spec sheet',
+      'A gate, operator, safety device, access-control component, hinge, latch, post, or replacement part can create the failure point if it is treated in isolation.',
   },
   {
-    title: 'Value Engineering Without Cheap Substitutions',
+    title: 'Use manufacturer reputation correctly',
     description:
-      'A buyer-facing guide for reducing cost without creating callbacks, weak points, or documentation problems.',
-    status: 'Needs owner review',
-  },
-];
-
-const expertProofAssets = [
-  {
-    title: 'Dana Field Notes',
-    description:
-      'Short approved owner notes explaining what buyers usually miss on gates, hardware, pipe/tube, operators, and special-order parts.',
-    status: 'Needs owner input',
-  },
-  {
-    title: 'Hard-Problem Stories',
-    description:
-      'Anonymized or approved examples where Bru-Hart helped a contractor, distributor, fabricator, or owner avoid the wrong product path.',
-    status: 'Proof needed',
-  },
-  {
-    title: 'Product Sourcing Photos',
-    description:
-      'Real photos of unusual parts, replacement hardware, manufacturer packaging, BH Track, gate trucks, pipe/tube, and specialty materials.',
-    status: 'Needs photos',
+      'A strong brand helps, but the product still has to fit the job, the support path, the lead time, the documentation, and the field conditions.',
   },
 ];
 
@@ -128,7 +104,7 @@ export default function ExpertSourcingPage() {
               Price matters. But on hard jobs, judgment matters first.
             </h2>
             <p className="text-lg leading-8 text-foreground-muted">
-              Binford, Master Halco, Stephens, and other large distributors can be strong price competitors on standard materials. Bru-Hart should win when the buyer needs counsel: what to buy, what not to buy, what can be sourced, what should be special-ordered, and what needs to be clarified before money moves.
+              Binford, Master Halco, Stephens, and other large distributors can be strong price competitors on standard materials. Bru-Hart is the better fit when the buyer needs counsel: what to buy, what not to buy, what can be sourced, what belongs on a special-order path, and what needs to be clarified before money moves.
             </p>
           </div>
           <div className="divide-y divide-border rounded-lg border border-border bg-white">
@@ -146,7 +122,7 @@ export default function ExpertSourcingPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
-              Where Bru-Hart Should Be Hard To Compete With
+              Where Bru-Hart Is Hard To Compete With
             </p>
             <h2 className="text-3xl font-bold text-foreground">
               Build the category pages, but make the expertise impossible to miss.
@@ -170,7 +146,7 @@ export default function ExpertSourcingPage() {
           <div className="mb-10 max-w-3xl">
             <h2 className="mb-4 text-3xl font-bold text-foreground">Send a better RFQ.</h2>
             <p className="text-lg leading-8 text-foreground-muted">
-              The fastest way to get expert help is to send the details that change the recommendation. Bru-Hart should train the market to bring the real problem, not just a SKU request.
+              The fastest way to get expert help is to send the details that change the recommendation. Bring the real problem, not just a SKU request.
             </p>
           </div>
           <div className="divide-y divide-border rounded-lg border border-border bg-white">
@@ -188,40 +164,22 @@ export default function ExpertSourcingPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
-              Proof And Tools To Build
+              How Expert Sourcing Works
             </p>
             <h2 className="mb-5 text-3xl font-bold text-foreground">
-              This is where Dana&apos;s judgment becomes visible, indexable, and useful.
+              Useful answers come from better inputs.
             </h2>
             <p className="text-lg leading-8 text-foreground-muted">
-              The page should eventually include the exact artifacts a buyer needs when a standard distributor price sheet is not enough. These placeholders are intentional: they show what Bru-Hart needs to collect and give sales a clean place to put that proof.
+              When a standard distributor price sheet is not enough, Bru-Hart helps narrow the product path before the mistake is purchased. The goal is to clarify fit, compatibility, sourcing path, and tradeoffs early.
             </p>
           </div>
-          <div className="grid gap-6">
-            <div className="rounded-lg border border-border bg-white p-6">
-              <h2 className="mb-5 text-xl font-bold text-foreground">Downloads To Create</h2>
-              <div className="space-y-4">
-                {expertDownloads.map((item) => (
-                  <article key={item.title} className="rounded-lg bg-background-alt p-4">
-                    <h3 className="mb-2 font-semibold text-foreground">{item.title}</h3>
-                    <p className="mb-2 text-sm leading-6 text-foreground-muted">{item.description}</p>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-primary">{item.status}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-lg border border-border bg-white p-6">
-              <h2 className="mb-5 text-xl font-bold text-foreground">Proof Assets To Collect</h2>
-              <div className="space-y-4">
-                {expertProofAssets.map((item) => (
-                  <article key={item.title} className="rounded-lg bg-background-alt p-4">
-                    <h3 className="mb-2 font-semibold text-foreground">{item.title}</h3>
-                    <p className="mb-2 text-sm leading-6 text-foreground-muted">{item.description}</p>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-primary">{item.status}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
+          <div className="grid gap-4">
+            {sourcingStandards.map((item) => (
+              <article key={item.title} className="rounded-lg border border-border bg-white p-6">
+                <h3 className="mb-2 text-xl font-bold text-foreground">{item.title}</h3>
+                <p className="leading-7 text-foreground-muted">{item.description}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -230,7 +188,7 @@ export default function ExpertSourcingPage() {
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-3xl font-bold text-white">Bring the hard fence or gate problem.</h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-white/80">
-            Bru-Hart should be judged by the quality of the answer, not by whether it can beat a commodity price sheet on every standard item.
+            Bru-Hart is built for buyers who care about the quality of the answer, not only whether a commodity price sheet is the lowest number.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-white px-7 py-3 text-base font-semibold text-primary transition-colors hover:bg-gray-100">

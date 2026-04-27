@@ -36,7 +36,7 @@ export default function ExpertSourcing() {
               Not the cheapest call. The right call when the job has to work.
             </h2>
             <p className="mb-8 text-lg leading-8 text-white/75">
-              If the whole decision is a commodity price sheet, Bru-Hart may not be the low number. If the job needs product judgment, manufacturer context, custom components, special-order sourcing, or a gate package that cannot fail in the field, that is where Bru-Hart should be called first.
+              If the whole decision is a commodity price sheet, Bru-Hart may not be the low number. If the job needs product judgment, manufacturer context, custom components, special-order sourcing, or a gate package that cannot fail in the field, Bru-Hart is the right first call.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
               <Link

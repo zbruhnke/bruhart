@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'Case Studies & Project Proof | Bru-Hart Industries',
   description:
     'Bru-Hart case study hub for fence, gate, agricultural, access-control, manufacturer, and high-security project proof.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 const caseStudyTypes = [
@@ -48,7 +52,7 @@ export default function CaseStudiesPage() {
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_360px] lg:px-8">
           <div>
             <h2 className="mb-5 text-3xl font-bold text-foreground">
-              The proof library should cover both sides of the business.
+              The proof library is structured around both sides of the business.
             </h2>
             <p className="mb-8 text-lg leading-8 text-foreground-muted">
               Bru-Hart needs case studies for local agricultural work and national wholesale/security work. That combination is what makes the company harder to categorize and harder to compete against.
@@ -81,7 +85,7 @@ export default function CaseStudiesPage() {
           <div className="mb-10 max-w-3xl">
             <h2 className="mb-4 text-3xl font-bold text-foreground">Case study format</h2>
             <p className="text-lg text-foreground-muted">
-              Every story should be useful even if the customer name is anonymized. Specificity matters more than length.
+              Every story can be useful even if the customer name is anonymized. Specificity matters more than length.
             </p>
           </div>
           <div className="divide-y divide-border rounded-lg border border-border bg-white">
